@@ -1,0 +1,1268 @@
+*** Starting uWSGI 2.0.20 (64bit) on [Thu Sep  1 19:33:46 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+writing pidfile to uwsgi.pid
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 127.0.0.1:8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:44523 (port auto-assigned) fd 3
+Python version: 3.6.12 |Anaconda, Inc.| (default, Sep  8 2020, 23:10:56)  [GCC 7.3.0]
+Python main interpreter initialized at 0x23b83e0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 166752 bytes (162 KB) for 2 cores
+*** Operational MODE: threaded ***
+failed to open python file Mars/wsgi.py
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 27739)
+spawned uWSGI worker 1 (pid: 27740, cores: 2)
+spawned uWSGI http 1 (pid: 27741)
+--- no python application found, check your startup logs for errors ---
+[pid: 27740|app: -1|req: -1/1] 127.0.0.1 () {54 vars in 1053 bytes} [Thu Sep  1 19:37:05 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 27740|app: -1|req: -1/2] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:37:08 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 27740|app: -1|req: -1/3] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:37:09 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 27740|app: -1|req: -1/4] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:37:09 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 27740|app: -1|req: -1/5] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:37:10 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 27740|app: -1|req: -1/6] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:37:11 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+SIGINT/SIGTERM received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 27741)
+worker 1 buried after 1 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.20 (64bit) on [Thu Sep  1 19:39:38 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+writing pidfile to uwsgi.pid
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 127.0.0.1:8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:40717 (port auto-assigned) fd 3
+Python version: 3.6.12 |Anaconda, Inc.| (default, Sep  8 2020, 23:10:56)  [GCC 7.3.0]
+Python main interpreter initialized at 0x20883e0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 166752 bytes (162 KB) for 2 cores
+*** Operational MODE: threaded ***
+failed to open python file Mars/wsgi.py
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 28421)
+spawned uWSGI worker 1 (pid: 28439, cores: 2)
+spawned uWSGI http 1 (pid: 28440)
+--- no python application found, check your startup logs for errors ---
+[pid: 28439|app: -1|req: -1/1] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:39:56 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 28439|app: -1|req: -1/2] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:39:57 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 28439|app: -1|req: -1/3] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:39:59 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 28439|app: -1|req: -1/4] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:39:59 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 28439|app: -1|req: -1/5] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:40:00 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 28439|app: -1|req: -1/6] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:40:00 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 28439|app: -1|req: -1/7] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:40:01 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+SIGINT/SIGTERM received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 28440)
+worker 1 buried after 1 seconds
+goodbye to uWSGI.
+*** Starting uWSGI 2.0.20 (64bit) on [Thu Sep  1 19:41:09 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+writing pidfile to uwsgi.pid
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 127.0.0.1:8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:33941 (port auto-assigned) fd 3
+Python version: 3.6.12 |Anaconda, Inc.| (default, Sep  8 2020, 23:10:56)  [GCC 7.3.0]
+Python main interpreter initialized at 0xe623e0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 166752 bytes (162 KB) for 2 cores
+*** Operational MODE: threaded ***
+failed to open python file PAIN/wsgi.py
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 28641)
+spawned uWSGI worker 1 (pid: 28647, cores: 2)
+spawned uWSGI http 1 (pid: 28648)
+--- no python application found, check your startup logs for errors ---
+[pid: 28647|app: -1|req: -1/1] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:41:14 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 28647|app: -1|req: -1/2] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:41:15 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 28647|app: -1|req: -1/3] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:41:16 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 28647|app: -1|req: -1/4] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:41:16 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 28647|app: -1|req: -1/5] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:41:17 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 28647|app: -1|req: -1/6] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:41:17 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 28647|app: -1|req: -1/7] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:41:17 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 28647|app: -1|req: -1/8] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:41:17 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 28647|app: -1|req: -1/9] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:41:19 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 28647|app: -1|req: -1/10] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:41:19 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+*** Starting uWSGI 2.0.20 (64bit) on [Thu Sep  1 19:48:51 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+writing pidfile to uwsgi.pid
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (127.0.0.1:8080).
+bind(): Address already in use [core/socket.c line 769]
+*** Starting uWSGI 2.0.20 (64bit) on [Thu Sep  1 19:48:57 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+writing pidfile to uwsgi.pid
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (127.0.0.1:8080).
+bind(): Address already in use [core/socket.c line 769]
+--- no python application found, check your startup logs for errors ---
+[pid: 28647|app: -1|req: -1/11] 127.0.0.1 () {54 vars in 1059 bytes} [Thu Sep  1 19:49:11 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 28647|app: -1|req: -1/12] 127.0.0.1 () {54 vars in 1059 bytes} [Thu Sep  1 19:49:12 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 28647|app: -1|req: -1/13] 127.0.0.1 () {54 vars in 1059 bytes} [Thu Sep  1 19:49:13 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 28647|app: -1|req: -1/14] 127.0.0.1 () {54 vars in 1059 bytes} [Thu Sep  1 19:49:13 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 28647|app: -1|req: -1/15] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:49:13 2022] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+gateway "uWSGI http 1" has been buried (pid: 28648)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /hdd/sda/lzq/PAIN/PAIN
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (127.0.0.1:33941)
+running /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+[uWSGI] getting INI configuration from uwsgi.ini
+*** Starting uWSGI 2.0.20 (64bit) on [Thu Sep  1 19:52:04 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 127.0.0.1:8080 fd 5
+uwsgi socket 0 bound to TCP address 127.0.0.1:33897 (port auto-assigned) fd 4
+Python version: 3.6.12 |Anaconda, Inc.| (default, Sep  8 2020, 23:10:56)  [GCC 7.3.0]
+Python main interpreter initialized at 0x25121d0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 166752 bytes (162 KB) for 2 cores
+*** Operational MODE: threaded ***
+Traceback (most recent call last):
+  File "/hdd/sda/lzq/PAIN/PAIN/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/__init__.py", line 19, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/conf/__init__.py", line 82, in __getattr__
+    self._setup(name)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/conf/__init__.py", line 69, in _setup
+    self._wrapped = Settings(settings_module)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/conf/__init__.py", line 170, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 941, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 953, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'PAIN'
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 28641)
+spawned uWSGI worker 1 (pid: 30555, cores: 2)
+spawned uWSGI http 1 (pid: 30556)
+*** Starting uWSGI 2.0.20 (64bit) on [Thu Sep  1 19:53:08 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+writing pidfile to uwsgi.pid
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (127.0.0.1:8080).
+bind(): Address already in use [core/socket.c line 769]
+gateway "uWSGI http 1" has been buried (pid: 30556)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /hdd/sda/lzq/PAIN/PAIN
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 4 mapped to socket 0 (127.0.0.1:33897)
+running /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+[uWSGI] getting INI configuration from uwsgi.ini
+*** Starting uWSGI 2.0.20 (64bit) on [Thu Sep  1 19:55:26 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 127.0.0.1:8080 fd 5
+uwsgi socket 0 bound to TCP address 127.0.0.1:33299 (port auto-assigned) fd 3
+Python version: 3.6.12 |Anaconda, Inc.| (default, Sep  8 2020, 23:10:56)  [GCC 7.3.0]
+Python main interpreter initialized at 0x2225200
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 166752 bytes (162 KB) for 2 cores
+*** Operational MODE: threaded ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x2225200 pid: 28641 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 28641)
+spawned uWSGI worker 1 (pid: 31080, cores: 2)
+spawned uWSGI http 1 (pid: 31082)
+[pid: 31080|app: 0|req: 1/1] 127.0.0.1 () {54 vars in 1060 bytes} [Thu Sep  1 19:55:41 2022] GET / => generated 2892 bytes in 1539 msecs (HTTP/1.1 200) 5 headers in 167 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 3/2] 127.0.0.1 () {50 vars in 966 bytes} [Thu Sep  1 19:55:42 2022] GET /static/css/font-awesome.min.css => generated 27470 bytes in 19 msecs via sendfile() (HTTP/1.1 200) 7 headers in 260 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 4/3] 127.0.0.1 () {50 vars in 960 bytes} [Thu Sep  1 19:55:42 2022] GET /static/css/bootstrap.min.css => generated 127349 bytes in 9 msecs via sendfile() (HTTP/1.1 200) 7 headers in 258 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 5/4] 127.0.0.1 () {50 vars in 942 bytes} [Thu Sep  1 19:55:42 2022] GET /static/css/demo.css => generated 4946 bytes in 5 msecs via sendfile() (HTTP/1.1 200) 7 headers in 247 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 6/5] 127.0.0.1 () {50 vars in 966 bytes} [Thu Sep  1 19:55:42 2022] GET /static/css/templatemo-style.css => generated 5840 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 7 headers in 259 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 6/6] 127.0.0.1 () {50 vars in 960 bytes} [Thu Sep  1 19:55:42 2022] GET /static/js/modernizr.custom.86080.js => generated 6506 bytes in 6 msecs via sendfile() (HTTP/1.1 200) 7 headers in 278 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 8/7] 127.0.0.1 () {50 vars in 987 bytes} [Thu Sep  1 19:55:42 2022] GET /static/img/logo_pain.png => generated 6099 bytes in 10 msecs via sendfile() (HTTP/1.1 200) 7 headers in 253 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 9/8] 127.0.0.1 () {50 vars in 1024 bytes} [Thu Sep  1 19:55:42 2022] GET /static/img/letter_bg_01.jpg => generated 154341 bytes in 10 msecs via sendfile() (HTTP/1.1 200) 7 headers in 259 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 10/9] 127.0.0.1 () {50 vars in 1024 bytes} [Thu Sep  1 19:55:42 2022] GET /static/img/letter_bg_02.jpg => generated 175547 bytes in 9 msecs via sendfile() (HTTP/1.1 200) 7 headers in 259 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 10/10] 127.0.0.1 () {50 vars in 1024 bytes} [Thu Sep  1 19:55:42 2022] GET /static/img/letter_bg_03.jpg => generated 152216 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 7 headers in 259 bytes (0 switches on core 0)
+1433223
+1433223
+The request's session was deleted before the request completed. The user may have logged out in a concurrent request, for example.: /postlogin/
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 87, in save
+    obj.save(force_insert=must_create, force_update=not must_create, using=using)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 727, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 765, in save_base
+    force_update, using, update_fields,
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 848, in _save_table
+    raise DatabaseError("Forced update did not affect any rows.")
+django.db.utils.DatabaseError: Forced update did not affect any rows.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/middleware.py", line 61, in process_response
+    request.session.save()
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 94, in save
+    raise UpdateError
+django.contrib.sessions.backends.base.UpdateError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_response(request, response)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/middleware.py", line 64, in process_response
+    "The request's session was deleted before the "
+django.contrib.sessions.exceptions.SessionInterrupted: The request's session was deleted before the request completed. The user may have logged out in a concurrent request, for example.
+Thu Sep  1 19:56:11 2022 - uwsgi_response_write_body_do(): Broken pipe [core/writer.c line 341] during POST /postlogin/ (127.0.0.1)
+OSError: write error
+[pid: 31080|app: 0|req: 12/11] 127.0.0.1 () {62 vars in 1231 bytes} [Thu Sep  1 19:56:00 2022] POST /postlogin/ => generated 21772 bytes in 11236 msecs (HTTP/1.1 400) 3 headers in 116 bytes (0 switches on core 1)
+The request's session was deleted before the request completed. The user may have logged out in a concurrent request, for example.: /postlogin/
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 87, in save
+    obj.save(force_insert=must_create, force_update=not must_create, using=using)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 727, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 765, in save_base
+    force_update, using, update_fields,
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 848, in _save_table
+    raise DatabaseError("Forced update did not affect any rows.")
+django.db.utils.DatabaseError: Forced update did not affect any rows.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/middleware.py", line 61, in process_response
+    request.session.save()
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 94, in save
+    raise UpdateError
+django.contrib.sessions.backends.base.UpdateError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_response(request, response)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/middleware.py", line 64, in process_response
+    "The request's session was deleted before the "
+django.contrib.sessions.exceptions.SessionInterrupted: The request's session was deleted before the request completed. The user may have logged out in a concurrent request, for example.
+Thu Sep  1 19:56:11 2022 - SIGPIPE: writing to a closed pipe/socket/fd (probably the client disconnected) !!!
+Thu Sep  1 19:56:11 2022 - uwsgi_response_write_body_do(): Broken pipe [core/writer.c line 341] during POST /postlogin/ (127.0.0.1)
+OSError: write error
+[pid: 31080|app: 0|req: 13/12] 127.0.0.1 () {62 vars in 1231 bytes} [Thu Sep  1 19:56:03 2022] POST /postlogin/ => generated 21772 bytes in 7946 msecs (HTTP/1.1 400) 3 headers in 116 bytes (0 switches on core 0)
+1433223
+Internal Server Error: /postlogin/
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./patient/views.py", line 205, in postlogin
+    checkIsLogin(request)
+  File "./patient/views.py", line 220, in checkIsLogin
+    date = Session.objects.filter(session_key=key)[0].session_data
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/query.py", line 318, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+Thu Sep  1 19:56:12 2022 - SIGPIPE: writing to a closed pipe/socket/fd (probably the client disconnected) !!!
+Thu Sep  1 19:56:12 2022 - uwsgi_response_write_body_do(): Broken pipe [core/writer.c line 341] during POST /postlogin/ (127.0.0.1)
+OSError: write error
+[pid: 31080|app: 0|req: 14/13] 127.0.0.1 () {62 vars in 1231 bytes} [Thu Sep  1 19:56:11 2022] POST /postlogin/ => generated 21702 bytes in 987 msecs (HTTP/1.1 500) 6 headers in 186 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 15/14] 127.0.0.1 () {62 vars in 1231 bytes} [Thu Sep  1 19:56:11 2022] POST /postlogin/ => generated 0 bytes in 1140 msecs (HTTP/1.1 302) 8 headers in 291 bytes (1 switches on core 1)
+1433223
+1433223
+The request's session was deleted before the request completed. The user may have logged out in a concurrent request, for example.: /postlogin/
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 87, in save
+    obj.save(force_insert=must_create, force_update=not must_create, using=using)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 727, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 765, in save_base
+    force_update, using, update_fields,
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 848, in _save_table
+    raise DatabaseError("Forced update did not affect any rows.")
+django.db.utils.DatabaseError: Forced update did not affect any rows.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/middleware.py", line 61, in process_response
+    request.session.save()
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 94, in save
+    raise UpdateError
+django.contrib.sessions.backends.base.UpdateError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_response(request, response)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/middleware.py", line 64, in process_response
+    "The request's session was deleted before the "
+django.contrib.sessions.exceptions.SessionInterrupted: The request's session was deleted before the request completed. The user may have logged out in a concurrent request, for example.
+Thu Sep  1 19:56:13 2022 - SIGPIPE: writing to a closed pipe/socket/fd (probably the client disconnected) !!!
+Thu Sep  1 19:56:13 2022 - uwsgi_response_write_body_do(): Broken pipe [core/writer.c line 341] during POST /postlogin/ (127.0.0.1)
+OSError: write error
+[pid: 31080|app: 0|req: 16/15] 127.0.0.1 () {62 vars in 1231 bytes} [Thu Sep  1 19:56:12 2022] POST /postlogin/ => generated 21772 bytes in 1235 msecs (HTTP/1.1 400) 3 headers in 116 bytes (0 switches on core 0)
+The request's session was deleted before the request completed. The user may have logged out in a concurrent request, for example.: /postlogin/
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 87, in save
+    obj.save(force_insert=must_create, force_update=not must_create, using=using)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 727, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 765, in save_base
+    force_update, using, update_fields,
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 848, in _save_table
+    raise DatabaseError("Forced update did not affect any rows.")
+django.db.utils.DatabaseError: Forced update did not affect any rows.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/middleware.py", line 61, in process_response
+    request.session.save()
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 94, in save
+    raise UpdateError
+django.contrib.sessions.backends.base.UpdateError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_response(request, response)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/middleware.py", line 64, in process_response
+    "The request's session was deleted before the "
+django.contrib.sessions.exceptions.SessionInterrupted: The request's session was deleted before the request completed. The user may have logged out in a concurrent request, for example.
+[pid: 31080|app: 0|req: 16/16] 127.0.0.1 () {62 vars in 1231 bytes} [Thu Sep  1 19:56:12 2022] POST /postlogin/ => generated 91630 bytes in 1292 msecs (HTTP/1.1 400) 3 headers in 116 bytes (1 switches on core 1)
+*** Starting uWSGI 2.0.20 (64bit) on [Thu Sep  1 19:56:54 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+writing pidfile to uwsgi.pid
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (127.0.0.1:8080).
+bind(): Address already in use [core/socket.c line 769]
+[pid: 31080|app: 0|req: 17/17] 127.0.0.1 () {54 vars in 1053 bytes} [Thu Sep  1 19:57:09 2022] GET / => generated 2892 bytes in 4 msecs (HTTP/1.1 200) 5 headers in 167 bytes (1 switches on core 0)
+1433223
+[pid: 31080|app: 0|req: 18/18] 127.0.0.1 () {62 vars in 1231 bytes} [Thu Sep  1 19:57:16 2022] POST /postlogin/ => generated 0 bytes in 1151 msecs (HTTP/1.1 302) 8 headers in 291 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 19/19] 127.0.0.1 () {56 vars in 1121 bytes} [Thu Sep  1 19:57:17 2022] GET /dataList => generated 0 bytes in 4 msecs (HTTP/1.1 301) 5 headers in 178 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 20/20] 127.0.0.1 () {56 vars in 1123 bytes} [Thu Sep  1 19:57:17 2022] GET /dataList/ => generated 19744 bytes in 699 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 21/21] 127.0.0.1 () {50 vars in 967 bytes} [Thu Sep  1 19:57:18 2022] GET /static/assetjs/jquery-2.1.4.min.js => generated 84349 bytes in 8 msecs via sendfile() (HTTP/1.1 200) 7 headers in 273 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 22/22] 127.0.0.1 () {50 vars in 953 bytes} [Thu Sep  1 19:57:18 2022] GET /static/assetjs/popper.min.js => generated 20503 bytes in 6 msecs via sendfile() (HTTP/1.1 200) 7 headers in 267 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 23/23] 127.0.0.1 () {50 vars in 948 bytes} [Thu Sep  1 19:57:18 2022] GET /static/assetjs/plugins.js => generated 63997 bytes in 3 msecs via sendfile() (HTTP/1.1 200) 7 headers in 264 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 24/24] 127.0.0.1 () {50 vars in 942 bytes} [Thu Sep  1 19:57:18 2022] GET /static/assetjs/main.js => generated 2021 bytes in 4 msecs via sendfile() (HTTP/1.1 200) 7 headers in 260 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 25/25] 127.0.0.1 () {50 vars in 956 bytes} [Thu Sep  1 19:57:18 2022] GET /static/js/jquery-1.4.2.min.js => generated 80281 bytes in 15 msecs via sendfile() (HTTP/1.1 200) 7 headers in 273 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 26/26] 127.0.0.1 () {50 vars in 978 bytes} [Thu Sep  1 19:57:18 2022] GET /static/assetjs/jquery.matchHeight.min.js => generated 3624 bytes in 11 msecs via sendfile() (HTTP/1.1 200) 7 headers in 278 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 27/27] 127.0.0.1 () {50 vars in 974 bytes} [Thu Sep  1 19:57:18 2022] GET /static/assetjs/table/datatables.min.js => generated 216372 bytes in 9 msecs via sendfile() (HTTP/1.1 200) 7 headers in 272 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 28/28] 127.0.0.1 () {50 vars in 995 bytes} [Thu Sep  1 19:57:18 2022] GET /static/assetjs/table/dataTables.bootstrap.min.js => generated 2076 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 7 headers in 280 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 30/29] 127.0.0.1 () {50 vars in 991 bytes} [Thu Sep  1 19:57:18 2022] GET /static/assetjs/table/dataTables.buttons.min.js => generated 16071 bytes in 4 msecs via sendfile() (HTTP/1.1 200) 7 headers in 279 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 31/30] 127.0.0.1 () {50 vars in 989 bytes} [Thu Sep  1 19:57:18 2022] GET /static/assetjs/table/buttons.bootstrap.min.js => generated 425 bytes in 6 msecs via sendfile() (HTTP/1.1 200) 7 headers in 276 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 32/31] 127.0.0.1 () {50 vars in 965 bytes} [Thu Sep  1 19:57:18 2022] GET /static/assetjs/table/jszip.min.js => generated 76998 bytes in 5 msecs via sendfile() (HTTP/1.1 200) 7 headers in 266 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 33/32] 127.0.0.1 () {50 vars in 965 bytes} [Thu Sep  1 19:57:18 2022] GET /static/assetjs/table/vfs_fonts.js => generated 567638 bytes in 8 msecs via sendfile() (HTTP/1.1 200) 7 headers in 267 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 33/33] 127.0.0.1 () {50 vars in 981 bytes} [Thu Sep  1 19:57:18 2022] GET /static/assetjs/table/buttons.html5.min.js => generated 23155 bytes in 5 msecs via sendfile() (HTTP/1.1 200) 7 headers in 274 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 34/34] 127.0.0.1 () {50 vars in 981 bytes} [Thu Sep  1 19:57:18 2022] GET /static/assetjs/table/buttons.print.min.js => generated 1836 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 7 headers in 273 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 36/35] 127.0.0.1 () {50 vars in 986 bytes} [Thu Sep  1 19:57:18 2022] GET /static/img/logo.jpg => generated 34634 bytes in 9 msecs via sendfile() (HTTP/1.1 200) 7 headers in 250 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 37/36] 127.0.0.1 () {50 vars in 994 bytes} [Thu Sep  1 19:57:18 2022] GET /static/img/avatar/4.jpg => generated 2580 bytes in 12 msecs via sendfile() (HTTP/1.1 200) 7 headers in 246 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 38/37] 127.0.0.1 () {52 vars in 1033 bytes} [Thu Sep  1 19:57:18 2022] GET /static/fonts/fontawesome-webfont.woff2 => generated 77160 bytes in 9 msecs via sendfile() (HTTP/1.1 200) 7 headers in 281 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 38/38] 127.0.0.1 () {50 vars in 983 bytes} [Thu Sep  1 19:57:18 2022] GET /static/assetjs/table/buttons.colVis.min.js => generated 2583 bytes in 4 msecs via sendfile() (HTTP/1.1 200) 7 headers in 274 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 39/39] 127.0.0.1 () {58 vars in 1116 bytes} [Thu Sep  1 19:57:18 2022] POST /dataList/ => generated 1121 bytes in 1176 msecs (HTTP/1.1 200) 6 headers in 173 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.20 (64bit) on [Fri Sep  2 01:43:41 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+writing pidfile to uwsgi.pid
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (127.0.0.1:8080).
+bind(): Address already in use [core/socket.c line 769]
+[pid: 31080|app: 0|req: 40/40] 127.0.0.1 () {54 vars in 1053 bytes} [Fri Sep  2 01:46:32 2022] GET / => generated 2892 bytes in 41 msecs (HTTP/1.1 200) 5 headers in 167 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 42/41] 127.0.0.1 () {50 vars in 1024 bytes} [Fri Sep  2 01:46:49 2022] GET /static/img/letter_bg_01.jpg => generated 154341 bytes in 14 msecs via sendfile() (HTTP/1.1 200) 7 headers in 259 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 42/42] 127.0.0.1 () {50 vars in 1024 bytes} [Fri Sep  2 01:46:49 2022] GET /static/img/letter_bg_02.jpg => generated 175547 bytes in 14 msecs via sendfile() (HTTP/1.1 200) 7 headers in 259 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 43/43] 127.0.0.1 () {50 vars in 1024 bytes} [Fri Sep  2 01:46:50 2022] GET /static/img/letter_bg_03.jpg => generated 152216 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 7 headers in 259 bytes (0 switches on core 0)
+1433224
+1433224
+The request's session was deleted before the request completed. The user may have logged out in a concurrent request, for example.: /postlogin/
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 87, in save
+    obj.save(force_insert=must_create, force_update=not must_create, using=using)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 727, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 765, in save_base
+    force_update, using, update_fields,
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 848, in _save_table
+    raise DatabaseError("Forced update did not affect any rows.")
+django.db.utils.DatabaseError: Forced update did not affect any rows.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/middleware.py", line 61, in process_response
+    request.session.save()
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 94, in save
+    raise UpdateError
+django.contrib.sessions.backends.base.UpdateError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_response(request, response)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/middleware.py", line 64, in process_response
+    "The request's session was deleted before the "
+django.contrib.sessions.exceptions.SessionInterrupted: The request's session was deleted before the request completed. The user may have logged out in a concurrent request, for example.
+Fri Sep  2 01:47:11 2022 - uwsgi_response_write_body_do(): Broken pipe [core/writer.c line 341] during POST /postlogin/ (127.0.0.1)
+OSError: write error
+[pid: 31080|app: 0|req: 45/44] 127.0.0.1 () {62 vars in 1229 bytes} [Fri Sep  2 01:47:02 2022] POST /postlogin/ => generated 21772 bytes in 9747 msecs (HTTP/1.1 400) 3 headers in 116 bytes (0 switches on core 1)
+The request's session was deleted before the request completed. The user may have logged out in a concurrent request, for example.: /postlogin/
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 87, in save
+    obj.save(force_insert=must_create, force_update=not must_create, using=using)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 727, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 765, in save_base
+    force_update, using, update_fields,
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/db/models/base.py", line 848, in _save_table
+    raise DatabaseError("Forced update did not affect any rows.")
+django.db.utils.DatabaseError: Forced update did not affect any rows.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/middleware.py", line 61, in process_response
+    request.session.save()
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/backends/db.py", line 94, in save
+    raise UpdateError
+django.contrib.sessions.backends.base.UpdateError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_response(request, response)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/contrib/sessions/middleware.py", line 64, in process_response
+    "The request's session was deleted before the "
+django.contrib.sessions.exceptions.SessionInterrupted: The request's session was deleted before the request completed. The user may have logged out in a concurrent request, for example.
+[pid: 31080|app: 0|req: 45/45] 127.0.0.1 () {62 vars in 1229 bytes} [Fri Sep  2 01:47:07 2022] POST /postlogin/ => generated 91625 bytes in 4748 msecs (HTTP/1.1 400) 3 headers in 116 bytes (1 switches on core 0)
+1433224
+[pid: 31080|app: 0|req: 46/46] 127.0.0.1 () {62 vars in 1231 bytes} [Fri Sep  2 01:48:25 2022] POST /postlogin/ => generated 0 bytes in 1287 msecs (HTTP/1.1 302) 8 headers in 291 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 47/47] 127.0.0.1 () {56 vars in 1121 bytes} [Fri Sep  2 01:48:27 2022] GET /dataList => generated 0 bytes in 1 msecs (HTTP/1.1 301) 5 headers in 178 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 48/48] 127.0.0.1 () {56 vars in 1123 bytes} [Fri Sep  2 01:48:27 2022] GET /dataList/ => generated 19744 bytes in 690 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 49/49] 127.0.0.1 () {50 vars in 967 bytes} [Fri Sep  2 01:48:27 2022] GET /static/assetjs/jquery-2.1.4.min.js => generated 84349 bytes in 14 msecs via sendfile() (HTTP/1.1 200) 7 headers in 273 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 50/50] 127.0.0.1 () {50 vars in 955 bytes} [Fri Sep  2 01:48:28 2022] GET /static/assetjs/popper.min.js => generated 20503 bytes in 3 msecs via sendfile() (HTTP/1.1 200) 7 headers in 267 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 51/51] 127.0.0.1 () {50 vars in 949 bytes} [Fri Sep  2 01:48:28 2022] GET /static/assetjs/plugins.js => generated 63997 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 7 headers in 264 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 52/52] 127.0.0.1 () {50 vars in 943 bytes} [Fri Sep  2 01:48:28 2022] GET /static/assetjs/main.js => generated 2021 bytes in 10 msecs via sendfile() (HTTP/1.1 200) 7 headers in 260 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 53/53] 127.0.0.1 () {50 vars in 957 bytes} [Fri Sep  2 01:48:28 2022] GET /static/js/jquery-1.4.2.min.js => generated 80281 bytes in 9 msecs via sendfile() (HTTP/1.1 200) 7 headers in 273 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 54/54] 127.0.0.1 () {50 vars in 979 bytes} [Fri Sep  2 01:48:28 2022] GET /static/assetjs/jquery.matchHeight.min.js => generated 3624 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 7 headers in 278 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 55/55] 127.0.0.1 () {50 vars in 975 bytes} [Fri Sep  2 01:48:28 2022] GET /static/assetjs/table/datatables.min.js => generated 216372 bytes in 3 msecs via sendfile() (HTTP/1.1 200) 7 headers in 272 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 56/56] 127.0.0.1 () {50 vars in 995 bytes} [Fri Sep  2 01:48:28 2022] GET /static/assetjs/table/dataTables.bootstrap.min.js => generated 2076 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 7 headers in 280 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 58/57] 127.0.0.1 () {50 vars in 991 bytes} [Fri Sep  2 01:48:28 2022] GET /static/assetjs/table/dataTables.buttons.min.js => generated 16071 bytes in 6 msecs via sendfile() (HTTP/1.1 200) 7 headers in 279 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 59/58] 127.0.0.1 () {50 vars in 965 bytes} [Fri Sep  2 01:48:28 2022] GET /static/assetjs/table/vfs_fonts.js => generated 567638 bytes in 6 msecs via sendfile() (HTTP/1.1 200) 7 headers in 267 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 60/59] 127.0.0.1 () {50 vars in 989 bytes} [Fri Sep  2 01:48:28 2022] GET /static/assetjs/table/buttons.bootstrap.min.js => generated 425 bytes in 4 msecs via sendfile() (HTTP/1.1 200) 7 headers in 276 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 61/60] 127.0.0.1 () {50 vars in 965 bytes} [Fri Sep  2 01:48:28 2022] GET /static/assetjs/table/jszip.min.js => generated 76998 bytes in 6 msecs via sendfile() (HTTP/1.1 200) 7 headers in 266 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 61/61] 127.0.0.1 () {50 vars in 981 bytes} [Fri Sep  2 01:48:28 2022] GET /static/assetjs/table/buttons.html5.min.js => generated 23155 bytes in 5 msecs via sendfile() (HTTP/1.1 200) 7 headers in 274 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 62/62] 127.0.0.1 () {50 vars in 981 bytes} [Fri Sep  2 01:48:28 2022] GET /static/assetjs/table/buttons.print.min.js => generated 1836 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 7 headers in 273 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 64/63] 127.0.0.1 () {50 vars in 994 bytes} [Fri Sep  2 01:48:28 2022] GET /static/img/avatar/4.jpg => generated 2580 bytes in 4 msecs via sendfile() (HTTP/1.1 200) 7 headers in 246 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 65/64] 127.0.0.1 () {52 vars in 1033 bytes} [Fri Sep  2 01:48:28 2022] GET /static/fonts/fontawesome-webfont.woff2 => generated 77160 bytes in 9 msecs via sendfile() (HTTP/1.1 200) 7 headers in 281 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 66/65] 127.0.0.1 () {50 vars in 983 bytes} [Fri Sep  2 01:48:28 2022] GET /static/assetjs/table/buttons.colVis.min.js => generated 2583 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 7 headers in 274 bytes (0 switches on core 0)
+[pid: 31080|app: 0|req: 66/66] 127.0.0.1 () {50 vars in 986 bytes} [Fri Sep  2 01:48:28 2022] GET /static/img/logo.jpg => generated 34634 bytes in 12 msecs via sendfile() (HTTP/1.1 200) 7 headers in 250 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 67/67] 127.0.0.1 () {58 vars in 1116 bytes} [Fri Sep  2 01:48:28 2022] POST /dataList/ => generated 999 bytes in 982 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.20 (64bit) on [Fri Sep  2 02:18:14 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+writing pidfile to uwsgi.pid
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (0.0.0.0:8080).
+bind(): Address already in use [core/socket.c line 769]
+[pid: 31080|app: 0|req: 68/68] 127.0.0.1 () {56 vars in 1123 bytes} [Fri Sep  2 02:18:19 2022] GET /dataList/ => generated 19744 bytes in 1492 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 69/69] 127.0.0.1 () {58 vars in 1116 bytes} [Fri Sep  2 02:18:21 2022] POST /dataList/ => generated 999 bytes in 979 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 70/70] 127.0.0.1 () {54 vars in 1111 bytes} [Fri Sep  2 02:18:25 2022] GET /sampleDetail/2 => generated 0 bytes in 1 msecs (HTTP/1.1 301) 5 headers in 184 bytes (1 switches on core 1)
+2_2_3_齐睿轩
+[pid: 31080|app: 0|req: 71/71] 127.0.0.1 () {54 vars in 1113 bytes} [Fri Sep  2 02:18:25 2022] GET /sampleDetail/2/ => generated 40209 bytes in 925 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 72/72] 127.0.0.1 () {50 vars in 945 bytes} [Fri Sep  2 02:18:27 2022] GET /static/js/echarts.js => generated 1930411 bytes in 27 msecs via sendfile() (HTTP/1.1 200) 7 headers in 266 bytes (0 switches on core 1)
+6895821
+<django.http.response.StreamingHttpResponse object at 0x7fc9706a5710>
+[pid: 31080|app: 0|req: 73/73] 127.0.0.1 () {52 vars in 1029 bytes} [Fri Sep  2 02:18:28 2022] GET /stream_video/?path=/media/mp4/03-QRX-02_HOlRJ39.mp4 => generated 6895821 bytes in 71 msecs (HTTP/1.1 206) 7 headers in 230 bytes (842 switches on core 0)
+{'sum_score': 56.0, 'FLACC_score': 1.0, 'FACE_score': 0.0, 'legs_score': 0.0, 'Acitivity_score': 0.0, 'Cry_score': 0.0, 'consolability_score': 1.0, 'VAS_score': 7.0, 'lianpu_score': 5.0}
+[pid: 31080|app: 0|req: 74/74] 127.0.0.1 () {62 vars in 1294 bytes} [Fri Sep  2 02:18:39 2022] POST /addScoreSuccess/ => generated 0 bytes in 782 msecs (HTTP/1.1 302) 8 headers in 291 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 75/75] 127.0.0.1 () {56 vars in 1135 bytes} [Fri Sep  2 02:18:40 2022] GET /dataList => generated 0 bytes in 1 msecs (HTTP/1.1 301) 5 headers in 178 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 76/76] 127.0.0.1 () {56 vars in 1137 bytes} [Fri Sep  2 02:18:40 2022] GET /dataList/ => generated 19774 bytes in 666 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 77/77] 127.0.0.1 () {58 vars in 1116 bytes} [Fri Sep  2 02:18:42 2022] POST /dataList/ => generated 999 bytes in 974 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 78/78] 127.0.0.1 () {54 vars in 1053 bytes} [Fri Sep  2 21:18:14 2022] GET / => generated 2892 bytes in 2 msecs (HTTP/1.1 200) 5 headers in 167 bytes (1 switches on core 1)
+1433224
+[pid: 31080|app: 0|req: 79/79] 127.0.0.1 () {62 vars in 1231 bytes} [Fri Sep  2 21:18:22 2022] POST /postlogin/ => generated 0 bytes in 7367 msecs (HTTP/1.1 302) 8 headers in 291 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 80/80] 127.0.0.1 () {56 vars in 1121 bytes} [Fri Sep  2 21:18:29 2022] GET /dataList => generated 0 bytes in 2 msecs (HTTP/1.1 301) 5 headers in 178 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 81/81] 127.0.0.1 () {56 vars in 1123 bytes} [Fri Sep  2 21:18:29 2022] GET /dataList/ => generated 19744 bytes in 677 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 82/82] 127.0.0.1 () {58 vars in 1116 bytes} [Fri Sep  2 21:18:30 2022] POST /dataList/ => generated 999 bytes in 1000 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 83/83] 127.0.0.1 () {54 vars in 1097 bytes} [Fri Sep  2 21:18:35 2022] GET /addData => generated 0 bytes in 2 msecs (HTTP/1.1 301) 5 headers in 177 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 84/84] 127.0.0.1 () {54 vars in 1099 bytes} [Fri Sep  2 21:18:35 2022] GET /addData/ => generated 26299 bytes in 651 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 85/85] 127.0.0.1 () {56 vars in 1048 bytes} [Fri Sep  2 21:18:36 2022] POST /addData/ => generated 968 bytes in 671 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.20 (64bit) on [Fri Sep  2 22:22:06 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+writing pidfile to uwsgi.pid
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (0.0.0.0:8080).
+bind(): Address already in use [core/socket.c line 769]
+[pid: 31080|app: 0|req: 87/86] 127.0.0.1 () {56 vars in 1130 bytes} [Fri Sep  2 22:22:28 2022] GET /addData/ => generated 26735 bytes in 645 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Fri Sep  2 22:22:29 2022 - uwsgi_response_write_body_do(): Broken pipe [core/writer.c line 341] during GET /addData/ (127.0.0.1)
+OSError: write error
+[pid: 31080|app: 0|req: 87/87] 127.0.0.1 () {56 vars in 1130 bytes} [Fri Sep  2 22:22:25 2022] GET /addData/ => generated 21617 bytes in 3680 msecs (HTTP/1.1 200) 7 headers in 271 bytes (0 switches on core 1)
+[pid: 31080|app: 0|req: 88/88] 127.0.0.1 () {56 vars in 1048 bytes} [Fri Sep  2 22:22:29 2022] POST /addData/ => generated 968 bytes in 660 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.20 (64bit) on [Fri Sep  2 22:24:13 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+writing pidfile to uwsgi.pid
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (0.0.0.0:8080).
+bind(): Address already in use [core/socket.c line 769]
+[pid: 31080|app: 0|req: 89/89] 127.0.0.1 () {56 vars in 1130 bytes} [Fri Sep  2 22:24:16 2022] GET /addData/ => generated 26775 bytes in 8274 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 90/90] 127.0.0.1 () {56 vars in 1048 bytes} [Fri Sep  2 22:24:24 2022] POST /addData/ => generated 968 bytes in 656 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.20 (64bit) on [Fri Sep  2 22:35:59 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+writing pidfile to uwsgi.pid
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (0.0.0.0:8080).
+bind(): Address already in use [core/socket.c line 769]
+[pid: 31080|app: 0|req: 91/91] 127.0.0.1 () {56 vars in 1130 bytes} [Fri Sep  2 22:36:08 2022] GET /addData/ => generated 26784 bytes in 1444 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 92/92] 127.0.0.1 () {56 vars in 1048 bytes} [Fri Sep  2 22:36:09 2022] POST /addData/ => generated 968 bytes in 673 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 94/93] 127.0.0.1 () {54 vars in 1100 bytes} [Fri Sep  2 22:36:59 2022] GET /dataList/ => generated 19744 bytes in 1670 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 94/94] 127.0.0.1 () {54 vars in 1100 bytes} [Fri Sep  2 22:36:56 2022] GET /dataList/ => generated 19744 bytes in 5045 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 95/95] 127.0.0.1 () {58 vars in 1116 bytes} [Fri Sep  2 22:37:01 2022] POST /dataList/ => generated 999 bytes in 999 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 96/96] 127.0.0.1 () {56 vars in 1130 bytes} [Fri Sep  2 22:50:05 2022] GET /dataList/ => generated 19834 bytes in 3671 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 97/97] 127.0.0.1 () {58 vars in 1115 bytes} [Fri Sep  2 22:50:09 2022] POST /dataList/ => generated 999 bytes in 997 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 98/98] 127.0.0.1 () {56 vars in 1131 bytes} [Fri Sep  2 22:53:41 2022] GET /dataList/ => generated 19982 bytes in 6972 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 99/99] 127.0.0.1 () {58 vars in 1116 bytes} [Fri Sep  2 22:53:48 2022] POST /dataList/ => generated 999 bytes in 1035 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 101/100] 127.0.0.1 () {44 vars in 880 bytes} [Fri Sep  2 22:53:54 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 419 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 101/101] 127.0.0.1 () {44 vars in 808 bytes} [Fri Sep  2 22:53:54 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 418 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 102/102] 127.0.0.1 () {56 vars in 1131 bytes} [Fri Sep  2 22:56:53 2022] GET /dataList/ => generated 19987 bytes in 3499 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 103/103] 127.0.0.1 () {44 vars in 808 bytes} [Fri Sep  2 22:56:57 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 18 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 105/104] 127.0.0.1 () {44 vars in 880 bytes} [Fri Sep  2 22:56:58 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 14 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 105/105] 127.0.0.1 () {58 vars in 1116 bytes} [Fri Sep  2 22:56:58 2022] POST /dataList/ => generated 999 bytes in 997 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 1)
+*** Starting uWSGI 2.0.20 (64bit) on [Fri Sep  2 22:58:13 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+writing pidfile to uwsgi.pid
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (0.0.0.0:8080).
+bind(): Address already in use [core/socket.c line 769]
+[pid: 31080|app: 0|req: 106/106] 127.0.0.1 () {56 vars in 1131 bytes} [Fri Sep  2 22:58:19 2022] GET /dataList/ => generated 19982 bytes in 3423 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 107/107] 127.0.0.1 () {44 vars in 808 bytes} [Fri Sep  2 22:58:23 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 14 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 108/108] 127.0.0.1 () {58 vars in 1116 bytes} [Fri Sep  2 22:58:23 2022] POST /dataList/ => generated 999 bytes in 996 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 109/109] 127.0.0.1 () {44 vars in 880 bytes} [Fri Sep  2 22:58:24 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 12 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 110/110] 127.0.0.1 () {56 vars in 1129 bytes} [Fri Sep  2 23:53:14 2022] GET /dataList/ => generated 20376 bytes in 1538 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 111/111] 127.0.0.1 () {44 vars in 806 bytes} [Fri Sep  2 23:53:15 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 15 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 113/112] 127.0.0.1 () {44 vars in 879 bytes} [Fri Sep  2 23:53:16 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 14 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 113/113] 127.0.0.1 () {58 vars in 1115 bytes} [Fri Sep  2 23:53:16 2022] POST /dataList/ => generated 999 bytes in 1001 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 114/114] 127.0.0.1 () {56 vars in 1130 bytes} [Fri Sep  2 23:54:25 2022] GET /dataList/ => generated 20377 bytes in 3268 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 115/115] 127.0.0.1 () {44 vars in 807 bytes} [Fri Sep  2 23:54:29 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 9 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 117/116] 127.0.0.1 () {44 vars in 880 bytes} [Fri Sep  2 23:54:30 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 10 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 117/117] 127.0.0.1 () {58 vars in 1116 bytes} [Fri Sep  2 23:54:30 2022] POST /dataList/ => generated 999 bytes in 972 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 118/118] 127.0.0.1 () {56 vars in 1131 bytes} [Fri Sep  2 23:55:08 2022] GET /dataList/ => generated 20375 bytes in 668 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 119/119] 127.0.0.1 () {44 vars in 808 bytes} [Fri Sep  2 23:55:09 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 10 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 121/120] 127.0.0.1 () {44 vars in 880 bytes} [Fri Sep  2 23:55:10 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 10 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 121/121] 127.0.0.1 () {58 vars in 1116 bytes} [Fri Sep  2 23:55:10 2022] POST /dataList/ => generated 999 bytes in 978 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 122/122] 127.0.0.1 () {56 vars in 1131 bytes} [Fri Sep  2 23:56:06 2022] GET /dataList/ => generated 20373 bytes in 5013 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 123/123] 127.0.0.1 () {44 vars in 808 bytes} [Fri Sep  2 23:56:11 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 10 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 124/124] 127.0.0.1 () {44 vars in 880 bytes} [Fri Sep  2 23:56:11 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 10 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 125/125] 127.0.0.1 () {58 vars in 1116 bytes} [Fri Sep  2 23:56:12 2022] POST /dataList/ => generated 999 bytes in 973 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 126/126] 127.0.0.1 () {56 vars in 1131 bytes} [Sat Sep  3 00:06:40 2022] GET /dataList/ => generated 20507 bytes in 7095 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 127/127] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 00:06:47 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 9 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 129/128] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 00:06:49 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 11 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 129/129] 127.0.0.1 () {58 vars in 1116 bytes} [Sat Sep  3 00:06:49 2022] POST /dataList/ => generated 999 bytes in 971 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 130/130] 127.0.0.1 () {56 vars in 1131 bytes} [Sat Sep  3 00:07:25 2022] GET /dataList/ => generated 20502 bytes in 2713 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 131/131] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 00:07:28 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 15 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 133/132] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 00:07:28 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 15 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 133/133] 127.0.0.1 () {58 vars in 1116 bytes} [Sat Sep  3 00:07:28 2022] POST /dataList/ => generated 999 bytes in 984 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 134/134] 127.0.0.1 () {56 vars in 1131 bytes} [Sat Sep  3 00:09:04 2022] GET /dataList/ => generated 20458 bytes in 1647 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 135/135] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 00:09:06 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 10 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 137/136] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 00:09:07 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 8 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 137/137] 127.0.0.1 () {58 vars in 1116 bytes} [Sat Sep  3 00:09:07 2022] POST /dataList/ => generated 999 bytes in 970 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 138/138] 127.0.0.1 () {56 vars in 1131 bytes} [Sat Sep  3 00:13:16 2022] GET /dataList/ => generated 20458 bytes in 3207 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 139/139] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 00:13:19 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 7 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 141/140] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 00:13:21 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 12 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 141/141] 127.0.0.1 () {58 vars in 1116 bytes} [Sat Sep  3 00:13:21 2022] POST /dataList/ => generated 999 bytes in 977 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 142/142] 127.0.0.1 () {56 vars in 1130 bytes} [Sat Sep  3 00:17:01 2022] GET /dataList/ => generated 20516 bytes in 3523 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 143/143] 127.0.0.1 () {58 vars in 1115 bytes} [Sat Sep  3 00:17:04 2022] POST /dataList/ => generated 999 bytes in 972 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 145/144] 127.0.0.1 () {44 vars in 807 bytes} [Sat Sep  3 00:17:05 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 20 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 145/145] 127.0.0.1 () {44 vars in 879 bytes} [Sat Sep  3 00:17:05 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 20 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 146/146] 127.0.0.1 () {56 vars in 1131 bytes} [Sat Sep  3 00:21:45 2022] GET /dataList/ => generated 20564 bytes in 3209 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 147/147] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 00:21:49 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 13 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 148/148] 127.0.0.1 () {58 vars in 1116 bytes} [Sat Sep  3 00:21:49 2022] POST /dataList/ => generated 999 bytes in 993 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 149/149] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 00:21:50 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 15 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 150/150] 127.0.0.1 () {56 vars in 1131 bytes} [Sat Sep  3 00:26:32 2022] GET /dataList/ => generated 20579 bytes in 3565 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 151/151] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 00:26:36 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 15 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 153/152] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 00:26:37 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 14 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 153/153] 127.0.0.1 () {58 vars in 1116 bytes} [Sat Sep  3 00:26:37 2022] POST /dataList/ => generated 999 bytes in 991 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 154/154] 127.0.0.1 () {56 vars in 1131 bytes} [Sat Sep  3 00:28:37 2022] GET /dataList/ => generated 20600 bytes in 3368 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 155/155] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 00:28:41 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 13 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 157/156] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 00:28:41 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 13 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 157/157] 127.0.0.1 () {58 vars in 1116 bytes} [Sat Sep  3 00:28:41 2022] POST /dataList/ => generated 999 bytes in 1008 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 158/158] 127.0.0.1 () {56 vars in 1131 bytes} [Sat Sep  3 00:29:38 2022] GET /dataList/ => generated 20653 bytes in 3489 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 159/159] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 00:29:41 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 9 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 161/160] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 00:29:42 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 9 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 161/161] 127.0.0.1 () {58 vars in 1116 bytes} [Sat Sep  3 00:29:42 2022] POST /dataList/ => generated 999 bytes in 998 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 162/162] 127.0.0.1 () {56 vars in 1131 bytes} [Sat Sep  3 00:30:33 2022] GET /dataList/ => generated 20616 bytes in 2243 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 163/163] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 00:30:35 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 6 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 165/164] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 00:30:36 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 15 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 165/165] 127.0.0.1 () {58 vars in 1116 bytes} [Sat Sep  3 00:30:36 2022] POST /dataList/ => generated 999 bytes in 973 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 166/166] 127.0.0.1 () {56 vars in 1131 bytes} [Sat Sep  3 00:34:22 2022] GET /dataList/ => generated 20945 bytes in 3616 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 167/167] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 00:34:26 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 10 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 169/168] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 00:34:26 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 13 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 169/169] 127.0.0.1 () {58 vars in 1116 bytes} [Sat Sep  3 00:34:26 2022] POST /dataList/ => generated 999 bytes in 1006 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 170/170] 127.0.0.1 () {56 vars in 1131 bytes} [Sat Sep  3 00:43:27 2022] GET /dataList/ => generated 20945 bytes in 8183 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 171/171] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 00:43:35 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 8 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 172/172] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 00:43:35 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 9 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 173/173] 127.0.0.1 () {58 vars in 1116 bytes} [Sat Sep  3 00:43:36 2022] POST /dataList/ => generated 999 bytes in 972 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 1)
+Not Found: /changeName/
+[pid: 31080|app: 0|req: 174/174] 127.0.0.1 () {62 vars in 1278 bytes} [Sat Sep  3 00:44:21 2022] POST /changeName/ => generated 4267 bytes in 8 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 176/175] 127.0.0.1 () {54 vars in 1099 bytes} [Sat Sep  3 00:48:00 2022] GET /addData/ => generated 27996 bytes in 1320 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 176/176] 127.0.0.1 () {54 vars in 1100 bytes} [Sat Sep  3 00:47:58 2022] GET /dataList/ => generated 20956 bytes in 3633 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 177/177] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 00:48:02 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 8 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 179/178] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 00:48:02 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 10 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 179/179] 127.0.0.1 () {56 vars in 1048 bytes} [Sat Sep  3 00:48:02 2022] POST /addData/ => generated 968 bytes in 668 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 1)
+Not Found: /changeName/
+[pid: 31080|app: 0|req: 180/180] 127.0.0.1 () {62 vars in 1277 bytes} [Sat Sep  3 00:48:09 2022] POST /changeName/ => generated 4267 bytes in 9 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 181/181] 127.0.0.1 () {54 vars in 1099 bytes} [Sat Sep  3 01:03:03 2022] GET /addData/ => generated 28097 bytes in 3262 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 182/182] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 01:03:06 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 9 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 184/183] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 01:03:07 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 9 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 184/184] 127.0.0.1 () {56 vars in 1048 bytes} [Sat Sep  3 01:03:07 2022] POST /addData/ => generated 968 bytes in 660 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 1)
+Not Found: /changeName/
+[pid: 31080|app: 0|req: 185/185] 127.0.0.1 () {62 vars in 1277 bytes} [Sat Sep  3 01:03:24 2022] POST /changeName/ => generated 4267 bytes in 9 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.20 (64bit) on [Sat Sep  3 01:04:49 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+writing pidfile to uwsgi.pid
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (0.0.0.0:8080).
+bind(): Address already in use [core/socket.c line 769]
+[pid: 31080|app: 0|req: 186/186] 127.0.0.1 () {54 vars in 1099 bytes} [Sat Sep  3 01:04:58 2022] GET /addData/ => generated 28097 bytes in 1430 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 187/187] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 01:05:00 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 8 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 189/188] 127.0.0.1 () {44 vars in 879 bytes} [Sat Sep  3 01:05:00 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 11 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 189/189] 127.0.0.1 () {56 vars in 1047 bytes} [Sat Sep  3 01:05:00 2022] POST /addData/ => generated 968 bytes in 656 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 0)
+Not Found: /changeName/
+[pid: 31080|app: 0|req: 190/190] 127.0.0.1 () {62 vars in 1276 bytes} [Sat Sep  3 01:05:06 2022] POST /changeName/ => generated 4267 bytes in 8 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 191/191] 127.0.0.1 () {54 vars in 1098 bytes} [Sat Sep  3 01:05:55 2022] GET /addData/ => generated 28097 bytes in 3146 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 192/192] 127.0.0.1 () {44 vars in 807 bytes} [Sat Sep  3 01:05:58 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 9 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 194/193] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 01:05:58 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 10 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 194/194] 127.0.0.1 () {56 vars in 1048 bytes} [Sat Sep  3 01:05:58 2022] POST /addData/ => generated 968 bytes in 665 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 0)
+Not Found: /changeName/
+[pid: 31080|app: 0|req: 195/195] 127.0.0.1 () {62 vars in 1277 bytes} [Sat Sep  3 01:06:04 2022] POST /changeName/ => generated 4267 bytes in 8 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 196/196] 127.0.0.1 () {54 vars in 1099 bytes} [Sat Sep  3 01:07:43 2022] GET /addData/ => generated 28097 bytes in 627 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+[pid: 31080|app: 0|req: 197/197] 127.0.0.1 () {56 vars in 1048 bytes} [Sat Sep  3 01:07:44 2022] POST /addData/ => generated 968 bytes in 659 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 199/198] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 01:07:45 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 18 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 199/199] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 01:07:45 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 18 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.20 (64bit) on [Sat Sep  3 01:08:18 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+writing pidfile to uwsgi.pid
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (0.0.0.0:8080).
+bind(): Address already in use [core/socket.c line 769]
+*** Starting uWSGI 2.0.20 (64bit) on [Sat Sep  3 01:10:27 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+writing pidfile to uwsgi.pid
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (0.0.0.0:8080).
+bind(): Address already in use [core/socket.c line 769]
+[pid: 31080|app: 0|req: 200/200] 127.0.0.1 () {56 vars in 1130 bytes} [Sat Sep  3 01:10:45 2022] GET /addData/ => generated 28097 bytes in 4190 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 31080|app: 0|req: 202/201] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 01:10:49 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4446 bytes in 8 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 31080|app: 0|req: 202/202] 127.0.0.1 () {56 vars in 1048 bytes} [Sat Sep  3 01:10:49 2022] POST /addData/ => generated 968 bytes in 657 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 31080|app: 0|req: 203/203] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 01:10:50 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4432 bytes in 8 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+Not Found: /changeName/
+[pid: 31080|app: 0|req: 204/204] 127.0.0.1 () {62 vars in 1277 bytes} [Sat Sep  3 01:10:55 2022] POST /changeName/ => generated 4267 bytes in 7 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+gateway "uWSGI http 1" has been buried (pid: 31082)
+...gracefully killing workers...
+Gracefully killing worker 1 (pid: 31080)...
+worker 1 buried after 2 seconds
+binary reloading uWSGI...
+chdir() to /hdd/sda/lzq/PAIN/PAIN
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (127.0.0.1:33299)
+running /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+[uWSGI] getting INI configuration from uwsgi.ini
+*** Starting uWSGI 2.0.20 (64bit) on [Sat Sep  3 01:13:11 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 0.0.0.0:8080 fd 5
+uwsgi socket 0 bound to TCP address 127.0.0.1:40989 (port auto-assigned) fd 4
+Python version: 3.6.12 |Anaconda, Inc.| (default, Sep  8 2020, 23:10:56)  [GCC 7.3.0]
+Python main interpreter initialized at 0xcbf250
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 166752 bytes (162 KB) for 2 cores
+*** Operational MODE: threaded ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0xcbf250 pid: 28641 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 28641)
+spawned uWSGI worker 1 (pid: 10733, cores: 2)
+spawned uWSGI http 1 (pid: 10735)
+[pid: 10733|app: 0|req: 1/1] 127.0.0.1 () {54 vars in 1099 bytes} [Sat Sep  3 01:13:19 2022] GET /addData/ => generated 28097 bytes in 4783 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 10733|app: 0|req: 3/2] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 01:13:24 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4611 bytes in 50 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 10733|app: 0|req: 4/3] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 01:13:24 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4625 bytes in 7 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 10733|app: 0|req: 4/4] 127.0.0.1 () {56 vars in 1048 bytes} [Sat Sep  3 01:13:24 2022] POST /addData/ => generated 968 bytes in 660 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 0)
+[pid: 10733|app: 0|req: 5/5] 127.0.0.1 () {62 vars in 1277 bytes} [Sat Sep  3 01:13:29 2022] POST /changeName/ => generated 0 bytes in 440 msecs (HTTP/1.1 302) 8 headers in 294 bytes (1 switches on core 1)
+Internal Server Error: /changeName/
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 188, in _get_response
+    self.check_response(response, callback)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 311, in check_response
+    "instead." % name
+ValueError: The view patient.views.changeName didn't return an HttpResponse object. It returned None instead.
+[pid: 10733|app: 0|req: 6/6] 127.0.0.1 () {56 vars in 1135 bytes} [Sat Sep  3 01:13:30 2022] GET /changeName/ => generated 56412 bytes in 348 msecs (HTTP/1.1 500) 6 headers in 186 bytes (1 switches on core 0)
+[pid: 10733|app: 0|req: 7/7] 127.0.0.1 () {54 vars in 1099 bytes} [Sat Sep  3 01:17:00 2022] GET /addData/ => generated 28159 bytes in 1607 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 10733|app: 0|req: 8/8] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 01:17:05 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4611 bytes in 13 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 10733|app: 0|req: 10/9] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 01:17:06 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4625 bytes in 15 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 10733|app: 0|req: 10/10] 127.0.0.1 () {56 vars in 1048 bytes} [Sat Sep  3 01:17:06 2022] POST /addData/ => generated 968 bytes in 670 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 1)
+[pid: 10733|app: 0|req: 11/11] 127.0.0.1 () {62 vars in 1277 bytes} [Sat Sep  3 01:17:12 2022] POST /changeName/ => generated 0 bytes in 405 msecs (HTTP/1.1 302) 8 headers in 294 bytes (1 switches on core 0)
+Internal Server Error: /changeName/
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 188, in _get_response
+    self.check_response(response, callback)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 311, in check_response
+    "instead." % name
+ValueError: The view patient.views.changeName didn't return an HttpResponse object. It returned None instead.
+[pid: 10733|app: 0|req: 12/12] 127.0.0.1 () {56 vars in 1135 bytes} [Sat Sep  3 01:17:12 2022] GET /changeName/ => generated 56412 bytes in 298 msecs (HTTP/1.1 500) 6 headers in 186 bytes (1 switches on core 1)
+[pid: 10733|app: 0|req: 13/13] 127.0.0.1 () {54 vars in 1098 bytes} [Sat Sep  3 01:17:44 2022] GET /addData/ => generated 28159 bytes in 1556 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 10733|app: 0|req: 14/14] 127.0.0.1 () {44 vars in 806 bytes} [Sat Sep  3 01:17:47 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4611 bytes in 9 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 10733|app: 0|req: 15/15] 127.0.0.1 () {44 vars in 879 bytes} [Sat Sep  3 01:17:47 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4625 bytes in 9 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 10733|app: 0|req: 16/16] 127.0.0.1 () {56 vars in 1047 bytes} [Sat Sep  3 01:17:48 2022] POST /addData/ => generated 968 bytes in 662 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 1)
+[pid: 10733|app: 0|req: 17/17] 127.0.0.1 () {62 vars in 1276 bytes} [Sat Sep  3 01:17:54 2022] POST /changeName/ => generated 0 bytes in 399 msecs (HTTP/1.1 302) 8 headers in 294 bytes (1 switches on core 0)
+Internal Server Error: /changeName/
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 188, in _get_response
+    self.check_response(response, callback)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 311, in check_response
+    "instead." % name
+ValueError: The view patient.views.changeName didn't return an HttpResponse object. It returned None instead.
+[pid: 10733|app: 0|req: 18/18] 127.0.0.1 () {56 vars in 1134 bytes} [Sat Sep  3 01:17:54 2022] GET /changeName/ => generated 56411 bytes in 300 msecs (HTTP/1.1 500) 6 headers in 186 bytes (1 switches on core 1)
+[pid: 10733|app: 0|req: 19/19] 127.0.0.1 () {54 vars in 1099 bytes} [Sat Sep  3 01:19:51 2022] GET /addData/ => generated 28159 bytes in 4978 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 10733|app: 0|req: 20/20] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 01:19:58 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4611 bytes in 7 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 10733|app: 0|req: 22/21] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 01:19:59 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4625 bytes in 9 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 10733|app: 0|req: 22/22] 127.0.0.1 () {56 vars in 1048 bytes} [Sat Sep  3 01:19:59 2022] POST /addData/ => generated 968 bytes in 658 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 0)
+[pid: 10733|app: 0|req: 23/23] 127.0.0.1 () {62 vars in 1277 bytes} [Sat Sep  3 01:20:04 2022] POST /changeName/ => generated 0 bytes in 403 msecs (HTTP/1.1 302) 8 headers in 294 bytes (1 switches on core 1)
+Internal Server Error: /changeName/
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 188, in _get_response
+    self.check_response(response, callback)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 311, in check_response
+    "instead." % name
+ValueError: The view patient.views.changeName didn't return an HttpResponse object. It returned None instead.
+[pid: 10733|app: 0|req: 24/24] 127.0.0.1 () {56 vars in 1135 bytes} [Sat Sep  3 01:20:04 2022] GET /changeName/ => generated 56412 bytes in 297 msecs (HTTP/1.1 500) 6 headers in 186 bytes (1 switches on core 0)
+[pid: 10733|app: 0|req: 25/25] 127.0.0.1 () {54 vars in 1099 bytes} [Sat Sep  3 01:22:43 2022] GET /addData/ => generated 28159 bytes in 1417 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 1)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 10733|app: 0|req: 26/26] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 01:22:47 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4611 bytes in 8 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 10733|app: 0|req: 27/27] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 01:22:47 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4625 bytes in 7 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 10733|app: 0|req: 28/28] 127.0.0.1 () {56 vars in 1048 bytes} [Sat Sep  3 01:22:48 2022] POST /addData/ => generated 968 bytes in 658 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 0)
+[pid: 10733|app: 0|req: 29/29] 127.0.0.1 () {62 vars in 1277 bytes} [Sat Sep  3 01:22:52 2022] POST /changeName/ => generated 0 bytes in 406 msecs (HTTP/1.1 302) 8 headers in 294 bytes (1 switches on core 1)
+Internal Server Error: /changeName/
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 188, in _get_response
+    self.check_response(response, callback)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 311, in check_response
+    "instead." % name
+ValueError: The view patient.views.changeName didn't return an HttpResponse object. It returned None instead.
+[pid: 10733|app: 0|req: 30/30] 127.0.0.1 () {56 vars in 1135 bytes} [Sat Sep  3 01:22:52 2022] GET /changeName/ => generated 56412 bytes in 293 msecs (HTTP/1.1 500) 6 headers in 186 bytes (1 switches on core 0)
+gateway "uWSGI http 1" has been buried (pid: 10735)
+...gracefully killing workers...
+Gracefully killing worker 1 (pid: 10733)...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /hdd/sda/lzq/PAIN/PAIN
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 4 mapped to socket 0 (127.0.0.1:40989)
+running /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+[uWSGI] getting INI configuration from uwsgi.ini
+*** Starting uWSGI 2.0.20 (64bit) on [Sat Sep  3 01:23:30 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 0.0.0.0:8080 fd 5
+uwsgi socket 0 bound to TCP address 127.0.0.1:43885 (port auto-assigned) fd 3
+Python version: 3.6.12 |Anaconda, Inc.| (default, Sep  8 2020, 23:10:56)  [GCC 7.3.0]
+Python main interpreter initialized at 0x148e250
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 166752 bytes (162 KB) for 2 cores
+*** Operational MODE: threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x148e250 pid: 28641 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 28641)
+spawned uWSGI worker 1 (pid: 11348, cores: 2)
+spawned uWSGI http 1 (pid: 11349)
+[pid: 11348|app: 0|req: 1/1] 127.0.0.1 () {54 vars in 1099 bytes} [Sat Sep  3 01:23:38 2022] GET /addData/ => generated 28159 bytes in 3538 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 11348|app: 0|req: 2/2] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 01:23:43 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4611 bytes in 19 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 11348|app: 0|req: 4/3] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 01:23:44 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4625 bytes in 17 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 11348|app: 0|req: 4/4] 127.0.0.1 () {56 vars in 1048 bytes} [Sat Sep  3 01:23:44 2022] POST /addData/ => generated 968 bytes in 674 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 0)
+href http://127.0.0.1:8080/addData/
+[pid: 11348|app: 0|req: 5/5] 127.0.0.1 () {62 vars in 1277 bytes} [Sat Sep  3 01:23:49 2022] POST /changeName/ => generated 0 bytes in 462 msecs (HTTP/1.1 302) 8 headers in 312 bytes (1 switches on core 1)
+[pid: 11348|app: 0|req: 6/6] 127.0.0.1 () {56 vars in 1129 bytes} [Sat Sep  3 01:23:50 2022] GET /addData/ => generated 28159 bytes in 631 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 11348|app: 0|req: 8/7] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 01:23:56 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4625 bytes in 17 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 11348|app: 0|req: 9/8] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 01:23:56 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4611 bytes in 10 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 11348|app: 0|req: 9/9] 127.0.0.1 () {56 vars in 1048 bytes} [Sat Sep  3 01:23:56 2022] POST /addData/ => generated 968 bytes in 672 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 1)
+gateway "uWSGI http 1" has been buried (pid: 11349)
+...gracefully killing workers...
+Gracefully killing worker 1 (pid: 11348)...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /hdd/sda/lzq/PAIN/PAIN
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (127.0.0.1:43885)
+running /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+[uWSGI] getting INI configuration from uwsgi.ini
+*** Starting uWSGI 2.0.20 (64bit) on [Sat Sep  3 01:26:25 2022] ***
+compiled with version: 4.8.5 on 01 September 2022 11:08:19
+os: Linux-4.18.0-21-generic #22-Ubuntu SMP Wed May 15 13:13:21 UTC 2019
+nodename: server-B
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /hdd/sda/lzq/PAIN/PAIN
+detected binary path: /hdd/sdd/lzq/anaconda2/envs/python36/bin/uwsgi
+chdir() to /hdd/sda/lzq/PAIN
+your processes number limit is 514165
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 0.0.0.0:8080 fd 5
+uwsgi socket 0 bound to TCP address 127.0.0.1:46491 (port auto-assigned) fd 4
+Python version: 3.6.12 |Anaconda, Inc.| (default, Sep  8 2020, 23:10:56)  [GCC 7.3.0]
+Python main interpreter initialized at 0x1854250
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 166752 bytes (162 KB) for 2 cores
+*** Operational MODE: threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x1854250 pid: 28641 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 28641)
+spawned uWSGI worker 1 (pid: 11678, cores: 2)
+spawned uWSGI http 1 (pid: 11680)
+[pid: 11678|app: 0|req: 1/1] 127.0.0.1 () {56 vars in 1129 bytes} [Sat Sep  3 01:26:31 2022] GET /addData/ => generated 28099 bytes in 3888 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+[pid: 11678|app: 0|req: 2/2] 127.0.0.1 () {56 vars in 1048 bytes} [Sat Sep  3 01:26:35 2022] POST /addData/ => generated 968 bytes in 697 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 11678|app: 0|req: 4/3] 127.0.0.1 () {44 vars in 879 bytes} [Sat Sep  3 01:26:36 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4625 bytes in 22 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 11678|app: 0|req: 4/4] 127.0.0.1 () {44 vars in 807 bytes} [Sat Sep  3 01:26:36 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4611 bytes in 22 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 11678|app: 0|req: 5/5] 127.0.0.1 () {62 vars in 1276 bytes} [Sat Sep  3 01:26:52 2022] POST /changeName/ => generated 0 bytes in 492 msecs (HTTP/1.1 302) 8 headers in 312 bytes (1 switches on core 1)
+[pid: 11678|app: 0|req: 6/6] 127.0.0.1 () {56 vars in 1128 bytes} [Sat Sep  3 01:26:53 2022] GET /addData/ => generated 28159 bytes in 625 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 11678|app: 0|req: 8/7] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 01:26:56 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4611 bytes in 8 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 11678|app: 0|req: 9/8] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 01:26:56 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4625 bytes in 7 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 0)
+[pid: 11678|app: 0|req: 9/9] 127.0.0.1 () {56 vars in 1048 bytes} [Sat Sep  3 01:26:56 2022] POST /addData/ => generated 968 bytes in 667 msecs (HTTP/1.1 200) 7 headers in 261 bytes (1 switches on core 1)
+[pid: 11678|app: 0|req: 10/10] 127.0.0.1 () {54 vars in 1100 bytes} [Sat Sep  3 01:27:26 2022] GET /dataList/ => generated 21059 bytes in 3335 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+Not Found: /static/assetjs/bootstrap.min.js.map
+[pid: 11678|app: 0|req: 11/11] 127.0.0.1 () {44 vars in 808 bytes} [Sat Sep  3 01:27:29 2022] GET /static/assetjs/bootstrap.min.js.map => generated 4611 bytes in 10 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+Not Found: /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map
+[pid: 11678|app: 0|req: 13/12] 127.0.0.1 () {44 vars in 880 bytes} [Sat Sep  3 01:27:30 2022] GET /sm/b4cfb12116f687afdd35ab790d38b199ddbb3bc498bfed1cecd28dc238e65261.map => generated 4625 bytes in 13 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+[pid: 11678|app: 0|req: 13/13] 127.0.0.1 () {58 vars in 1116 bytes} [Sat Sep  3 01:27:30 2022] POST /dataList/ => generated 999 bytes in 973 msecs (HTTP/1.1 200) 6 headers in 172 bytes (1 switches on core 0)
+[pid: 11678|app: 0|req: 14/14] 127.0.0.1 () {54 vars in 1111 bytes} [Sat Sep  3 01:28:48 2022] GET /sampleDetail/1 => generated 0 bytes in 1 msecs (HTTP/1.1 301) 5 headers in 184 bytes (1 switches on core 1)
+<QuerySet []>
+[pid: 11678|app: 0|req: 15/15] 127.0.0.1 () {54 vars in 1113 bytes} [Sat Sep  3 01:28:48 2022] GET /sampleDetail/1/ => generated 39430 bytes in 790 msecs (HTTP/1.1 200) 7 headers in 271 bytes (1 switches on core 0)
+[pid: 11678|app: 0|req: 16/16] 127.0.0.1 () {50 vars in 945 bytes} [Sat Sep  3 01:28:51 2022] GET /static/js/echarts.js => generated 1930411 bytes in 7 msecs via sendfile() (HTTP/1.1 200) 7 headers in 266 bytes (0 switches on core 1)
+Internal Server Error: /stream_video/
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./patient/views.py", line 418, in stream_video
+    size = os.path.getsize(path)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/genericpath.py", line 50, in getsize
+    return os.stat(filename).st_size
+FileNotFoundError: [Errno 2] No such file or directory: '/hdd/sda/lzq/PAIN/media//mp4/hh'
+[pid: 11678|app: 0|req: 17/17] 127.0.0.1 () {52 vars in 993 bytes} [Sat Sep  3 01:28:53 2022] GET /stream_video/?path=/media//mp4/hh => generated 60305 bytes in 713 msecs (HTTP/1.1 500) 6 headers in 186 bytes (1 switches on core 0)
+Not Found: /index
+[pid: 11678|app: 0|req: 18/18] 127.0.0.1 () {54 vars in 1099 bytes} [Sat Sep  3 01:29:12 2022] GET /index => generated 4427 bytes in 10 msecs (HTTP/1.1 404) 5 headers in 159 bytes (1 switches on core 1)
+Internal Server Error: /stream_video/
+Traceback (most recent call last):
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./patient/views.py", line 418, in stream_video
+    size = os.path.getsize(path)
+  File "/hdd/sdd/lzq/anaconda2/envs/python36/lib/python3.6/genericpath.py", line 50, in getsize
+    return os.stat(filename).st_size
+FileNotFoundError: [Errno 2] No such file or directory: '/hdd/sda/lzq/PAIN/media//mp4/hh'
+[pid: 11678|app: 0|req: 19/19] 127.0.0.1 () {52 vars in 993 bytes} [Sat Sep  3 01:29:16 2022] GET /stream_video/?path=/media//mp4/hh => generated 60305 bytes in 307 msecs (HTTP/1.1 500) 6 headers in 186 bytes (1 switches on core 0)

@@ -1,0 +1,304 @@
+{% extends 'base.html' %}
+{% block title %}PAIN-dataList{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="/static/assetcss/normalize.css">
+    <link rel="stylesheet" href="/static/assetcss/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assetcss/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/assetcss/themify-icons.css">
+    <link rel="stylesheet" href="/static/assetcss/pe-icon-7-filled.css">
+    <link rel="stylesheet" href="/static/assetcss/flag-icon.min.css">
+    <link rel="stylesheet" href="/static/assetcss/cs-skin-elastic.css">
+    <link rel="stylesheet" href="/static/assetcss/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assetcss/style.css">
+{#    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>#}
+    <link rel="stylesheet" href="/static/css/jsmodern.min.css">
+    <link rel="stylesheet" href="/static/css/myAlert.css" />
+        <link rel="stylesheet" href="/static/css/lqscore.css">
+    <link rel="stylesheet" href="/static/css/star.css">
+    <link rel="stylesheet" href="/static/css/jqbar.css" />
+    <style>
+        table tr td, p {
+            height: 25px;
+        }
+
+        table tr td, table tr th {
+            width: 120px;
+            text-align: center;
+        }
+        /* question */
+    .question{overflow:auto;padding: 1.4em 0 0 1.4em }
+    .slider-status{float:left;font-weight:bold;font-size:1.5em;color:#444;}
+    input#price,input#bedrooms,input#baths{font-size:1.3em;font-weight:bold;width:55px;border:1px solid #ccc;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;padding:.2em;}
+
+    /* ui-slider */
+    .ui-slider{position:relative;top:.8em;width:293px;float:left;margin-right:15px;text-align:left;height:1em;background:#ebebec url(/static/img/bg-slider.png) top repeat-x;border:1px solid #aaa;-moz-border-radius:.5em;-webkit-border-radius:.5em;border-radius:.5em;margin-bottom: 20px}
+    .ui-slider .ui-slider-handle{position:absolute;z-index:2;width:1.6em;height:1.6em;top:-.5em;margin-left:-.8em;cursor:pointer;border:2px solid #444;background:#fff url(/static/img/bg-slider-handle.png) 50% repeat-x;-moz-border-radius:.9em;-webkit-border-radius:.9em;border-radius:.9em;}
+    .ui-slider .ui-slider-handle:hover,.ui-slider .ui-slider-handle:focus{background-image:url(/static/img/bg-slider-handle-hover.png);}
+    .ui-slider .ui-slider-handle:active{background-image:none;}
+    .ui-slider .ui-slider-range{position:absolute;z-index:1;font-size:.7em;display:block;border:0;top:0;height:100%;background:#999 url(/static/img/bg-slider-range.png) 50% repeat-x;left:0;}
+
+
+    </style>
+    <style>
+        #video {
+
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #video video {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+
+        .VideoBtn {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            display: block;
+            width: 70px;
+            height: 70px;
+            margin-left: -35px;
+            margin-top: -35px;
+            cursor: pointer;
+            z-index: 10;
+        }
+.col-lg-6{
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+    </style>
+{% endblock %}
+
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1><b>样本列表</b></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="/index">首页</a></li>
+                            <li><a href="/addData">添加样本</a></li>
+                            <li class="active">样本列表</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title" style="float: left;">未打分列表</strong>
+                            <button class="btn btn-success" style="float: right">收起</button>
+                        </div>
+                        <div class="card-body">
+                            <table id="bootstrap-data-table-1" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>样本ID</th>
+                                        <th>姓名</th>
+                                        <th>性别</th>
+                                        <th>年龄</th>
+                                        <th>视频名</th>
+                                        <th>添加时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody1">
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title" style="float: left;">已打分列表</strong>
+                            <button class="btn btn-success" style="float: right">收起</button>
+                        </div>
+                        <div class="card-body">
+                            <table id="bootstrap-data-table-2" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>样本ID</th>
+                                        <th>姓名</th>
+                                        <th>视频名</th>
+                                        <th>疼痛总分</th>
+                                        <th>FLACC</th>
+                                        <th>VAS</th>
+                                        <th>脸谱</th>
+                                        <th>评分时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody2">
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block js %}
+<script type="text/javascript" src="/static/js/jquery-1.4.2.min.js"></script>
+<script>
+    $(function(){
+        //按钮点击事件
+        $("button").click(function(){
+            var txts = $(this).parent()[0].nextSibling.nextSibling;
+            if ($(this).text() == "展开"){
+                $(this).text("收起");
+                txts.removeAttribute('hidden');
+            }else{
+                if ($(this).text() == "收起"){
+                    $(this).text("展开");
+                txts.setAttribute('hidden',true);
+
+                }
+            }
+        })
+    });
+</script>
+
+
+
+<script src="/static/assetjs/bootstrap.min.js"></script>
+<script src="/static/assetjs/jquery.matchHeight.min.js"></script>
+
+
+<script src="/static/assetjs/table/datatables.min.js"></script>
+<script src="/static/assetjs/table/dataTables.bootstrap.min.js"></script>
+<script src="/static/assetjs/table/dataTables.buttons.min.js"></script>
+<script src="/static/assetjs/table/buttons.bootstrap.min.js"></script>
+<script src="/static/assetjs/table/jszip.min.js"></script>
+<script src="/static/assetjs/table/vfs_fonts.js"></script>
+<script src="/static/assetjs/table/buttons.html5.min.js"></script>
+<script src="/static/assetjs/table/buttons.print.min.js"></script>
+<script src="/static/assetjs/table/buttons.colVis.min.js"></script>
+
+<script>
+    //在输入框中打印输入的值
+var account={{ currentuser.account }};
+$.ajax({
+    //几个参数需要注意一下
+    type: "POST",//方法类型
+    dataType: "json",//预期服务器返回的数据类型
+    url: "/dataList/" ,//url
+    data: {"account":account},
+    success: function (data) {
+        console.log(data);
+        var tbody1 = document.getElementById('tbody1');
+        for (var i = 0; i < data.rest_list.length; i++){
+            var row = `<tr>
+                        <td>${data.rest_list[i].sample_id}</td>
+                        <td>${data.rest_list[i].name}</td>
+                        <td>${data.rest_list[i].sex}</td>
+                        <td>${data.rest_list[i].age}</td>
+                        <td>${data.rest_list[i].video_name}</td>
+                        <td>${data.rest_list[i].add_time}</td>
+                        <td><a class="badge badge-complete" href="/sampleDetail/${data.rest_list[i].sample_id}" style="background-color: #00c292;padding: 10px;color: white" target="_blank" >评分</a></td>
+                    </tr>`;
+                    tbody1.innerHTML += row;
+        }
+        var tbody2 = document.getElementById('tbody2');
+        for (var i = 0; i < data.done_list.length; i++){
+            var row = `<tr>
+                        <td>${data.done_list[i].sample_id}</td>
+                        <td>${data.done_list[i].name}</td>
+                        <td>${data.done_list[i].video_name}</td>
+                        <td>${data.done_list[i].sum}</td>
+                        <td>${data.done_list[i].FLACC}</td>
+                        <td>${data.done_list[i].VAS}</td>
+                        <td>${data.done_list[i].lianpu}</td>
+                        <td>${data.done_list[i].add_time}</td>
+                        <td><a class="badge badge-complete" href="/sampleDetail/${data.done_list[i].sample_id}" style="background-color: #00c292;padding: 10px;color: white" target="_blank" >重新评分</a></td>
+                    </tr>`;
+                    tbody2.innerHTML += row;
+        }
+        $('#bootstrap-data-table-1').DataTable({
+            destroy: true,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "全部"]],
+            oLanguage: {
+                "sLengthMenu": "每页显示 _MENU_ 条记录",
+                "sZeroRecords": "抱歉，没有找到相关的数据",
+                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+                "sInfoEmpty": "没有数据",
+                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+                "sSearch": "搜索：",
+                "sLoadingRecords":"载入中...",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "前一页",
+                    "sNext": "后一页",
+                    "sLast": "尾页"
+                },
+            },
+            columnDefs: [ {
+                "orderable": false,
+                "targets": [2,6]
+            } ],
+            order: [5],
+            bStateSave:true
+        });
+        $('#bootstrap-data-table-2').DataTable({
+            destroy: true,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "全部"]],
+            oLanguage: {
+                "sLengthMenu": "每页显示 _MENU_ 条记录",
+                "sZeroRecords": "抱歉，没有找到相关的数据",
+                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+                "sInfoEmpty": "没有数据",
+                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+                "sSearch": "搜索：",
+                "sLoadingRecords":"载入中...",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "前一页",
+                    "sNext": "后一页",
+                    "sLast": "尾页"
+                },
+            },
+            columnDefs: [ {
+                "orderable": false,
+                "targets": [8]
+            } ],
+            order: [7],
+            bStateSave:true
+        });
+    },
+    error : function() {
+        alert(data.msg);
+    }
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,761 @@
+{% extends 'base.html' %}
+{% block title %}PAIN-sampleDetail{% endblock %}
+{% block css %}
+
+    <link rel="stylesheet" href="/static/assetcss/normalize.css">
+    <link rel="stylesheet" href="/static/assetcss/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assetcss/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/assetcss/themify-icons.css">
+    <link rel="stylesheet" href="/static/assetcss/pe-icon-7-filled.css">
+    <link rel="stylesheet" href="/static/assetcss/flag-icon.min.css">
+    <link rel="stylesheet" href="/static/assetcss/cs-skin-elastic.css">
+    <link rel="stylesheet" href="/static/assetcss/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assetcss/style.css">
+{#    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>#}
+    <link rel="stylesheet" href="/static/css/jsmodern.min.css">
+    <link rel="stylesheet" href="/static/css/myAlert.css" />
+        <link rel="stylesheet" href="/static/css/lqscore.css">
+    <link rel="stylesheet" href="/static/css/star.css">
+    <link rel="stylesheet" href="/static/css/jqbar.css" />
+    
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    
+    <style>
+        table tr td, p {
+            height: 25px;
+        }
+
+        table tr td, table tr th {
+            width: 120px;
+        }
+        .ui-widget-content {
+        border: 1px solid #dddddd;
+        background: #63f786;
+        color: #333333;
+        margin-bottom: 20px;
+        }
+        .ui-widget-content-xi {
+        border: 1px solid #dddddd;
+        background: #cffbd9;
+        color: #333333;
+        margin-left: 10px;
+        margin-bottom: 20px;
+        }
+
+
+    </style>
+    <style>
+        #video {
+
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #video video {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+
+        .VideoBtn {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            display: block;
+            width: 70px;
+            height: 70px;
+            margin-left: -35px;
+            margin-top: -35px;
+            cursor: pointer;
+            z-index: 10;
+        }
+.col-lg-6{
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+    </style>
+    
+
+    <style>
+    .ui-slider-handle {
+      width: 3em;
+      height: 1.6em;
+      top: 50%;
+      color:rgb(39, 255, 53);
+      text-align: center;
+      line-height: 1.6em;
+    }
+    </style>
+    
+{% endblock %}
+
+{% block jquery %}
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% endblock %}
+
+{% block breadcrumbs %}
+
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1><b>样本评分</b></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="/index">首页</a></li>
+                            <li><a href="/addData">添加样本</a></li>
+                            <li><a href="/dataList">样本列表</a></li>
+                            <li class="active">样本评分</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><strong class="card-title" style="float: left;">病人样本信息</strong></h4>
+                        <button class="btn btn-success" style="float: right;">收起</button>
+                    </div>
+                    <div class="card-body">                            
+                        <div class="row">
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>姓名：</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.name}}</label>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>性别: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.sex}}</label>
+                            </div> 
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>年龄: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.age}}&nbsp;&nbsp;岁</label>                                    
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>体重: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.weight}}&nbsp;&nbsp;KG</label>                                    
+                            </div>
+                        </div></br>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>csv编号: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.csv_id}}</label>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>诊断: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.diagnose}}</label>
+                            </div> 
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>手术: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.operation}}</label>                                    
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>通气方式: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.ventilation_mode}}</label>                                    
+                            </div>
+                        </div></br>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>神经阻滞: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.nerve_block}}</label>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>镇痛泵: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.analgesic_pump}}</label>
+                            </div> 
+                        </div><hr/>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>心率</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.heart_rate}}</label>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>舒张压: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.diastolic_pressure}}</label>
+                            </div> 
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>收缩压: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.systolic_pressure}}</label>                                    
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>术前术后: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.before_operation}}</label>                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /# column -->
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><strong class="card-title" style="float: left;">原始数据</strong></h4>
+                        <button class="btn btn-success" style="float: right;">收起</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card-body">
+                                    <div class="card border border-success">
+                                        <div class="card-header">
+                                            <strong class="card-title">疼痛视频</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <video  controls style="width: 100%;height:400px;" id="video">
+                                                <source src="" type="video/mp4">
+                                            </video>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card-body">
+                                    <div class="card border border-success">
+                                        <div class="card-header">
+                                            <strong class="card-title">评分</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <form id="form" action="/addScoreSuccess/" method="post" enctype="multipart/form-data" onsubmit="return sumbit_sure()">
+
+                                            <label><strong>疼痛总分</strong></label>
+                                            <div style="float:right;">
+                                                <big><strong><label id="sum_score">{{score.sum_score}}</label></strong></big>
+                                            </div>
+                                            <div id="sum_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                                <div id="sum_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                </div>
+                                            </div>
+                                            <label><strong>FLACC</strong></label>
+                                            <div style="float:right;">
+                                                <big><strong><label id="FLACC_score">{{score.FLACC_score}}</label></strong></big>
+                                            </div>&nbsp;&nbsp;
+                                            <div style="margin-left: 30px;margin-bottom: 15px;">
+                                                粗项<input type="radio" id="cu_check" name="flacc_check" value="cu_check" {%if score.cu%}checked{%endif%}>
+                                                细项<input type="radio" id="xi_check" name="flacc_check" value="xi_check" {%if score.xi%}checked{%endif%}>
+                                            </div>
+                                            <div id="cu" {%if score.xi%}hidden{%endif%}>
+                                                <div id="FLACC_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                                    <div id="FLACC_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="xi" {%if score.cu%}hidden{%endif%}>
+                                                &nbsp;&nbsp;<label>FACE</label>
+                                                <div style="float:right;">
+                                                    <big><label id="FACE_score">{{score.FACE_score}}</label></big>
+                                                </div>
+                                                <div id="FACE_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
+                                                    <div id="FACE_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                    </div>
+                                                </div>
+                                                &nbsp;&nbsp;<label>legs</label>
+                                                <div style="float:right;">
+                                                    <big><label id="legs_score">{{score.legs_score}}</label></big>
+                                                </div>
+                                                <div id="legs_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
+                                                    <div id="legs_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                    </div>
+                                                </div>
+                                                &nbsp;&nbsp;<label>Acitivity</label>
+                                                <div style="float:right;">
+                                                    <big><label id="Acitivity_score">{{score.Acitivity_score}}</label></big>
+                                                </div>
+                                                <div id="Acitivity_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
+                                                    <div id="Acitivity_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                    </div>
+                                                </div>
+                                                &nbsp;&nbsp;<label>Cry</label>
+                                                <div style="float:right;">
+                                                    <big><label id="Cry_score">{{score.Cry_score}}</label></big>
+                                                </div>
+                                                <div id="Cry_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
+                                                    <div id="Cry_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                    </div>
+                                                </div>
+                                                &nbsp;&nbsp;<label>consolability</label>
+                                                <div style="float:right;">
+                                                    <big><label id="consolability_score">{{score.consolability_score}}</label></big>
+                                                </div>
+                                                <div id="consolability_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
+                                                    <div id="consolability_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+
+                                            <label><strong>VAS</strong></label>
+                                            <div style="float:right;">
+                                                <big><strong><label id="VAS_score">{{score.VAS_score}}</label></strong></big>
+                                            </div>
+                                            <div id="VAS_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                                <div id="VAS_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                </div>
+                                            </div>
+                                            <label><strong>脸谱</strong></label>
+                                            <div style="float:right;">
+                                                <big><strong><label id="lianpu_score">{{score.lianpu_score_zimu}}</label></strong></big>
+                                            </div>
+                                            <div id="lianpu_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                                <div id="lianpu_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                </div>
+                                            </div>
+                                            
+                                            <div hidden="hidden">
+                                                <input type="number" name="sum_input" id="sum_input" value={{score.sum_score}}>
+                                                <input type="number" name="FLACC_input" id="FLACC_input" value={{score.FLACC_score}}>
+                                                <input type="number" name="FACE_input" id="FACE_input" value={{score.FACE_score}}>
+                                                <input type="number" name="legs_input" id="legs_input" value={{score.legs_score}}>
+                                                <input type="number" name="Acitivity_input" id="Acitivity_input" value={{score.Acitivity_score}}>
+                                                <input type="number" name="Cry_input" id="Cry_input" value={{score.Cry_score}}>
+                                                <input type="number" name="consolability_input" id="consolability_input" value={{score.consolability_score}}>
+                                                <input type="number" name="VAS_input" id="VAS_input" value={{score.VAS_score}}>
+                                                <input type="number" name="lianpu_input" id="lianpu_input" value={{score.lianpu_score}}>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12" style="text-align:right;">
+                                                    <input type="submit" name="submit" value="提交" class="btn btn-success">
+                                                </div>
+                                            </div>
+
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="card-body">
+                                    <div class="card border border-success">
+                                        <div class="card-header">
+                                            <strong class="card-title">生理信号</strong>
+                                        </div>
+                                        {%if sample.biology%}
+                                        <div class="card-body">
+                                            <div id="ecg" style="width: 100%;height:300px;"></div>
+                                        </div><hr/>
+                                        <div class="card-body">
+                                            <div id="gsr" style="width: 100%;height:300px;"></div>
+                                        </div><hr/>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div align="center"><a id="startdraw" class="badge badge-complete" onclick="StartDraw()" style="background-color: #00c292;padding: 10px;color: white">开始绘制</a></div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div align="center"><a id="stopdraw" class="badge badge-complete" onclick="StopDraw()" style="background-color: #00c292;padding: 10px;color: white" align="center">暂停绘制</a></div>
+                                            </div>
+                                        </div>
+                                        {%else%}
+                                        <p>该样本没有采集生理信号</p>
+                                        {%endif%}
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><strong class="card-title" style="float: left;">AI评分</strong></h4>
+                        <button class="btn btn-success" style="float: right;">收起</button>
+                    </div>
+                    {%if ai_score_flag%}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card-body">
+                                    <div class="card border border-success">
+
+                                        <div class="card-header">
+                                            <strong class="card-title">人脸特征</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <video  controls style="width: 100%;height:200px;" id="video2">
+                                                <source src="" type="video/mp4">
+                                            </video>
+                                        </div>
+                                        <div class="card-header">
+                                            <p>面部总评分</p><strong class="card-title">：{{ai_score.face_score}}</strong></br>
+                                            <p>声音总评分</p><strong class="card-title">：{{ai_score.voice_score}}</strong></br>
+                                            <p>融合总评分</p><strong class="card-title">：{{ai_score.all_score}}</strong>
+                                        </div>
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card-body">
+                                    <div class="card border border-success">
+                                        <div class="card-header">
+                                            <strong class="card-title">面部帧评分</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="face_score" style="width: 100%;height:300px;"></div>
+                                        </div>
+                                        <div class="card-header">
+                                            <strong class="card-title">声音帧评分</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="voice_score" style="width: 100%;height:300px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {%else%}
+                    <p>敬请期待</p>
+                    {% comment %} <p>AI还在后台评分中,请稍后刷新</p> {% endcomment %}
+                    {%endif%}
+                </div>
+            </div><!-- /# column -->
+        </div>
+    </div><!-- .animated -->
+</div><!-- .content -->
+{% endblock %}
+
+{% block js %}
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        var flacc_cu_score=0;
+        var lianpu_list=['','A','B','C','D','E','F'];
+        function sliderFunction(name,min,max,value) {
+            $( function() {
+            var handle = $( "#"+name+"_handle" );
+            $( "#"+name+"_slider" ).slider({
+                // range: true,
+                animate: "fast",
+                min: min,
+                max: max,
+                step: 1,
+                value: value,
+                slide: function( event, ui ) {
+                    if(name=='lianpu'){
+                        $("#"+name+"_score").html(lianpu_list[ui.value]);
+                    }
+                    else{
+                        $("#"+name+"_score").html(ui.value);
+                    }
+                    $("#"+name+"_input").val(Number(ui.value));
+                    console.log(ui.value);
+                    if(name=='FACE'||name=='legs'||name=='Acitivity'||name=='Cry'||name=='consolability'){
+                        $('#FLACC_score').html(Number($('#FACE_score').text())+Number($('#legs_score').text())+Number($('#Acitivity_score').text())+Number($('#Cry_score').text())+Number($('#consolability_score').text()));
+                        $("#FLACC_input").val(Number($('#FLACC_score').text()));
+                    }
+                    else if(name=='FLACC'){
+                        flacc_cu_score=ui.value;
+                    }
+                }
+            });
+            } );              
+        }
+
+        sliderFunction("sum",0,100,{{score.sum_score}});
+        {%if score.cu%}
+        flacc_cu_score={{score.FLACC_score}};
+        {%endif%}
+        sliderFunction("FLACC",0,10,flacc_cu_score);
+        
+        sliderFunction("FACE",0,2,{{score.FACE_score}});
+        sliderFunction("legs",0,2,{{score.legs_score}});
+        sliderFunction("Acitivity",0,2,{{score.Acitivity_score}});
+        sliderFunction("Cry",0,2,{{score.Cry_score}});
+        sliderFunction("consolability",0,2,{{score.consolability_score}});
+
+        sliderFunction("VAS",0,10,{{score.VAS_score}});
+        sliderFunction("lianpu",1,6,{{score.lianpu_score}});
+        
+        
+    </script>
+
+    
+    <script>
+        $(function(){
+            $("input[name='flacc_check']").on("click",function(){
+                console.log($("input[name='flacc_check']:checked").val());
+                if($("input[name='flacc_check']:checked").val()=="cu_check"){
+                    $("#cu").attr('hidden',false);
+                    $("#xi").attr('hidden',true);
+                    $('#FLACC_score').html(flacc_cu_score);
+                    $("#FLACC_input").val(Number($('#FLACC_score').text()));
+                }
+                else{
+                    $("#xi").attr('hidden',false);
+                    $("#cu").attr('hidden',true);
+                    $('#FLACC_score').html(Number($('#FACE_score').text())+Number($('#legs_score').text())+Number($('#Acitivity_score').text())+Number($('#Cry_score').text())+Number($('#consolability_score').text()));
+                    $("#FLACC_input").val(Number($('#FLACC_score').text()));
+                }
+            })
+        })
+    </script>
+    
+    <!-- <script type="text/javascript" src="/static/js/jquery-1.4.2.min.js"></script> -->
+    <script>
+        $(function(){
+            //按钮点击事件
+            $("button").click(function(){
+                var txts = $(this).parent()[0].nextSibling.nextSibling;
+                if ($(this).text() == "展开"){
+                    $(this).text("收起");
+                    txts.removeAttribute('hidden');
+                }else{
+                    if ($(this).text() == "收起"){
+                        $(this).text("展开");
+                    txts.setAttribute('hidden',true);
+                    }
+                }
+            })
+        });
+    </script>
+    <!-- <script type="text/javascript" src="/static/js/jquery-1.11.0.min.js"></script> -->
+    <script>
+        $(function () {
+            
+            
+            $("#video").attr('src', '/stream_video/?path=/media/{{sample.video.name}}');
+            {%if ai_score_flag%}
+            $("#video2").attr('src', '/stream_video/?path=/media/{{ai_score.face_mp4_path}}');
+            {%endif%}
+                
+        })
+        var vid = document.getElementById("video2");
+    </script>
+    <script>
+        var endcnt=0;
+        var startcnt=0;
+        var interval;
+        var maxlength=20;
+
+        var x_data = [];
+        var y_data = [];
+        var LEN={{ai_score.face_score_npy_path}}.length;
+
+        var endcnt2=0;
+        var startcnt2=0;
+        var interval2;
+
+        var x_data2 = [];
+        var y_data2 = [];
+        var LEN2={{ai_score.voice_score_npy_path}}.length;
+
+        vid.addEventListener('play', function () { //播放开始执行的函数
+            console.log("开始播放");
+            endcnt=Math.min(LEN-1,Math.floor(vid.currentTime));
+            startcnt=Math.max(0,endcnt-maxlength+1);
+            x_data=[];
+            y_data=[];
+            for(var i=startcnt;i<=endcnt;i++)
+            {
+                x_data.push(i);
+                y_data.push({{ai_score.face_score_npy_path}}[i]);
+            }
+
+            endcnt2=Math.min(LEN2-1,Math.floor(44100.0*(vid.currentTime/100000.0)));
+            startcnt2=Math.max(0,endcnt2-maxlength+1);
+            x_data2=[];
+            y_data2=[];
+            for(var i=startcnt2;i<=endcnt2;i++)
+            {
+                x_data2.push(i);
+                y_data2.push({{ai_score.voice_score_npy_path}}[i]);
+            }
+            interval = setInterval(refresh,1000);
+            interval2 = setInterval(refresh2,Math.floor(100000.0/44100.0)*1000);
+        });
+        vid.addEventListener('pause', function () { //播放开始执行的函数
+            console.log("暂停播放");
+            clearInterval(interval);
+            clearInterval(interval2);
+        });
+    </script>
+    <script>
+        var drawInterval;
+        var biomaxlength=50
+
+        var bio_xdata = [];
+        var ecg_data = [];
+        var gsr_data = [];
+        var bio_cnt=0;
+        var BIOLEN={{sample.biology.ecg}}.length;
+        function StartDraw()
+        {
+            bio_xdata = [];
+            ecg_data = [];
+            gsr_data = [];
+            bio_cnt=0;
+            var draw = document.getElementById("startdraw");
+            var draw2 = document.getElementById("stopdraw");
+            if(draw2.innerHTML=="暂停绘制"&&draw.innerHTML=="重新绘制")
+            {
+                clearInterval(drawInterval);
+            }
+            if(BIOLEN>0)
+            {
+                bio_xdata.push(bio_cnt);
+                ecg_data.push({{sample.biology.ecg}}[bio_cnt]);
+                gsr_data.push({{sample.biology.gsr}}[bio_cnt]);
+                drawInterval = setInterval(biorefresh,500);
+            }
+            
+
+            draw.innerHTML="重新绘制";
+            draw2.innerHTML="暂停绘制";
+        }
+        function StopDraw()
+        {
+            var draw = document.getElementById("stopdraw");
+            if(draw.innerHTML=="暂停绘制")
+            {
+                clearInterval(drawInterval);
+                draw.innerHTML="继续绘制";
+            }
+            else{
+                drawInterval = setInterval(biorefresh,500);
+                draw.innerHTML="暂停绘制";
+            }
+            
+        }
+        
+    </script>
+    <!-- <script type="text/javascript" src="/static/assetjs/jquery-2.1.4.min.js"></script> -->
+    <script type="text/javascript" src="/static/js/echarts.js"></script>
+    <script>
+        
+        
+        function Line_append(x_data,y_data,title) {
+            // 基于准备好的dom，初始化echarts实例
+            console.log(x_data);
+            var myChart = echarts.init(document.getElementById(title));
+            
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: title
+                },
+                backgroundColor: '#FFFFFF',
+                legend: {
+                    y_data:["loss"]
+                },
+                tooltip : {//鼠标浮动时的工具条，显示鼠标所在区域的数据，trigger这个地方每种图有不同的设置
+                trigger: 'axis'
+                },
+                calculable : true,
+                xAxis : [
+                {
+                    // 让x轴自适应
+                    <!--axisLabel:{-->
+                        <!--rotate: 30,-->
+                        <!--interval:0-->
+                    <!--},-->
+ 
+                    axisLine:{
+                        lineStyle :{
+                            color: '#CCCCCC'
+                        }
+                    },
+                    type : 'category',
+                    boundaryGap : true, //不从0刻度开始
+                    // data:[]  X轴的定义
+                    data : function (){
+                        return x_data;
+                    }()
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    axisLine:{
+                        lineStyle :{
+                            color: '#CCCCCC'
+                        }
+                    }
+                }
+            ],
+            series : [
+                {
+                    //name:'value',
+                    type:'line',
+                    // symbol:'none',//原点
+                    smooth: 0,//弧度
+                    color:['#66AEDE'],
+                    // data:Y轴数据
+                    data:y_data
+                },
+            ]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+        
+        
+ 
+        function refresh(){
+                endcnt+=1;
+                startcnt=Math.max(0,endcnt-maxlength+1);
+                if(endcnt<LEN)
+                {
+                    x_data.push(endcnt);
+                    y_data.push({{ai_score.face_score_npy_path}}[endcnt]);
+                    if(x_data.length>maxlength)
+                    {
+                        x_data.shift();
+                        y_data.shift();
+                    }
+                }
+                if(LEN>0)
+                {
+                    Line_append(x_data,y_data,"face_score");
+                }
+            };
+            function refresh2(){
+                endcnt2+=1;
+                startcnt2=Math.max(0,endcnt2-maxlength+1);
+                if(endcnt2<LEN2)
+                {
+                    x_data2.push(endcnt2);
+                    y_data2.push({{ai_score.voice_score_npy_path}}[endcnt2]);
+                    if(x_data2.length>maxlength)
+                    {
+                        x_data2.shift();
+                        y_data2.shift();
+                    }
+                }
+                if(LEN2>0)
+                {
+                    Line_append(x_data2,y_data2,"voice_score");
+                }
+            };
+            function biorefresh(){
+                bio_cnt+=1;
+                if(bio_cnt<BIOLEN)
+                {
+                    bio_xdata.push(bio_cnt);
+                    ecg_data.push({{sample.biology.ecg}}[bio_cnt]);
+                    gsr_data.push({{sample.biology.gsr}}[bio_cnt]);
+                    if(bio_xdata.length>biomaxlength)
+                    {
+                        bio_xdata.shift();
+                        ecg_data.shift();
+                        gsr_data.shift();
+                    }
+                }
+                if(BIOLEN>0)
+                {
+                    Line_append(bio_xdata,ecg_data,"ecg");
+                    Line_append(bio_xdata,gsr_data,"gsr");
+                }
+            };
+    </script>
+    
+{% endblock %}
+

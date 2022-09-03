@@ -1,0 +1,63 @@
+.score{
+  margin:20px auto;
+  width:600px;
+}
+.score .default-statu{
+  height: 47px;
+  width:251px;
+  float: left;
+}
+.score-expression,.score-praise,.score-heart,.score-star,.score-medal,
+.score-water,.score-crown,.score-flower{
+  overflow: hidden;
+}
+.score .default-statu .default-icon{
+  background-image: url('/static/img/icon.png');
+  background-repeat: no-repeat;
+  background-position: top right;
+  display: inline-block;
+  height: 47px;
+  width:50.16px;
+  cursor: pointer;
+}
+.score-expression .default-statu .default-icon{
+  background-position: right -141px;
+}
+.score-praise .default-statu .default-icon{
+  background-position: right -141px;
+}
+.score-heart .default-statu .default-icon{
+  background-position: right -141px;
+}
+.score-star .default-statu .default-icon{
+  background-position: right -141px;
+}
+.score-medal .default-statu .default-icon{
+  background-position: right -141px;
+}
+.score-water .default-statu .default-icon{
+  background-position: right -141px;
+}
+.score-crown .default-statu .default-icon{
+  background-position: right -141px;
+}
+.score-flower .default-statu .default-icon{
+  background-position: right -141px ;
+}
+
+
+.score-description{
+  width:249px;
+  height: 47px;
+  line-height: 47px;
+  text-align: center;
+  float: left;
+}
+.result{
+  margin:10px auto;
+  width:200px;
+}
+.result-score{
+  color:green;
+  font-size: large;
+}
