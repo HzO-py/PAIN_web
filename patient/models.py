@@ -20,6 +20,7 @@ class Patient(models.Model):
     class Meta:
         verbose_name = '病人'
         verbose_name_plural = verbose_name
+        ordering = ('-add_time',)
 
     def __str__(self):
         return str(self.patient_id)+'_'+self.name
@@ -38,6 +39,7 @@ class Sample(models.Model):
     class Meta:
         verbose_name = '样本'
         verbose_name_plural = verbose_name
+        ordering = ('-add_time',)
 
     def __str__(self):
         return str(self.sample_id)+'_'+str(self.patient_id)
@@ -64,6 +66,11 @@ class Score(models.Model):
     VAS_score=models.FloatField(blank=True, null=True, verbose_name="VAS")
     lianpu_score=models.FloatField(blank=True, null=True, verbose_name="脸谱")
     add_time = models.DateTimeField(default=datetime.now, verbose_name='添加时间')
+
+    class Meta:
+        verbose_name = '分数'
+        verbose_name_plural = verbose_name
+        ordering = ('-add_time',)
 
     def __str__(self):
         return str(self.user_id)+'_'+str(self.sample_id)

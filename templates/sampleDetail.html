@@ -224,90 +224,100 @@
                                         </div>
                                         <div class="card-body">
                                             <form id="form" action="/addScoreSuccess/" method="post" enctype="multipart/form-data" onsubmit="return sumbit_sure()">
-
-                                            <label><strong>疼痛总分</strong></label>
-                                            <div style="float:right;">
-                                                <big><strong><label id="sum_score">{{score.sum_score}}</label></strong></big>
+                                            <div style="text-align: center;margin-bottom: 15px;">
+                                                <input type="checkbox" id="sum_checkbox" name="sum_checkbox" value="1" checked>  疼痛总分
+                                                <input type="checkbox" id="FLACC_checkbox" name="FLACC_checkbox" value="1" style="margin-left: 30px;" checked>  FLACC
+                                                <input type="checkbox" id="VAS_checkbox" name="VAS_checkbox" value="1" style="margin-left: 30px;" checked>  VAS
+                                                <input type="checkbox" id="lianpu_checkbox" name="lianpu_checkbox" value="1" style="margin-left: 30px;" checked>  脸谱
                                             </div>
-                                            <div id="sum_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
-                                                <div id="sum_handle" class="ui-slider-handle ui-corner-all ui-state-default">
-                                                </div>
-                                            </div>
-                                            <label><strong>FLACC</strong></label>
-                                            <div style="float:right;">
-                                                <big><strong><label id="FLACC_score">{{score.FLACC_score}}</label></strong></big>
-                                            </div>&nbsp;&nbsp;
-                                            <div style="margin-left: 30px;margin-bottom: 15px;">
-                                                粗项<input type="radio" id="cu_check" name="flacc_check" value="cu_check" {%if score.cu%}checked{%endif%}>
-                                                细项<input type="radio" id="xi_check" name="flacc_check" value="xi_check" {%if score.xi%}checked{%endif%}>
-                                            </div>
-                                            <div id="cu" {%if score.xi%}hidden{%endif%}>
-                                                <div id="FLACC_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
-                                                    <div id="FLACC_handle" class="ui-slider-handle ui-corner-all ui-state-default">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="xi" {%if score.cu%}hidden{%endif%}>
-                                                &nbsp;&nbsp;<label>FACE</label>
+                                            <div id="sum_div">
+                                                <label><strong>疼痛总分</strong></label>
                                                 <div style="float:right;">
-                                                    <big><label id="FACE_score">{{score.FACE_score}}</label></big>
-                                                </div>
-                                                <div id="FACE_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
-                                                    <div id="FACE_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                    <big><strong><label id="sum_score">{{score.sum_score}}</label></strong></big>
+                                                </div>  
+                                                <div id="sum_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                                    <div id="sum_handle" class="ui-slider-handle ui-corner-all ui-state-default">
                                                     </div>
                                                 </div>
-                                                &nbsp;&nbsp;<label>legs</label>
+                                            </div>
+                                            <div id="FLACC_div">
+                                                <label><strong>FLACC</strong></label>
                                                 <div style="float:right;">
-                                                    <big><label id="legs_score">{{score.legs_score}}</label></big>
+                                                    <big><strong><label id="FLACC_score">{{score.FLACC_score}}</label></strong></big>
+                                                </div>&nbsp;&nbsp;
+                                                <div style="margin-left: 30px;margin-bottom: 15px;">
+                                                    <input type="radio" id="cu_check" name="flacc_check" value="cu_check" {%if score.cu%}checked{%endif%}> 粗项
+                                                    <input type="radio" id="xi_check" name="flacc_check" style="margin-left: 30px;" value="xi_check" {%if score.xi%}checked{%endif%}> 细项
                                                 </div>
-                                                <div id="legs_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
-                                                    <div id="legs_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                <div id="cu" {%if score.xi%}hidden{%endif%}>
+                                                    <div id="FLACC_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                                        <div id="FLACC_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                &nbsp;&nbsp;<label>Acitivity</label>
+                                                <div id="xi" {%if score.cu%}hidden{%endif%}>
+                                                    &nbsp;&nbsp;<label>FACE</label>
+                                                    <div style="float:right;">
+                                                        <big><label id="FACE_score">{{score.FACE_score}}</label></big>
+                                                    </div>
+                                                    <div id="FACE_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
+                                                        <div id="FACE_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                        </div>
+                                                    </div>
+                                                    &nbsp;&nbsp;<label>legs</label>
+                                                    <div style="float:right;">
+                                                        <big><label id="legs_score">{{score.legs_score}}</label></big>
+                                                    </div>
+                                                    <div id="legs_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
+                                                        <div id="legs_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                        </div>
+                                                    </div>
+                                                    &nbsp;&nbsp;<label>Acitivity</label>
+                                                    <div style="float:right;">
+                                                        <big><label id="Acitivity_score">{{score.Acitivity_score}}</label></big>
+                                                    </div>
+                                                    <div id="Acitivity_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
+                                                        <div id="Acitivity_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                        </div>
+                                                    </div>
+                                                    &nbsp;&nbsp;<label>Cry</label>
+                                                    <div style="float:right;">
+                                                        <big><label id="Cry_score">{{score.Cry_score}}</label></big>
+                                                    </div>
+                                                    <div id="Cry_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
+                                                        <div id="Cry_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                        </div>
+                                                    </div>
+                                                    &nbsp;&nbsp;<label>consolability</label>
+                                                    <div style="float:right;">
+                                                        <big><label id="consolability_score">{{score.consolability_score}}</label></big>
+                                                    </div>
+                                                    <div id="consolability_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
+                                                        <div id="consolability_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="VAS_div">
+                                                <label><strong>VAS</strong></label>
                                                 <div style="float:right;">
-                                                    <big><label id="Acitivity_score">{{score.Acitivity_score}}</label></big>
+                                                    <big><strong><label id="VAS_score">{{score.VAS_score}}</label></strong></big>
                                                 </div>
-                                                <div id="Acitivity_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
-                                                    <div id="Acitivity_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                <div id="VAS_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                                    <div id="VAS_handle" class="ui-slider-handle ui-corner-all ui-state-default">
                                                     </div>
                                                 </div>
-                                                &nbsp;&nbsp;<label>Cry</label>
+                                            </div>
+                                            <div id="lianpu_div">
+                                                <label><strong>脸谱</strong></label>
                                                 <div style="float:right;">
-                                                    <big><label id="Cry_score">{{score.Cry_score}}</label></big>
+                                                    <big><strong><label id="lianpu_score">{{score.lianpu_score_zimu}}</label></strong></big>
                                                 </div>
-                                                <div id="Cry_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
-                                                    <div id="Cry_handle" class="ui-slider-handle ui-corner-all ui-state-default">
-                                                    </div>
-                                                </div>
-                                                &nbsp;&nbsp;<label>consolability</label>
-                                                <div style="float:right;">
-                                                    <big><label id="consolability_score">{{score.consolability_score}}</label></big>
-                                                </div>
-                                                <div id="consolability_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
-                                                    <div id="consolability_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                <div id="lianpu_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                                    <div id="lianpu_handle" class="ui-slider-handle ui-corner-all ui-state-default">
                                                     </div>
                                                 </div>
                                             </div>
-                                            
-
-                                            <label><strong>VAS</strong></label>
-                                            <div style="float:right;">
-                                                <big><strong><label id="VAS_score">{{score.VAS_score}}</label></strong></big>
-                                            </div>
-                                            <div id="VAS_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
-                                                <div id="VAS_handle" class="ui-slider-handle ui-corner-all ui-state-default">
-                                                </div>
-                                            </div>
-                                            <label><strong>脸谱</strong></label>
-                                            <div style="float:right;">
-                                                <big><strong><label id="lianpu_score">{{score.lianpu_score_zimu}}</label></strong></big>
-                                            </div>
-                                            <div id="lianpu_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
-                                                <div id="lianpu_handle" class="ui-slider-handle ui-corner-all ui-state-default">
-                                                </div>
-                                            </div>
-                                            
                                             <div hidden="hidden">
                                                 <input type="number" name="sum_input" id="sum_input" value={{score.sum_score}}>
                                                 <input type="number" name="FLACC_input" id="FLACC_input" value={{score.FLACC_score}}>
@@ -427,6 +437,23 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
+        function div_checkbox(name){
+            $("#"+name+"_checkbox").click(function(){
+            if($("#"+name+"_checkbox").is(":checked")){
+                $("#"+name+"_div").attr('hidden',false);
+                $(this).val('1');
+            }
+            else{
+                $("#"+name+"_div").attr('hidden',true);
+                $(this).val('0');
+            }
+        })}
+        div_checkbox("sum");
+        div_checkbox("FLACC");
+        div_checkbox("VAS");
+        div_checkbox("lianpu");
+    </script>
+    <script>
         var flacc_cu_score=0;
         var lianpu_list=['','A','B','C','D','E','F'];
         function sliderFunction(name,min,max,value) {
@@ -447,7 +474,6 @@
                         $("#"+name+"_score").html(ui.value);
                     }
                     $("#"+name+"_input").val(Number(ui.value));
-                    console.log(ui.value);
                     if(name=='FACE'||name=='legs'||name=='Acitivity'||name=='Cry'||name=='consolability'){
                         $('#FLACC_score').html(Number($('#FACE_score').text())+Number($('#legs_score').text())+Number($('#Acitivity_score').text())+Number($('#Cry_score').text())+Number($('#consolability_score').text()));
                         $("#FLACC_input").val(Number($('#FLACC_score').text()));
@@ -457,7 +483,7 @@
                     }
                 }
             });
-            } );              
+            } );
         }
 
         sliderFunction("sum",0,100,{{score.sum_score}});
@@ -482,7 +508,6 @@
     <script>
         $(function(){
             $("input[name='flacc_check']").on("click",function(){
-                console.log($("input[name='flacc_check']:checked").val());
                 if($("input[name='flacc_check']:checked").val()=="cu_check"){
                     $("#cu").attr('hidden',false);
                     $("#xi").attr('hidden',true);

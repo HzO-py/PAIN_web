@@ -18,6 +18,7 @@ import threading
 import numpy as np
 import csv
 from datetime import datetime
+import pandas as pd
 
 class myThread(threading.Thread):
     def __init__(self, sampleID,videopath):
@@ -50,17 +51,29 @@ def checkLoginStatus(request):
 def postregister(request):
     if request.method == 'POST':
         password = request.POST['pwd']
+        pwd2=request.POST['pwd2']
         name = request.POST['name']
         phoneNum = request.POST['phoneNum']
         # verifyCode = request.POST['verifyCode']
-        
+        if pwd2!=password:
+            msg="两次密码输入不一致！"
+            return render(request, 'register.html',{"msg":msg})
+        res = User.objects.filter(account=phoneNum)
+        if len(res)>0:
+            msg="该账号已存在！"
+            return render(request, 'register.html',{"msg":msg})
         # m = hashlib.md5()
         # m.update(password.encode('utf-8'))
         password = make_password(password, 'sha', 'pbkdf2_sha256')
         
         User.objects.create(account=phoneNum,password=password,name=name)
-        # res = User.objects.get(username=phoneNum)
         
+        request.session['addData_flag'] = False
+        request.session['addData_name'] = ""
+        request.session['account'] = phoneNum
+        request.session['name'] = name
+        request.session["msg"]="注册账号 "+phoneNum+" 成功！"
+        return redirect('/dataList')
 
         # request.session['member_id'] = res.id
         # request.session['username'] = res.username
@@ -68,6 +81,7 @@ def postregister(request):
         return HttpResponse("注册成功")
 
     else:
+        
         return render(request, 'register.html')
 
 def addData(request):
@@ -81,7 +95,16 @@ def addData(request):
     request.session['addData_name'] = ""
     request.session['msg'] = ""
     if request.method == "POST":
-        res=Patient.objects.all()
+        name=request.POST.get("name")
+        order=request.POST.get("order")
+        page=request.POST.get("page")
+        page=int(page)-1
+        page_size=10
+        res=Patient.objects.filter(name__contains=name)
+        total=len(res)
+        if order=="reverse":
+            res=res.reverse()
+        res=res[page*page_size:(page+1)*page_size]
         patient_list=[]
         for patient in res:
             row={}
@@ -92,7 +115,9 @@ def addData(request):
             row['add_time']=patient.add_time.strftime('%Y-%m-%d %H:%M:%S')
             row['sample_num']=patient.sample_num
             patient_list.append(row)
-        json_data=json.dumps(patient_list, ensure_ascii=False)
+        json_return={'patient_list':patient_list,'total':total}
+        json_data=json.dumps(json_return, ensure_ascii=False)
+        print("search"+name)
         return HttpResponse(json_data,content_type='application/json')
     return render(request, 'addData.html',{"currentuser":user,"flag":flag,"name":name,"msg":msg})
 
@@ -113,11 +138,11 @@ def addPatientSuccess(request):
                 value=request.POST.get(key)
             if value=="":
                 value=None
-            # if value is not None:
-            #     if key=="weight":
-            #         value=float(value)
-            #     elif value.isdigit():
-            #         value=int(value)
+            if value is not None:
+                if key in ["csv_id","sex","age","ventilation_mode","nerve_block","analgesic_pump"]:
+                    value=int(float(value)) 
+                if key=="weight":
+                    value=float(value) 
             values[key]=value
         print(values)
         Patient.objects.create(**values)
@@ -129,18 +154,6 @@ def addPatientSuccess(request):
             
         
     #return render(request, 'addData.html')
-
-def searchPatient(request):
-    user = checkLoginStatus(request)
-    if user=='':
-        return redirect('/')
-    if request.method=="POST":
-        name=request.POST.get("name")
-        print(name)
-        res=Patient.objects.filter(name__contains=name)
-        json_data = serializers.serialize('json', res)
-        print(json_data)
-        return HttpResponse(json_data,content_type='application/json')
 
 def addPatientDataSuccess(request):
     user = checkLoginStatus(request)
@@ -183,7 +196,6 @@ def postlogin(request):
     if request.method == "POST":
         userName = request.POST.get('account')
         userPassword=request.POST.get('password')
-        lang=request.POST.get('lang')
         res1 = User.objects.filter(account=userName)
         msg="账号不存在！"
         if not res1:
@@ -200,7 +212,6 @@ def postlogin(request):
                 request.session['addData_name'] = ""
                 request.session['account'] = res.account
                 request.session['name'] = res.name
-                request.session['lang'] = lang
                 request.session["msg"]=""
                 checkIsLogin(request)
                 print(request.session['account'])
@@ -241,13 +252,26 @@ def dataList(request):
         return redirect('/')
     if request.method == "POST":
         account=request.POST.get("account")
+
+        name1=request.POST.get("name1")
+        order1=request.POST.get("order1")
+        page1=request.POST.get("page1")
+        page1=int(page1)-1
+
+        name2=request.POST.get("name2")
+        order2=request.POST.get("order2")
+        page2=request.POST.get("page2")
+        page2=int(page2)-1
+
+        page_size=10
+
         all_sample=Sample.objects.all()
         user = User.objects.filter(account=account)[0]
         user_score=user.score_user.all()
         tmp=[]
         for sample in all_sample:
             tmp.append(sample.pk)
-        all_sample=tmp
+        all_sample=tmp.copy()
         user_sample=[]
         # user_sample=list(all_sample.none())
         for score in user_score:
@@ -258,13 +282,39 @@ def dataList(request):
             if sample not in user_sample:
                 rest_sample.append(sample)
         
-        user_sample=Sample.objects.filter(pk__in=user_sample)
+        rest_patient=[]
+        user_patient=[]
+        for patient in Patient.objects.filter(name__contains=name1):
+            rest_patient.append(patient.pk)
+        for patient in Patient.objects.filter(name__contains=name2):
+            user_patient.append(patient.pk)
+
         rest_sample=Sample.objects.filter(pk__in=rest_sample)
-        
-        
+        user_sample=Sample.objects.filter(pk__in=user_sample)
+
+        tmp=[]
+        for sample in rest_sample:
+            if sample.patient_id_id in rest_patient:
+                tmp.append(sample)
+        rest_sample=tmp.copy()
+        tmp=[]
+        for sample in user_sample:
+            if sample.patient_id_id in user_patient:
+                tmp.append(sample)
+        user_sample=tmp.copy()
+
+        total1=len(rest_sample)
+        total2=len(user_sample)
+
+        if order1=="reverse":
+            rest_sample.reverse()
+        if order2=="reverse":
+            user_sample.reverse()
+
+        lianpu_list=['','A','B','C','D','E','F']
         
         rest_list=[]
-        for rest in rest_sample:
+        for rest in rest_sample[page1*page_size:(page1+1)*page_size]:
             row={}
             patient=Patient.objects.get(pk=rest.patient_id_id)
             row["sample_id"]=rest.pk
@@ -276,7 +326,7 @@ def dataList(request):
             rest_list.append(row)
 
         user_list=[]
-        for rest in user_sample:
+        for rest in user_sample[page2*page_size:(page2+1)*page_size]:
             row={}
             score=Score.objects.get(sample_id_id=rest.pk,user_id_id=user.pk)
             patient=Patient.objects.get(pk=rest.patient_id_id)
@@ -286,7 +336,7 @@ def dataList(request):
             row["sum"]=score.sum_score
             row["FLACC"]=score.FLACC_score
             row["VAS"]=score.VAS_score
-            row["lianpu"]=score.lianpu_score
+            row["lianpu"]=lianpu_list[int(score.lianpu_score)] if score.lianpu_score else None
             row["add_time"]=score.add_time.strftime('%Y-%m-%d %H:%M:%S')
             user_list.append(row)
             
@@ -296,6 +346,8 @@ def dataList(request):
                 for kk,vv in v[i].items():
                     if vv==None:
                         output[k][i][kk]='空'
+        output["total1"]=total1
+        output["total2"]=total2
 
         json_data=json.dumps(output, ensure_ascii=False)
 
@@ -451,7 +503,11 @@ def addScoreSuccess(request):
         for key in Score.objects.values().first().keys():
             if key[-5:]=='score':
                 value=request.POST.get(key[:-5]+'input')
-                value=None if key[:-6] in xi_list and flacc_check=="cu_check" else float(value)
+                if key[:-6] in xi_list:
+                    value=None if flacc_check=="cu_check" or request.POST.get('FLACC_checkbox') is None else float(value)
+                else:
+                    value=None if request.POST.get(key[:-5]+'checkbox') is None else float(value)
+                    print(key[:-5]+'checkbox',request.POST.get(key[:-5]+'checkbox'))
                 values[key]=value
         print(values)
         if not scores.exists():
@@ -486,3 +542,143 @@ def changeName(request):
         user.save()
         request.session['msg'] = "更改昵称成功！"+name
         return redirect(request.POST.get('herf'))
+
+def addPatientListSuccess(request):
+    user = checkLoginStatus(request)
+    if user=='':
+        return redirect('/')
+    if request.method=="POST":
+        file_input =request.FILES["csv"]
+        save_path =os.path.join(os.path.join(settings.MEDIA_ROOT,'tmp'),file_input.name)
+        with open(save_path,'wb+') as f:
+            for chunk in file_input.chunks():
+                f.write(chunk)
+
+        if not save_path.endswith('.csv'):
+            if save_path.endswith('.xls'):
+                df = pd.read_excel(save_path) 
+            elif save_path.endswith('.xlsx'):
+                df = pd.read_excel(save_path,engine='openpyxl')
+            else:
+                request.session['msg'] = "文件格式有误！"
+                return redirect('/addData')
+            save_path =os.path.join(os.path.join(settings.MEDIA_ROOT,'tmp'),os.path.splitext(file_input.name)[0]+'.csv')
+            df.to_csv(save_path,encoding="utf-8",index=False)
+            
+            
+
+        patient_list=[]
+        keys=Patient.objects.values().first().keys()
+        try:
+            with open(save_path,'r',encoding="utf-8") as f:
+                reader = csv.reader(f)
+                lines=[line for line in reader][1:]
+                for line in lines:
+                    values={}
+                    line_flag=False
+                    for i,key in enumerate(keys):
+                        value=""
+                        if key=="patient_id" or key=="add_time":
+                            continue
+                        if key=="sample_num":
+                            value=0
+                        else:
+                            value=line[i-1]
+                        if value=="" or value==".":
+                            value=None
+                            if key in ["name","sex","age"]:
+                                line_flag=True
+                                break
+                        # if value is not None:
+                        #     if key=="weight":
+                        #         value=float(value)
+                        #     elif value.isdigit():
+                        #         value=int(value)
+                        if value is not None:
+                            if key in ["csv_id","sex","age","ventilation_mode","nerve_block","analgesic_pump"]:
+                                value=int(float(value)) 
+                            if key=="weight":
+                                value=float(value) 
+                        values[key]=value
+                    if line_flag:
+                        continue
+                    print(values)
+                    patient_obj=Patient(**values)
+                    patient_list.append(patient_obj)
+            Patient.objects.bulk_create(patient_list)
+        except Exception as e:
+            print(str(e))
+            request.session['msg'] = "文件格式有误！"
+            return redirect('/addData')
+        request.session['msg'] = "批量添加 "+str(len(patient_list))+" 位病人成功！"
+        return redirect('/addData')
+        
+def addPatientListSuccess(request):
+    user = checkLoginStatus(request)
+    if user=='':
+        return redirect('/')
+    if request.method=="POST":
+        file_input =request.FILES["csv"]
+        save_path =os.path.join(os.path.join(settings.MEDIA_ROOT,'tmp'),file_input.name)
+        with open(save_path,'wb+') as f:
+            for chunk in file_input.chunks():
+                f.write(chunk)
+
+        if not save_path.endswith('.csv'):
+            if save_path.endswith('.xls'):
+                df = pd.read_excel(save_path) 
+            elif save_path.endswith('.xlsx'):
+                df = pd.read_excel(save_path,engine='openpyxl')
+            else:
+                request.session['msg'] = "文件格式有误！"
+                return redirect('/addData')
+            save_path =os.path.join(os.path.join(settings.MEDIA_ROOT,'tmp'),os.path.splitext(file_input.name)[0]+'.csv')
+            df.to_csv(save_path,encoding="utf-8",index=False)
+            
+            
+
+        patient_list=[]
+        keys=Patient.objects.values().first().keys()
+        try:
+            with open(save_path,'r',encoding="utf-8") as f:
+                reader = csv.reader(f)
+                lines=[line for line in reader][1:]
+                for line in lines:
+                    values={}
+                    line_flag=False
+                    for i,key in enumerate(keys):
+                        value=""
+                        if key=="patient_id" or key=="add_time":
+                            continue
+                        if key=="sample_num":
+                            value=0
+                        else:
+                            value=line[i-1]
+                        if value=="" or value==".":
+                            value=None
+                            if key in ["name","sex","age"]:
+                                line_flag=True
+                                break
+                        # if value is not None:
+                        #     if key=="weight":
+                        #         value=float(value)
+                        #     elif value.isdigit():
+                        #         value=int(value)
+                        if value is not None:
+                            if key in ["csv_id","sex","age","ventilation_mode","nerve_block","analgesic_pump"]:
+                                value=int(float(value)) 
+                            if key=="weight":
+                                value=float(value) 
+                        values[key]=value
+                    if line_flag:
+                        continue
+                    print(values)
+                    patient_obj=Patient(**values)
+                    patient_list.append(patient_obj)
+            Patient.objects.bulk_create(patient_list)
+        except Exception as e:
+            print(str(e))
+            request.session['msg'] = "文件格式有误！"
+            return redirect('/addData')
+        request.session['msg'] = "批量添加 "+str(len(patient_list))+" 位病人成功！"
+        return redirect('/addData')

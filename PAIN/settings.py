@@ -85,7 +85,8 @@ DATABASES = {
         'NAME': 'pain', # 数据库名
         'USER': 'root', # 账号
         'PASSWORD': 'liangzequan', # 密码
-        'HOST': '124.220.1.234', # HOST
+        'HOST': '127.0.0.1',
+        #'HOST': '124.220.1.234', # HOST
         'POST': 3306, # 端口
     }
 }
