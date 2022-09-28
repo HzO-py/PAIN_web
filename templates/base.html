@@ -36,6 +36,11 @@
                 <li>
                     <a href="/dataList"><i class="menu-icon fa fa-bars"></i>样本列表 </a>
                 </li>
+                {% if currentuser.usrtype == 0 %}
+                <li>
+                    <a href="/scoreList"><i class="menu-icon fa fa-bars"></i>评分列表 </a>
+                </li>
+                {% endif %}
             </ul>
             {% endblock %}
         </div>
@@ -85,8 +90,8 @@
                 
 
                     <div class="user-menu dropdown-menu">
-                        <i class="fa fa- user" id='nameLabel'></i>{{ currentuser.name }}
-                        
+                        {{ currentuser.name }}
+                        <small>（{% if currentuser.usrtype == 0 %}管理员{% else %}普通用户{% endif %}）</small>
                         <a class="nav-link" onclick="changeName()"  id='changeName'><i class="fa fa-power -off"></i>更改昵称</a>
                         <a class="nav-link" href="/logout"><i class="fa fa-power -off"></i>退出系统</a>
                     </div>

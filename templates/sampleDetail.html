@@ -185,7 +185,7 @@
                                 <label><strong>收缩压: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.systolic_pressure}}</label>                                    
                             </div>
                             <div class="col-sm-6 col-md-3">
-                                <label><strong>术前术后: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.before_operation}}</label>                                    
+                                <label><strong>手术阶段: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.before_operation}}</label>                                    
                             </div>
                         </div>
                     </div>
@@ -208,7 +208,7 @@
                                             <strong class="card-title">疼痛视频</strong>
                                         </div>
                                         <div class="card-body">
-                                            <video  controls style="width: 100%;height:400px;" id="video">
+                                            <video  controls style="width: 100%;height:100%;" id="video">
                                                 <source src="" type="video/mp4">
                                             </video>
                                         </div>
@@ -217,6 +217,35 @@
                                 
                             </div>
                             <div class="col-lg-6">
+                                <div class="card-body">
+                                    <div class="card border border-success">
+                                        <div class="card-header">
+                                            <strong class="card-title">生理信号</strong>
+                                        </div>
+                                        {%if sample.biology%}
+                                        <div class="card-body">
+                                            <div id="ecg" style="width: 100%;height:300px;">ecg</div>
+                                        </div><hr/>
+                                        <div class="card-body">
+                                            <div id="hr" style="width: 100%;height:300px;">hr</div>
+                                        </div><hr/>
+                                        <div class="card-body">
+                                            <div id="gsr" style="width: 100%;height:300px;">gsr</div>
+                                        </div><hr/>
+                                        
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div align="center"><a id="startdraw" class="badge badge-complete" onclick="StartDraw()" style="background-color: #00c292;padding: 10px;color: white">开始绘制</a></div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div align="center"><a id="stopdraw" class="badge badge-complete" onclick="StopDraw()" style="background-color: #00c292;padding: 10px;color: white" align="center">暂停绘制</a></div>
+                                            </div>
+                                        </div>
+                                        {%else%}
+                                        <p>该样本没有采集生理信号</p>
+                                        {%endif%}
+                                    </div>
+                                </div>
                                 <div class="card-body">
                                     <div class="card border border-success">
                                         <div class="card-header">
@@ -340,31 +369,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="card-body">
-                                    <div class="card border border-success">
-                                        <div class="card-header">
-                                            <strong class="card-title">生理信号</strong>
-                                        </div>
-                                        {%if sample.biology%}
-                                        <div class="card-body">
-                                            <div id="ecg" style="width: 100%;height:300px;"></div>
-                                        </div><hr/>
-                                        <div class="card-body">
-                                            <div id="gsr" style="width: 100%;height:300px;"></div>
-                                        </div><hr/>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div align="center"><a id="startdraw" class="badge badge-complete" onclick="StartDraw()" style="background-color: #00c292;padding: 10px;color: white">开始绘制</a></div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div align="center"><a id="stopdraw" class="badge badge-complete" onclick="StopDraw()" style="background-color: #00c292;padding: 10px;color: white" align="center">暂停绘制</a></div>
-                                            </div>
-                                        </div>
-                                        {%else%}
-                                        <p>该样本没有采集生理信号</p>
-                                        {%endif%}
-                                    </div>
-                                </div> -->
+                                
                             </div>
                         </div>
                     </div>
@@ -555,7 +560,305 @@
         })
         var vid = document.getElementById("video2");
     </script>
+    <script type="text/javascript" src="/static/js/echarts.js"></script>
     <script>
+        var xAxisData=[];
+        var yAxisData_ecg=[];
+        var yAxisData_hr=[];
+        var yAxisData_gsr=[];
+        var bio_cnt=0;
+        var BIOLEN={{sample.biology.ecg}}.length;
+    </script>
+    <script>
+    // var totalFlowRateOption = {
+    //     grid: {
+    //       left: 0/*"50px"*/,
+    //       right: 0/*"15px"*/,
+    //       top: 0/*"15px"*/,
+    //       bottom: 39/*"15px"*/,
+    //       borderWidth: "0"
+    //     },
+    //     xAxis: {
+    //       boundaryGap: false,
+    //       data: xAxisData,
+    //       show: false
+    //     },
+    //     yAxis: {
+    //       boundaryGap:false,
+    //       splitLine:{show: true}/*网格线*/
+        
+    //     },
+    //     dataZoom: [{
+    //       type: 'slider',
+    //       show: true,
+    //       xAxisIndex: [0],
+    //       start: 0,
+    //       end: 30, //初始化滚动条
+    //       textStyle: {
+    //         show: false
+    //       },
+    //       backgroundColor: '#fff',
+    //       showDataShadow: true,//是否显示数据阴影 默认auto
+    //       showDetail: false,//即拖拽时候是否显示详细数值信息 默认true
+    //       handleSize: 35,
+    //       startValue:3000,
+    //       endValue: 5000
+    //      }],
+    //      series: {
+    //        /*itemStyle: {normal: {areaStyle: {type: 'default'}}},*/
+    //        itemStyle: {
+    //          normal: {
+    //            lineStyle: {
+    //              color: '#ff6f4a'/*折线的颜色*/
+    //            },
+    //            color: "#ff6f4a"/*图例(legend)的颜色,不是图例说明文字的颜色*/
+    //          }
+    //        },
+    //        areaStyle: {
+    //          normal: {
+    //            color: new echarts.graphic.LinearGradient(
+    //              0, 0, 0, 1,
+    //              [
+    //                { offset: 0, color: '#ff6f4a' },
+    //                /* {offset: 0.5, color: '#c4e1ff'},*/
+    //                { offset: 1, color: '#ecf5ff' }
+    //              ]
+    //            )
+    //          }
+    //        },
+    //        symbol: "none",/*去掉小圆点*/
+    //        name: '当前流量',
+    //        type: 'line',
+    //        data: yAxisData/*,
+    //         smooth:true//显示为平滑的曲线*/
+    //      }
+    //     };
+    function StartDraw()
+    {
+        var draw = document.getElementById("startdraw");
+        var draw2 = document.getElementById("stopdraw");
+        if(draw2.innerHTML=="暂停绘制"&&draw.innerHTML=="重新绘制")
+        {
+            clearInterval(drawInterval);
+        }
+        xAxisData=[];
+        yAxisData_ecg=[];
+        yAxisData_hr=[];
+        yAxisData_gsr=[];
+        bio_cnt=0;
+        drawInterval = setInterval(refresh,100);
+        draw.innerHTML="重新绘制";
+        draw2.innerHTML="暂停绘制";
+    }
+    function StopDraw()
+    {
+        var draw = document.getElementById("stopdraw");
+        if(draw.innerHTML=="暂停绘制")
+        {
+            clearInterval(drawInterval);
+            draw.innerHTML="继续绘制";
+        }
+        else{
+            drawInterval = setInterval(refresh,100);
+            draw.innerHTML="暂停绘制";
+        }
+    }
+    var totalFlowRate = echarts.init(document.getElementById('ecg'));
+    var totalFlowRate2 = echarts.init(document.getElementById('gsr'));
+    var totalFlowRate3 = echarts.init(document.getElementById('hr'));
+    
+    function refresh(){
+        if(bio_cnt>=BIOLEN){
+            clearInterval(drawInterval);
+            return;
+        }
+        xAxisData.push(bio_cnt);
+        yAxisData_ecg.push({{sample.biology.ecg}}[bio_cnt]);
+        yAxisData_hr.push({{sample.biology.hr}}[bio_cnt]);
+        yAxisData_gsr.push({{sample.biology.gsr}}[bio_cnt]);
+        bio_cnt+=1;
+        if(bio_cnt>50){
+            xAxisData.shift();
+            yAxisData_ecg.shift();
+            yAxisData_hr.shift();
+            yAxisData_gsr.shift();
+        }
+        
+        var totalFlowRateOption = {
+            animation:false,
+            title: {
+                text: '心电ECG'/*,
+                 left:"110px"*/
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross'
+                }
+            },
+            grid: {
+                left: 50/*"50px"*/,
+                right: 15/*"15px"*/
+            },
+            legend: {
+                data:['心电ECG'],
+                textStyle:{color:"#66b3ff"}/*图例(legend)说明文字的颜色*/
+            },
+            xAxis: {
+                boundaryGap: false,
+                data: xAxisData,
+                splitLine:{show: true}/*网格线*/
+            },
+            yAxis: {
+                boundaryGap:false,
+                splitLine:{show: true}/*网格线*/
+            },
+            series: {
+              /*itemStyle: {normal: {areaStyle: {type: 'default'}}},*/
+              itemStyle : {
+                normal : {
+                  lineStyle:{
+                    color:'#92c2ff'/*折线的颜色*/
+                  },
+                  color:"#66b3ff"/*图例(legend)的颜色,不是图例说明文字的颜色*/
+                }
+              },
+              areaStyle: {normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0, 0, 0, 1,
+                  [
+                    {offset: 0, color: '#66b3ff'},
+                   /* {offset: 0.5, color: '#c4e1ff'},*/
+                    {offset: 1, color: '#ecf5ff'}
+                  ]
+                )
+              }},
+              symbol:"none",/*去掉小圆点*/
+              name: '心电ECG',
+              type: 'line',
+              data: yAxisData_ecg,
+                //smooth:true//显示为平滑的曲线*/
+            }
+        };
+        totalFlowRate.setOption(totalFlowRateOption);
+        var totalFlowRateOption3 = {
+            animation:false,
+            title: {
+                text: '心率HR'/*,
+                 left:"110px"*/
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross'
+                }
+            },
+            grid: {
+                left: 50/*"50px"*/,
+                right: 15/*"15px"*/
+            },
+            legend: {
+                data:['心率HR'],
+                textStyle:{color:"#ff6f4a"}/*图例(legend)说明文字的颜色*/
+            },
+            xAxis: {
+                boundaryGap: false,
+                data: xAxisData,
+                splitLine:{show: true}/*网格线*/
+            },
+            yAxis: {
+                boundaryGap:false,
+                splitLine:{show: true}/*网格线*/
+            },
+            series: {
+              /*itemStyle: {normal: {areaStyle: {type: 'default'}}},*/
+              itemStyle : {
+                normal : {
+                  lineStyle:{
+                    color:'#ff6666'/*折线的颜色*/
+                  },
+                  color:"#ff6f4a"/*图例(legend)的颜色,不是图例说明文字的颜色*/
+                }
+              },
+              areaStyle: {normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0, 0, 0, 1,
+                  [
+                    {offset: 0, color: '#ff6f4a'},
+                   /* {offset: 0.5, color: '#c4e1ff'},*/
+                    {offset: 1, color: '#fff5ec'}
+                  ]
+                )
+              }},
+              symbol:"none",/*去掉小圆点*/
+              name: '心率HR',
+              type: 'line',
+              data: yAxisData_hr/*,
+               smooth:true//显示为平滑的曲线*/
+            }
+        };
+        totalFlowRate3.setOption(totalFlowRateOption3);
+        var totalFlowRateOption2 = {
+            animation:false,
+            title: {
+                text: '皮电GSR'/*,
+                 left:"110px"*/
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross'
+                }
+            },
+            grid: {
+                left: 50/*"50px"*/,
+                right: 15/*"15px"*/
+            },
+            legend: {
+                data:['皮电GSR'],
+                textStyle:{color:"#6fff4a"}/*图例(legend)说明文字的颜色*/
+            },
+            xAxis: {
+                boundaryGap: false,
+                data: xAxisData,
+                splitLine:{show: true}/*网格线*/
+            },
+            yAxis: {
+                boundaryGap:false,
+                splitLine:{show: true}/*网格线*/
+            },
+            series: {
+              /*itemStyle: {normal: {areaStyle: {type: 'default'}}},*/
+              itemStyle : {
+                normal : {
+                  lineStyle:{
+                    color:'#66ff66'/*折线的颜色*/
+                  },
+                  color:"#6fff4a"/*图例(legend)的颜色,不是图例说明文字的颜色*/
+                }
+              },
+              areaStyle: {normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0, 0, 0, 1,
+                  [
+                    {offset: 0, color: '#6fff4a'},
+                   /* {offset: 0.5, color: '#c4e1ff'},*/
+                    {offset: 1, color: '#6ff5ec'}
+                  ]
+                )
+              }},
+              symbol:"none",/*去掉小圆点*/
+              name: '皮电GSR',
+              type: 'line',
+              data: yAxisData_gsr/*,
+               smooth:true//显示为平滑的曲线*/
+            }
+        };
+        totalFlowRate2.setOption(totalFlowRateOption2);
+    };
+
+    </script>
+    <!--script>
         var endcnt=0;
         var startcnt=0;
         var interval;
@@ -602,59 +905,81 @@
             clearInterval(interval);
             clearInterval(interval2);
         });
-    </script>
+    </script-->
     <script>
-        var drawInterval;
-        var biomaxlength=50
-
-        var bio_xdata = [];
-        var ecg_data = [];
-        var gsr_data = [];
-        var bio_cnt=0;
-        var BIOLEN={{sample.biology.ecg}}.length;
-        function StartDraw()
-        {
-            bio_xdata = [];
-            ecg_data = [];
-            gsr_data = [];
-            bio_cnt=0;
-            var draw = document.getElementById("startdraw");
-            var draw2 = document.getElementById("stopdraw");
-            if(draw2.innerHTML=="暂停绘制"&&draw.innerHTML=="重新绘制")
-            {
-                clearInterval(drawInterval);
-            }
-            if(BIOLEN>0)
-            {
-                bio_xdata.push(bio_cnt);
-                ecg_data.push({{sample.biology.ecg}}[bio_cnt]);
-                gsr_data.push({{sample.biology.gsr}}[bio_cnt]);
-                drawInterval = setInterval(biorefresh,500);
-            }
-            
-
-            draw.innerHTML="重新绘制";
-            draw2.innerHTML="暂停绘制";
-        }
-        function StopDraw()
-        {
-            var draw = document.getElementById("stopdraw");
-            if(draw.innerHTML=="暂停绘制")
-            {
-                clearInterval(drawInterval);
-                draw.innerHTML="继续绘制";
-            }
-            else{
-                drawInterval = setInterval(biorefresh,500);
-                draw.innerHTML="暂停绘制";
-            }
-            
-        }
+        
+        
         
     </script>
     <!-- <script type="text/javascript" src="/static/assetjs/jquery-2.1.4.min.js"></script> -->
-    <script type="text/javascript" src="/static/js/echarts.js"></script>
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.7.10"></script>
     <script>
+        var can = document.getElementById('ecg'),//画布对象
+            pan,//获取2D图像API接口
+            index = 0,//用来接收setinerval的值
+            flag = true,//用来控制心电图折线的运行方向
+            wid = can.clientWidth,//获取浏览器宽度
+            hei = can.clientHeight,//获取浏览器高度
+            
+            x = 0,//心电图的“点”在画布上的x轴坐标，从0开始
+            y = hei/2;//心电图的“点”在画布上的y轴坐标，从页面y轴居中位置开始
+            console.log(wid,hei);
+        var drawInterval;
+        var biomaxlength=50;
+        var scale=3000;
+        var ecg_data = 0;
+        var gsr_data = 0;
+        var bio_cnt=0;
+        var BIOLEN={{sample.biology.ecg}}.length;
+
+        
+            ecg_data = 0;
+            gsr_data = 0;
+            bio_cnt=0;
+            can.height = hei;//设置画布高度
+            can.width  = wid;//设置画布宽度
+            pan = can.getContext("2d");//获取2D图像API接口
+            pan.strokeStyle = "#08b95a";//设置画笔颜色
+            pan.lineJoin = "round";//设置画笔轨迹基于圆点拼接
+            pan.lineWidth = 3;//设置画笔粗细
+            pan.beginPath();//开始一条画笔的路径
+            
+            if(BIOLEN>0)
+            {
+                ecg_data={{sample.biology.ecg}}[bio_cnt];
+                gsr_data={{sample.biology.gsr}}[bio_cnt];
+                pan.moveTo(bio_cnt,(scale-ecg_data)/scale*hei);
+                drawInterval = setInterval(move,100);
+            }
+            
+            //定位我们的“落笔点”
+            
+        
+        var max_cnt_can=-1;
+
+     function move(){
+        console.log(bio_cnt,ecg_data);
+        bio_cnt+=1;
+        if(bio_cnt<BIOLEN)
+        {
+            ecg_data={{sample.biology.ecg}}[bio_cnt];
+            gsr_data={{sample.biology.gsr}}[bio_cnt];
+            // if(bio_cnt*10 >= wid){
+            //     if(max_cnt_can==-1)max_cnt_can=(bio_cnt-1)*10;
+            //     can.translate(-10,0);
+            //     pan.lineTo(max_cnt_can,(scale-ecg_data)/scale*hei);
+            // }
+            // else
+            {pan.lineTo(bio_cnt*10,(scale-ecg_data)/scale*hei);}
+            pan.stroke();
+            
+        };
+        
+                        
+            
+     }        
+    </script> -->
+    <!--script>
         
         
         function Line_append(x_data,y_data,title) {
@@ -681,7 +1006,7 @@
                     <!--axisLabel:{-->
                         <!--rotate: 30,-->
                         <!--interval:0-->
-                    <!--},-->
+                    <!--},
  
                     axisLine:{
                         lineStyle :{
@@ -780,7 +1105,7 @@
                     Line_append(bio_xdata,gsr_data,"gsr");
                 }
             };
-    </script>
+    </script-->
     
 {% endblock %}
 

@@ -30,7 +30,9 @@ urlpatterns = [
     url(r'^addPatientSuccess/', views.addPatientSuccess, name='addPatientSuccess'),
     url(r'^addPatientListSuccess/', views.addPatientListSuccess, name='addPatientListSuccess'),
     url(r'^addPatientDataSuccess/', views.addPatientDataSuccess, name='addPatientDataSuccess'),
+    url(r'^addDataListSuccess/', views.addDataListSuccess, name='addDataListSuccess'),
     url(r'^dataList/', views.dataList, name='dataList'),
+    url(r'^scoreList/', views.scoreList, name='scoreList'),
     url(r'^addScoreSuccess/', views.addScoreSuccess, name='addScoreSuccess'),
     url(r'^changeName/', views.changeName, name='changeName'),
 ]

@@ -3,7 +3,7 @@ from datetime import datetime
 # Create your models here.
 class Patient(models.Model):
     patient_id = models.BigAutoField(primary_key=True, verbose_name="病人ID")
-    csv_id=models.IntegerField(blank=True, null=True, verbose_name="备用编号")
+    csv_id=models.IntegerField(blank=True, verbose_name="csv编号")
     name = models.CharField(max_length=20, verbose_name="姓名")
     sex = models.IntegerField(default=0, choices=((1, '男'), (0, '女')), verbose_name="性别")
     age = models.IntegerField(verbose_name="年龄")
@@ -31,7 +31,7 @@ class Sample(models.Model):
     heart_rate = models.IntegerField(blank=True, null=True, verbose_name="心率")
     diastolic_pressure = models.IntegerField(blank=True, null=True, verbose_name="舒张压")
     systolic_pressure = models.IntegerField(blank=True, null=True, verbose_name="收缩压")
-    before_operation=models.IntegerField(blank=True, null=True,default=0, choices=((0,'术前'), (1,'术后')), verbose_name="术前术后")
+    before_operation=models.IntegerField(blank=True, null=True,default=1, choices=((1,'麻醉诱导前'), (2,'麻醉诱导时'), (3,'术后拔管时'), (4,'出室前')), verbose_name="手术阶段")
     video = models.FileField(verbose_name='视频', upload_to='mp4/')
     biology=models.FileField(blank=True, null=True,verbose_name="生理信号", upload_to='csv/')
     add_time = models.DateTimeField(default=datetime.now, verbose_name='添加时间')
@@ -49,6 +49,7 @@ class User(models.Model):
     account=models.CharField(max_length=20, verbose_name="账号")
     password=models.CharField(max_length=100, verbose_name="密码")
     name=models.CharField(max_length=20, verbose_name="昵称")
+    usrtype=models.IntegerField(default=1, choices=((1,'评分者'), (0,'管理员')), verbose_name="用户类型")
 
     def __str__(self):
         return str(self.user_id)
