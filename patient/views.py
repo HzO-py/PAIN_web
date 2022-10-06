@@ -38,11 +38,18 @@ class myThread(threading.Thread):
 def login(request):
     user = checkLoginStatus(request)
     if user!='':
-        return redirect('/dataList')
+        return redirect('/index')
     return render(request, 'login.html')
 
 def register(request):
     return render(request, 'register.html')
+
+def index(request):
+    user = checkLoginStatus(request)
+    if user=='':
+        return redirect('/')
+    msg=request.session['msg']
+    return render(request, 'index.html',{"currentuser":user,"msg":msg})
 
 def checkLoginStatus(request):
     if 'account' in request.session and request.session['account']:
@@ -77,7 +84,7 @@ def postregister(request):
         request.session['account'] = phoneNum
         request.session['name'] = name
         request.session["msg"]="注册账号 "+phoneNum+" 成功！"
-        return redirect('/dataList')
+        return redirect('/index')
 
         # request.session['member_id'] = res.id
         # request.session['username'] = res.username
@@ -104,7 +111,7 @@ def addData(request):
         page=request.POST.get("page")
         page=int(page)-1
         page_size=10
-        res=Patient.objects.filter(name__contains=name)
+        res=Patient.objects.filter(name__contains=name).order_by('-add_time')
         total=len(res)
         if order=="reverse":
             res=res.reverse()
@@ -219,8 +226,7 @@ def postlogin(request):
                 request.session['name'] = res.name
                 request.session["msg"]=""
                 checkIsLogin(request)
-                print(request.session['account'])
-                return redirect('/dataList')
+                return redirect('/index')
             else:
                 msg="用户名或密码错误！"
                 return render(request, 'login.html',{"msg":msg})
@@ -294,8 +300,8 @@ def dataList(request):
         for patient in Patient.objects.filter(name__contains=name2):
             user_patient.append(patient.pk)
 
-        rest_sample=Sample.objects.filter(pk__in=rest_sample)
-        user_sample=Sample.objects.filter(pk__in=user_sample)
+        rest_sample=Sample.objects.filter(pk__in=rest_sample).order_by('-add_time')
+        user_sample=Score.objects.filter(sample_id_id__in=user_sample,user_id_id=user.pk).order_by('-add_time')
 
         tmp=[]
         for sample in rest_sample:
@@ -303,7 +309,8 @@ def dataList(request):
                 tmp.append(sample)
         rest_sample=tmp.copy()
         tmp=[]
-        for sample in user_sample:
+        for score in user_sample:
+            sample=Sample.objects.get(pk=score.sample_id_id)
             if sample.patient_id_id in user_patient:
                 tmp.append(sample)
         user_sample=tmp.copy()
@@ -345,7 +352,7 @@ def dataList(request):
             row["sum"]=score.sum_score
             row["FLACC"]=score.FLACC_score
             row["VAS"]=score.VAS_score
-            row["lianpu"]=lianpu_list[int(score.lianpu_score)] if score.lianpu_score else None
+            row["lianpu"]=lianpu_list[int(score.lianpu_score)] if score.lianpu_score is not None else None
             row["add_time"]=score.add_time.strftime('%Y-%m-%d %H:%M:%S')
             user_list.append(row)
             
@@ -413,8 +420,8 @@ def scoreList(request):
         for patient in Patient.objects.filter(name__contains=name2):
             user_patient.append(patient.pk)
 
-        rest_sample=Sample.objects.filter(pk__in=rest_sample)
-        user_sample=Sample.objects.filter(pk__in=user_sample)
+        rest_sample=Sample.objects.filter(pk__in=rest_sample).order_by('-add_time')
+        user_sample=Sample.objects.filter(pk__in=user_sample).order_by('-add_time')
 
         tmp=[]
         for sample in rest_sample:
@@ -461,10 +468,12 @@ def scoreList(request):
             row["name"]=patient.name
             row["video_name"]=rest.video.name.split('/')[-1]
             row["biology_name"]=rest.biology.name.split('/')[-1] if rest.biology else '空'
-            row["sum"]=round(scores.aggregate(Avg("sum_score"))["sum_score__avg"],2)
-            row["FLACC"]=round(scores.aggregate(Avg("FLACC_score"))["FLACC_score__avg"],2)
-            row["VAS"]=round(scores.aggregate(Avg("VAS_score"))["VAS_score__avg"],2)
-            row["lianpu"]=lianpu_list[int(scores.aggregate(Avg("lianpu_score"))["lianpu_score__avg"])] if scores.aggregate(Avg("lianpu_score"))["lianpu_score__avg"] else None
+            sum_tmp=scores.aggregate(Avg("sum_score"))["sum_score__avg"]
+            row["sum"]=round(sum_tmp,2) if sum_tmp is not None else None
+            FLACC_tmp=scores.aggregate(Avg("FLACC_score"))["FLACC_score__avg"] 
+            row["FLACC"]=round(FLACC_tmp,2) if FLACC_tmp is not None else None
+            # row["VAS"]=round(scores.aggregate(Avg("VAS_score"))["VAS_score__avg"],2)
+            # row["lianpu"]=lianpu_list[int(scores.aggregate(Avg("lianpu_score"))["lianpu_score__avg"])] if scores.aggregate(Avg("lianpu_score"))["lianpu_score__avg"] else None
             row["score_num"]=len(scores)
             scoreDicList=[]
             
@@ -474,8 +483,8 @@ def scoreList(request):
                 scoreDic["name"]=user.name
                 scoreDic["sum"]=score.sum_score
                 scoreDic["FLACC"]=score.FLACC_score
-                scoreDic["VAS"]=score.VAS_score
-                scoreDic["lianpu"]=lianpu_list[int(score.lianpu_score)] if score.lianpu_score else None
+                # scoreDic["VAS"]=score.VAS_score
+                # scoreDic["lianpu"]=lianpu_list[int(score.lianpu_score)] if score.lianpu_score else None
                 scoreDic["add_time"]=score.add_time.strftime('%Y-%m-%d %H:%M:%S')
                 scoreDicList.append(scoreDic)
             for i in range(len(scoreDicList)):
@@ -534,16 +543,16 @@ def sampleDetail(request,sampleID):
         score_flag=1
         score=score[0]
         lianpu_list=['','A','B','C','D','E','F']
-        score.sum_score=int(score.sum_score) if score.sum_score else 0
-        score.FLACC_score=int(score.FLACC_score) if score.FLACC_score else 0
-        score.cu=False if score.FACE_score else True
-        score.FACE_score=int(score.FACE_score) if score.FACE_score else 0
-        score.legs_score=int(score.legs_score) if score.legs_score else 0
-        score.Acitivity_score=int(score.Acitivity_score) if score.Acitivity_score else 0
-        score.Cry_score=int(score.Cry_score) if score.Cry_score else 0
-        score.consolability_score=int(score.consolability_score) if score.consolability_score else 0
-        score.VAS_score=int(score.VAS_score) if score.VAS_score else 0
-        score.lianpu_score=int(score.lianpu_score) if score.lianpu_score else 1
+        score.sum_score=int(score.sum_score) if score.sum_score is not None else 0
+        score.FLACC_score=int(score.FLACC_score) if score.FLACC_score is not None else 0
+        score.cu=False if score.FACE_score is not None else True
+        score.FACE_score=int(score.FACE_score) if score.FACE_score is not None else 0
+        score.legs_score=int(score.legs_score) if score.legs_score is not None else 0
+        score.Acitivity_score=int(score.Acitivity_score) if score.Acitivity_score is not None else 0
+        score.Cry_score=int(score.Cry_score) if score.Cry_score is not None else 0
+        score.consolability_score=int(score.consolability_score) if score.consolability_score is not None else 0
+        score.VAS_score=int(score.VAS_score) if score.VAS_score is not None else 0
+        score.lianpu_score=int(score.lianpu_score) if score.lianpu_score is not None else 1
         score.lianpu_score_zimu=lianpu_list[score.lianpu_score]
     else:
         score.sum_score=0
@@ -556,7 +565,7 @@ def sampleDetail(request,sampleID):
         score.VAS_score=0
         score.lianpu_score=1
         score.lianpu_score_zimu='A'
-        score.cu=True
+        score.cu=False
     score.xi=not score.cu
 
     print(score)
@@ -678,6 +687,24 @@ def addScoreSuccess(request):
         # request.session['addData_flag'] = True
         # request.session['addData_name'] = name
         request.session['msg'] = "评分成功！"
+
+        all_sample=Sample.objects.all()
+        user = User.objects.filter(account=account)[0]
+        user_score=user.score_user.all()
+        tmp=[]
+        for sample in all_sample:
+            tmp.append(sample.pk)
+        all_sample=tmp.copy()
+        user_sample=[]
+        # user_sample=list(all_sample.none())
+        for score in user_score:
+            user_sample.append(score.sample_id_id)
+
+        for sample in all_sample:
+            if sample not in user_sample:
+                request.session['msg'] +=' 将进入下一个病人样本'
+                return redirect("/sampleDetail/"+str(sample))
+
         return redirect('/dataList')
 
 def changeName(request):

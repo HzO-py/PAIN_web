@@ -554,7 +554,7 @@ aside.left-panel {
   height: 100vh;
   padding: 0;
   vertical-align: top;
-  width: 280px;
+  width: 200px;
   -webkit-box-shadow: 1px 0 20px rgba(0, 0, 0, 0.08);
           box-shadow: 1px 0 20px rgba(0, 0, 0, 0.08);
   position: fixed;

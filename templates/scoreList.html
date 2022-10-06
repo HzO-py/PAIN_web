@@ -182,8 +182,6 @@
                                         <th>生理信号</th>
                                         <th>平均疼痛总分</th>
                                         <th>平均FLACC</th>
-                                        <th>平均VAS</th>
-                                        <th>平均脸谱</th>
                                         <th>评分数</th>
                                         <th>操作</th>
                                     </tr>
@@ -201,8 +199,6 @@
                                     <th>评分人</th>
                                     <th>疼痛总分</th>
                                     <th>FLACC</th>
-                                    <th>VAS</th>
-                                    <th>脸谱</th>
                                     <th>评分时间</th>
                                 </tr>
                             </thead>
@@ -300,8 +296,6 @@
                         <td>${data.done_list[i].biology_name}</td>
                         <td>${data.done_list[i].sum}</td>
                         <td>${data.done_list[i].FLACC}</td>
-                        <td>${data.done_list[i].VAS}</td>
-                        <td>${data.done_list[i].lianpu}</td>
                         <td>${data.done_list[i].score_num}</td>
                         <td><button class="badge badge-complete" style="background-color: #00c292;padding: 8px;color: white" onclick="hideOtherTr(${data.done_list[i].sample_id})">查看所有评分</button></td>
                     </tr>`;
@@ -318,7 +312,9 @@
         total2=data.total2;
         show_which_page2.innerHTML='第 '+page2+' 页 / 共 '+Math.ceil(total2/(10.000000001))+' 页  共 '+total2+' 条数据';
         
-        
+        var scoreTable = document.getElementById('scoreTable');
+        scoreTable.setAttribute('hidden','hidden');
+
         console.log(page1,page2);
     }
 </script>
@@ -336,8 +332,6 @@
                         <td>${scoreDic[id][i].name}</td>
                         <td>${scoreDic[id][i].sum}</td>
                         <td>${scoreDic[id][i].FLACC}</td>
-                        <td>${scoreDic[id][i].VAS}</td>
-                        <td>${scoreDic[id][i].lianpu}</td>
                         <td>${scoreDic[id][i].add_time}</td>
                     </tr>`;
                     tbody3.innerHTML += row;
@@ -395,8 +389,6 @@
                 data: {"account":account,"name1":name1,"page1":page1,"order1":order1,"name2":name2,"page2":page2,"order2":order2},
                 success: function (data) {
                     tbodyfun(data);
-                    var scoreTable = document.getElementById('scoreTable');
-                    scoreTable.setAttribute('hidden','hidden');
                 },
                 error : function() {
                     alert(data.msg);
@@ -439,8 +431,6 @@
                 data: {"account":account,"name1":name1,"page1":page1,"order1":order1,"name2":name2,"page2":page2,"order2":order2},
                 success: function (data) {
                     tbodyfun(data);
-                    var scoreTable = document.getElementById('scoreTable');
-                    scoreTable.setAttribute('hidden','hidden');
                 },
                 error : function() {
                     alert(data.msg);
@@ -507,8 +497,6 @@
         data: {"account":account,"name1":name1,"page1":page1,"order1":order1,"name2":name2,"page2":page2,"order2":order2},
         success: function (data) {
             tbodyfun(data);
-            var scoreTable = document.getElementById('scoreTable');
-            scoreTable.setAttribute('hidden','hidden');
         },
         error : function() {
             alert(data.msg);

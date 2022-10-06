@@ -70,13 +70,18 @@
             cursor: pointer;
             z-index: 10;
         }
-.col-lg-6{
-    position: relative;
-    width: 100%;
-    min-height: 1px;
-    padding-right: 10px;
-    padding-left: 10px;
-}
+        .col-lg-6{
+            position: relative;
+            width: 100%;
+            min-height: 1px;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+        .FLACC_div{
+            border-radius: 5px;
+            padding:10px;
+            border:1px dashed #28a745;
+        }
     </style>
     
 
@@ -134,7 +139,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4><strong class="card-title" style="float: left;">病人样本信息</strong></h4>
+                        <h4><strong class="card-title" style="float: left;">病人信息</strong></h4>
                         <button class="btn btn-success" style="float: right;">收起</button>
                     </div>
                     <div class="card-body">                            
@@ -173,20 +178,6 @@
                             <div class="col-sm-6 col-md-3">
                                 <label><strong>镇痛泵: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.analgesic_pump}}</label>
                             </div> 
-                        </div><hr/>
-                        <div class="row">
-                            <div class="col-sm-6 col-md-3">
-                                <label><strong>心率</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.heart_rate}}</label>
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label><strong>舒张压: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.diastolic_pressure}}</label>
-                            </div> 
-                            <div class="col-sm-6 col-md-3">
-                                <label><strong>收缩压: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.systolic_pressure}}</label>                                    
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label><strong>手术阶段: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.before_operation}}</label>                                    
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -201,6 +192,21 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>心率: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.heart_rate}}</label>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>舒张压: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.diastolic_pressure}}</label>
+                            </div> 
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>收缩压: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.systolic_pressure}}</label>                                    
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>手术阶段: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.before_operation}}</label>                                    
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
                             <div class="col-lg-6">
                                 <div class="card-body">
                                     <div class="card border border-success">
@@ -214,7 +220,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <div class="card-body" id="FLACC_rules" hidden>
+                                    <div class="card border border-success">
+                                        <div class="card-header">
+                                            <strong class="card-title">FLACC评分细则</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <img src="/static/img/FLACC_rules.jpg" alt="FLACC_rules">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="card-body">
@@ -228,8 +243,8 @@
                                         </div><hr/>
                                         <div class="card-body">
                                             <div id="hr" style="width: 100%;height:300px;">hr</div>
-                                        </div><hr/>
-                                        <div class="card-body">
+                                        </div>
+                                        <div class="card-body" hidden>
                                             <div id="gsr" style="width: 100%;height:300px;">gsr</div>
                                         </div><hr/>
                                         
@@ -241,6 +256,7 @@
                                                 <div align="center"><a id="stopdraw" class="badge badge-complete" onclick="StopDraw()" style="background-color: #00c292;padding: 10px;color: white" align="center">暂停绘制</a></div>
                                             </div>
                                         </div>
+                                        <br/>
                                         {%else%}
                                         <p>该样本没有采集生理信号</p>
                                         {%endif%}
@@ -253,11 +269,11 @@
                                         </div>
                                         <div class="card-body">
                                             <form id="form" action="/addScoreSuccess/" method="post" enctype="multipart/form-data" onsubmit="return sumbit_sure()">
-                                            <div style="text-align: center;margin-bottom: 15px;">
+                                            <div style="text-align: center;margin-bottom: 15px;" hidden>
                                                 <input type="checkbox" id="sum_checkbox" name="sum_checkbox" value="1" checked>  疼痛总分
-                                                <input type="checkbox" id="FLACC_checkbox" name="FLACC_checkbox" value="1" style="margin-left: 30px;" checked>  FLACC
-                                                <input type="checkbox" id="VAS_checkbox" name="VAS_checkbox" value="1" style="margin-left: 30px;" checked>  VAS
-                                                <input type="checkbox" id="lianpu_checkbox" name="lianpu_checkbox" value="1" style="margin-left: 30px;" checked>  脸谱
+                                                <input type="checkbox" id="FLACC_checkbox" name="FLACC_checkbox" value="0" style="margin-left: 30px;">  FLACC
+                                                <input type="checkbox" id="VAS_checkbox" name="VAS_checkbox" value="0" style="margin-left: 30px;">  VAS
+                                                <input type="checkbox" id="lianpu_checkbox" name="lianpu_checkbox" value="0" style="margin-left: 30px;">  脸谱
                                             </div>
                                             <div id="sum_div">
                                                 <label><strong>疼痛总分</strong></label>
@@ -269,23 +285,24 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="FLACC_div">
+                                            <div id="FLACC_div" hidden>
                                                 <label><strong>FLACC</strong></label>
                                                 <div style="float:right;">
                                                     <big><strong><label id="FLACC_score">{{score.FLACC_score}}</label></strong></big>
                                                 </div>&nbsp;&nbsp;
-                                                <div style="margin-left: 30px;margin-bottom: 15px;">
+                                                <div style="margin-left: 30px;margin-bottom: 15px;" hidden>
                                                     <input type="radio" id="cu_check" name="flacc_check" value="cu_check" {%if score.cu%}checked{%endif%}> 粗项
                                                     <input type="radio" id="xi_check" name="flacc_check" style="margin-left: 30px;" value="xi_check" {%if score.xi%}checked{%endif%}> 细项
                                                 </div>
+                                                <br>
                                                 <div id="cu" {%if score.xi%}hidden{%endif%}>
                                                     <div id="FLACC_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
                                                         <div id="FLACC_handle" class="ui-slider-handle ui-corner-all ui-state-default">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div id="xi" {%if score.cu%}hidden{%endif%}>
-                                                    &nbsp;&nbsp;<label>FACE</label>
+                                                <div id="xi" {%if score.cu%}hidden{%endif%} class="FLACC_div">
+                                                    &nbsp;&nbsp;<label>面部表情</label>
                                                     <div style="float:right;">
                                                         <big><label id="FACE_score">{{score.FACE_score}}</label></big>
                                                     </div>
@@ -293,7 +310,7 @@
                                                         <div id="FACE_handle" class="ui-slider-handle ui-corner-all ui-state-default">
                                                         </div>
                                                     </div>
-                                                    &nbsp;&nbsp;<label>legs</label>
+                                                    &nbsp;&nbsp;<label>腿部活动</label>
                                                     <div style="float:right;">
                                                         <big><label id="legs_score">{{score.legs_score}}</label></big>
                                                     </div>
@@ -301,7 +318,7 @@
                                                         <div id="legs_handle" class="ui-slider-handle ui-corner-all ui-state-default">
                                                         </div>
                                                     </div>
-                                                    &nbsp;&nbsp;<label>Acitivity</label>
+                                                    &nbsp;&nbsp;<label>体位</label>
                                                     <div style="float:right;">
                                                         <big><label id="Acitivity_score">{{score.Acitivity_score}}</label></big>
                                                     </div>
@@ -309,7 +326,7 @@
                                                         <div id="Acitivity_handle" class="ui-slider-handle ui-corner-all ui-state-default">
                                                         </div>
                                                     </div>
-                                                    &nbsp;&nbsp;<label>Cry</label>
+                                                    &nbsp;&nbsp;<label>哭闹</label>
                                                     <div style="float:right;">
                                                         <big><label id="Cry_score">{{score.Cry_score}}</label></big>
                                                     </div>
@@ -317,7 +334,7 @@
                                                         <div id="Cry_handle" class="ui-slider-handle ui-corner-all ui-state-default">
                                                         </div>
                                                     </div>
-                                                    &nbsp;&nbsp;<label>consolability</label>
+                                                    &nbsp;&nbsp;<label>可安慰度</label>
                                                     <div style="float:right;">
                                                         <big><label id="consolability_score">{{score.consolability_score}}</label></big>
                                                     </div>
@@ -327,7 +344,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="VAS_div">
+                                            <div id="VAS_div" hidden>
                                                 <label><strong>VAS</strong></label>
                                                 <div style="float:right;">
                                                     <big><strong><label id="VAS_score">{{score.VAS_score}}</label></strong></big>
@@ -337,7 +354,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="lianpu_div">
+                                            <div id="lianpu_div" hidden>
                                                 <label><strong>脸谱</strong></label>
                                                 <div style="float:right;">
                                                     <big><strong><label id="lianpu_score">{{score.lianpu_score_zimu}}</label></strong></big>
@@ -347,7 +364,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div hidden="hidden">
+                                            <div hidden>
                                                 <input type="number" name="sum_input" id="sum_input" value={{score.sum_score}}>
                                                 <input type="number" name="FLACC_input" id="FLACC_input" value={{score.FLACC_score}}>
                                                 <input type="number" name="FACE_input" id="FACE_input" value={{score.FACE_score}}>
@@ -358,13 +375,12 @@
                                                 <input type="number" name="VAS_input" id="VAS_input" value={{score.VAS_score}}>
                                                 <input type="number" name="lianpu_input" id="lianpu_input" value={{score.lianpu_score}}>
                                             </div>
-                                            <div class="row">
+                                            <div class="row" id="submit" hidden>
                                                 <div class="col-sm-12 col-md-12" style="text-align:right;">
                                                     <input type="submit" name="submit" value="提交" class="btn btn-success">
                                                 </div>
                                             </div>
-
-
+                                            
                                             </form>
                                         </div>
                                     </div>
@@ -461,6 +477,7 @@
     <script>
         var flacc_cu_score=0;
         var lianpu_list=['','A','B','C','D','E','F'];
+        var move_sumslide=false;
         function sliderFunction(name,min,max,value) {
             $( function() {
             var handle = $( "#"+name+"_handle" );
@@ -485,6 +502,17 @@
                     }
                     else if(name=='FLACC'){
                         flacc_cu_score=ui.value;
+                    }
+                    else if(name=='sum'&&(!move_sumslide)){
+                        $("#submit").attr('hidden',false);
+                        $("#FLACC_checkbox").attr('checked',true);
+                        $("#FLACC_checkbox").val('1');
+                        $("#FLACC_div").attr('hidden',false);
+                        $("#xi_check").attr('checked',true);
+                        $("#cu_check").attr('checked',false);
+                        $("#FLACC_rules").attr('hidden',false);
+                        move_sumslide=true;
+                        
                     }
                 }
             });

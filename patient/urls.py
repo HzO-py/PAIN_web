@@ -20,6 +20,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.login, name='login'),
+    url(r'^index/', views.index, name='index'),
     url(r'^sampleDetail/(\d+)/$', views.sampleDetail, name='sampleDetail'),
     url(r'^stream_video/$', views.stream_video, name='stream_video'),
     url(r'^postlogin/$', views.postlogin, name='postlogin'),
