@@ -20,6 +20,7 @@ import csv
 from datetime import datetime
 import pandas as pd
 from django.db.models import Avg
+import time
 
 class myThread(threading.Thread):
     def __init__(self, sampleID,videopath):
@@ -515,6 +516,7 @@ def scoreList(request):
         return render(request, 'scoreList.html',{"currentuser":user,"msg":msg})
 
 def sampleDetail(request,sampleID):
+    t1=time.time()
     user = checkLoginStatus(request)
     request.session['sampleID'] = sampleID
     if user=='':
@@ -535,7 +537,6 @@ def sampleDetail(request,sampleID):
     sample.before_operation=sample.get_before_operation_display() 
 
     if sample.biology:
-        print(settings.MEDIA_ROOT,sample.biology.name,os.path.join(settings.MEDIA_ROOT,sample.biology.name[1:]))
         sample.biology=readCsv(os.path.join(settings.MEDIA_ROOT,sample.biology.name[1:]))
 
     score_flag=0
@@ -584,7 +585,8 @@ def sampleDetail(request,sampleID):
     #         sum+=i
     #     ai.voice_score=sum/len(ai.voice_score_npy_path)
     #     ai.all_score=(0.2*ai.voice_score+0.8*ai.face_score)
-
+    t2=time.time()
+    print("sample",t2-t1)
     return render(request, 'sampleDetail.html',{"currentuser":user,"msg":msg,"patient":patient,"sample":sample,"score":score,"score_flag":score_flag,"ai_score_flag":ai_score_flag,"ai_score":ai})
 
 def readCsv(csv_path):
@@ -616,6 +618,7 @@ def file_iterator(file_name, chunk_size=8192, offset=0, length=None):
 
 def stream_video(request):
     """将视频文件以流媒体的方式响应"""
+    t1=time.time()
     range_header = request.META.get('HTTP_RANGE', '').strip()
     range_re = re.compile(r'bytes\s*=\s*(\d+)\s*-\s*(\d*)', re.I)
     range_match = range_re.match(range_header)
@@ -641,7 +644,8 @@ def stream_video(request):
         resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
         resp['Content-Length'] = str(size)
     resp['Accept-Ranges'] = 'bytes'
-    print(resp)
+    t2=time.time()
+    print("video",t2-t1)
     return resp
 
 def addScoreSuccess(request):

@@ -99,8 +99,15 @@
 {% endblock %}
 
 {% block jquery %}
+<script>
+    var start = new Date().getTime();
+</script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    var end = new Date().getTime();
+    console.log("jquery",end-start);
+</script>
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -220,16 +227,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body" id="FLACC_rules" hidden>
-                                    <div class="card border border-success">
-                                        <div class="card-header">
-                                            <strong class="card-title">FLACC评分细则</strong>
-                                        </div>
-                                        <div class="card-body">
-                                            <img src="/static/img/FLACC_rules.jpg" alt="FLACC_rules">
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                             <div class="col-lg-6">
                                 <div class="card-body">
@@ -244,7 +242,7 @@
                                         <div class="card-body">
                                             <div id="hr" style="width: 100%;height:300px;">hr</div>
                                         </div>
-                                        <div class="card-body" hidden>
+                                        <div class="card-body"><hr/>
                                             <div id="gsr" style="width: 100%;height:300px;">gsr</div>
                                         </div><hr/>
                                         
@@ -262,6 +260,24 @@
                                         {%endif%}
                                     </div>
                                 </div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><strong class="card-title" style="float: left;">人工评分</strong></h4>
+                        <button class="btn btn-success" style="float: right;">收起</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">                       
                                 <div class="card-body">
                                     <div class="card border border-success">
                                         <div class="card-header">
@@ -385,12 +401,33 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+                            </div>
+                            <div class="col-lg-6">                       
+                                <div class="card-body" id="FLACC_rules" hidden>
+                                    <div class="card border border-success">
+                                        <div class="card-header">
+                                            <strong class="card-title">FLACC评分细则</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <img src="/static/img/FLACC_rules.jpg" alt="FLACC_rules">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body" id="sum_rules">
+                                    <div class="card border border-success">
+                                        <div class="card-header">
+                                            <strong class="card-title">疼痛总分评分细则</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <img src="/static/img/sum_rules.png" alt="sum_rules">
+                                        </div>
+                                    </div>
+                                </div>     
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div><!-- /# column -->
         </div>
         <div class="row">
             <div class="col-lg-12">
@@ -455,6 +492,8 @@
 {% endblock %}
 
 {% block js %}
+<script>var start3 = new Date().getTime();</script>
+
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
@@ -473,6 +512,8 @@
         div_checkbox("FLACC");
         div_checkbox("VAS");
         div_checkbox("lianpu");
+        var start4 = new Date().getTime();
+        console.log("checkbox",start4-start3);
     </script>
     <script>
         var flacc_cu_score=0;
@@ -519,6 +560,8 @@
             } );
         }
 
+        // call your function
+        
         sliderFunction("sum",0,100,{{score.sum_score}});
         {%if score.cu%}
         flacc_cu_score={{score.FLACC_score}};
@@ -533,7 +576,8 @@
 
         sliderFunction("VAS",0,10,{{score.VAS_score}});
         sliderFunction("lianpu",1,6,{{score.lianpu_score}});
-        
+        var start5 = new Date().getTime();
+        console.log("slider",start5-start4);
         
     </script>
 
@@ -578,89 +622,28 @@
     <!-- <script type="text/javascript" src="/static/js/jquery-1.11.0.min.js"></script> -->
     <script>
         $(function () {
-            
-            
             $("#video").attr('src', '/stream_video/?path=/media/{{sample.video.name}}');
             {%if ai_score_flag%}
             $("#video2").attr('src', '/stream_video/?path=/media/{{ai_score.face_mp4_path}}');
             {%endif%}
-                
+      
         })
         var vid = document.getElementById("video2");
+        var start6= new Date().getTime();
+        console.log("video",start6-start5);
     </script>
-    <script type="text/javascript" src="/static/js/echarts.js"></script>
-    <script>
+    <script type="text/javascript" src="/static/js/echarts.min.js"></script>
+    
+    <script> 
         var xAxisData=[];
         var yAxisData_ecg=[];
         var yAxisData_hr=[];
         var yAxisData_gsr=[];
         var bio_cnt=0;
-        var BIOLEN={{sample.biology.ecg}}.length;
-    </script>
-    <script>
-    // var totalFlowRateOption = {
-    //     grid: {
-    //       left: 0/*"50px"*/,
-    //       right: 0/*"15px"*/,
-    //       top: 0/*"15px"*/,
-    //       bottom: 39/*"15px"*/,
-    //       borderWidth: "0"
-    //     },
-    //     xAxis: {
-    //       boundaryGap: false,
-    //       data: xAxisData,
-    //       show: false
-    //     },
-    //     yAxis: {
-    //       boundaryGap:false,
-    //       splitLine:{show: true}/*网格线*/
         
-    //     },
-    //     dataZoom: [{
-    //       type: 'slider',
-    //       show: true,
-    //       xAxisIndex: [0],
-    //       start: 0,
-    //       end: 30, //初始化滚动条
-    //       textStyle: {
-    //         show: false
-    //       },
-    //       backgroundColor: '#fff',
-    //       showDataShadow: true,//是否显示数据阴影 默认auto
-    //       showDetail: false,//即拖拽时候是否显示详细数值信息 默认true
-    //       handleSize: 35,
-    //       startValue:3000,
-    //       endValue: 5000
-    //      }],
-    //      series: {
-    //        /*itemStyle: {normal: {areaStyle: {type: 'default'}}},*/
-    //        itemStyle: {
-    //          normal: {
-    //            lineStyle: {
-    //              color: '#ff6f4a'/*折线的颜色*/
-    //            },
-    //            color: "#ff6f4a"/*图例(legend)的颜色,不是图例说明文字的颜色*/
-    //          }
-    //        },
-    //        areaStyle: {
-    //          normal: {
-    //            color: new echarts.graphic.LinearGradient(
-    //              0, 0, 0, 1,
-    //              [
-    //                { offset: 0, color: '#ff6f4a' },
-    //                /* {offset: 0.5, color: '#c4e1ff'},*/
-    //                { offset: 1, color: '#ecf5ff' }
-    //              ]
-    //            )
-    //          }
-    //        },
-    //        symbol: "none",/*去掉小圆点*/
-    //        name: '当前流量',
-    //        type: 'line',
-    //        data: yAxisData/*,
-    //         smooth:true//显示为平滑的曲线*/
-    //      }
-    //     };
+        var BIOLEN={{sample.biology.ecg}}.length;
+
+
     function StartDraw()
     {
         var draw = document.getElementById("startdraw");
@@ -691,6 +674,7 @@
             draw.innerHTML="暂停绘制";
         }
     }
+
     var totalFlowRate = echarts.init(document.getElementById('ecg'));
     var totalFlowRate2 = echarts.init(document.getElementById('gsr'));
     var totalFlowRate3 = echarts.init(document.getElementById('hr'));
@@ -709,7 +693,7 @@
             xAxisData.shift();
             yAxisData_ecg.shift();
             yAxisData_hr.shift();
-            yAxisData_gsr.shift();
+
         }
         
         var totalFlowRateOption = {
@@ -884,7 +868,9 @@
         };
         totalFlowRate2.setOption(totalFlowRateOption2);
     };
-
+    var start7= new Date().getTime();
+    console.log("echart",start7-start6);
+    console.log("whole",start7-start3);
     </script>
     <!--script>
         var endcnt=0;
