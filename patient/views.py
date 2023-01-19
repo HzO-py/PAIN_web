@@ -330,7 +330,7 @@ def dataList(request):
         for rest in rest_sample[page1*page_size:(page1+1)*page_size]:
             row={}
             patient=Patient.objects.get(pk=rest.patient_id_id)
-            row["patient_id"]=patient.pk
+            row["patient_id"]=patient.csv_id
             row["sample_id"]=rest.pk
             row["name"]=patient.name
             row["sex"]=patient.get_sex_display()
@@ -345,7 +345,7 @@ def dataList(request):
             row={}
             score=Score.objects.get(sample_id_id=rest.pk,user_id_id=user.pk)
             patient=Patient.objects.get(pk=rest.patient_id_id)
-            row["patient_id"]=patient.pk
+            row["patient_id"]=patient.csv_id
             row["sample_id"]=rest.pk
             row["name"]=patient.name
             row["video_name"]=rest.video.name.split('/')[-1]
@@ -376,6 +376,103 @@ def dataList(request):
         msg=request.session['msg']
         request.session['msg']=""
         return render(request, 'dataList.html',{"currentuser":user,"msg":msg})
+
+def export_excel(request):
+    user = checkLoginStatus(request)
+    if user=='':
+        return redirect('/')
+    if request.method == "POST":
+        account=request.POST.get("account")
+
+        name1=request.POST.get("name1")
+        order1=request.POST.get("order1")
+
+        name2=request.POST.get("name2")
+        order2=request.POST.get("order2")
+
+        all_sample=Sample.objects.all()
+        all_score=Score.objects.all()
+        print("export_excel",name1,name2,order1,order2)
+
+        tmp=[]
+        for sample in all_sample:
+            tmp.append(sample.pk)
+        all_sample=tmp.copy()
+        user_sample=[]
+        for score in all_score:
+            user_sample.append(score.sample_id_id)
+        user_sample=list(set(user_sample))
+
+        rest_sample=[]
+        for sample in all_sample:
+            if sample not in user_sample:
+                rest_sample.append(sample)
+        
+        rest_patient=[]
+        user_patient=[]
+        for patient in Patient.objects.filter(name__contains=name1):
+            rest_patient.append(patient.pk)
+        for patient in Patient.objects.filter(name__contains=name2):
+            user_patient.append(patient.pk)
+
+        rest_sample=Sample.objects.filter(pk__in=rest_sample).order_by('-add_time')
+        user_sample=Sample.objects.filter(pk__in=user_sample).order_by('-add_time')
+
+        tmp=[]
+        for sample in rest_sample:
+            if sample.patient_id_id in rest_patient:
+                tmp.append(sample)
+        rest_sample=tmp.copy()
+        tmp=[]
+        for sample in user_sample:
+            if sample.patient_id_id in user_patient:
+                tmp.append(sample)
+        user_sample=tmp.copy()
+
+        if order1=="reverse":
+            rest_sample.reverse()
+        if order2=="reverse":
+            user_sample.reverse()
+
+        lianpu_list=['','A','B','C','D','E','F']
+
+        import xlwt
+        from io import BytesIO
+        response = HttpResponse(content_type='application/vnd.ms-excel')
+        response['Content-Disposition'] = 'attachment;filename=scoreList.xls'
+        user_list=[]
+        ws = xlwt.Workbook(encoding='utf-8')
+        w = ws.add_sheet('sheet1')
+        w.write(0, 0, u'编号')
+        w.write(0, 1, u'姓名')
+        w.write(0, 2, u'视频')
+        w.write(0, 3, u'生理')
+        w.write(0, 5, u'FLACCs')
+        excel_row = 1
+        for rest in user_sample:
+            row={}
+            scores=Score.objects.filter(sample_id_id=rest.pk)
+            patient=Patient.objects.get(pk=rest.patient_id_id)
+            row["patient_id"]=patient.csv_id
+            row["name"]=patient.name
+            row["video_name"]=rest.video.name.split('/')[-1]
+            row["biology_name"]=rest.biology.name.split('/')[-1] if rest.biology else ''
+            for i,v in enumerate(row.values()):
+                print(v)
+                w.write(excel_row, i, v)
+            
+            for i,score in enumerate(scores):
+                w.write(excel_row, i+5,score.FLACC_score)
+                print(score.FLACC_score)
+            excel_row+=1
+        # 写出到IO
+        output = BytesIO()
+        ws.save(output)
+        # 重新定位到开始
+        output.seek(0)
+        response.write(output.getvalue())
+        return response
+        
 
 def scoreList(request):
     user = checkLoginStatus(request)
@@ -449,7 +546,7 @@ def scoreList(request):
         for rest in rest_sample[page1*page_size:(page1+1)*page_size]:
             row={}
             patient=Patient.objects.get(pk=rest.patient_id_id)
-            row["patient_id"]=patient.pk
+            row["patient_id"]=patient.csv_id
             row["sample_id"]=rest.pk
             row["name"]=patient.name
             row["sex"]=patient.get_sex_display()
@@ -464,7 +561,7 @@ def scoreList(request):
             row={}
             scores=Score.objects.filter(sample_id_id=rest.pk)
             patient=Patient.objects.get(pk=rest.patient_id_id)
-            row["patient_id"]=patient.pk
+            row["patient_id"]=patient.csv_id
             row["sample_id"]=rest.pk
             row["name"]=patient.name
             row["video_name"]=rest.video.name.split('/')[-1]

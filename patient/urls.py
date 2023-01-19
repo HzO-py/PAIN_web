@@ -36,4 +36,5 @@ urlpatterns = [
     url(r'^scoreList/', views.scoreList, name='scoreList'),
     url(r'^addScoreSuccess/', views.addScoreSuccess, name='addScoreSuccess'),
     url(r'^changeName/', views.changeName, name='changeName'),
+    url(r'^export_excel/', views.export_excel, name='export_excel'),
 ]

@@ -161,7 +161,11 @@
 
                             <div id="bootstrap-data-table_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                                 <div class="row">
-                                    <div class="col-sm-12 col-md-6"></div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="col-sm-12 col-md-8">
+                                            <button id="export_excel" type="button" class="btn btn-primary col-sm-5" style="margin-left: 10px;background: #00bc2c">导出excel</button>
+                                        </div>
+                                    </div>
                                     <div class="col-sm-9 col-md-5">
                                         <div id="bootstrap-data-table_filter" class="dataTables_filter">
                                             <label>搜索：<input id="searchPatient2" type="search" class="form-control form-control-sm" placeholder="" aria-controls="bootstrap-data-table"></label>  
@@ -244,12 +248,11 @@
 <script src="/static/assetjs/jquery.matchHeight.min.js"></script>
 
 
-<script src="/static/assetjs/table/datatables.min.js"></script>
+
 <script src="/static/assetjs/table/dataTables.bootstrap.min.js"></script>
 <script src="/static/assetjs/table/dataTables.buttons.min.js"></script>
 <script src="/static/assetjs/table/buttons.bootstrap.min.js"></script>
 <script src="/static/assetjs/table/jszip.min.js"></script>
-<script src="/static/assetjs/table/vfs_fonts.js"></script>
 <script src="/static/assetjs/table/buttons.html5.min.js"></script>
 <script src="/static/assetjs/table/buttons.print.min.js"></script>
 <script src="/static/assetjs/table/buttons.colVis.min.js"></script>
@@ -502,6 +505,30 @@
             alert(data.msg);
         }
     });});});
+
+    $("#export_excel").click(function () {
+     const req = new XMLHttpRequest();
+     req.open('POST', '/export_excel/', true);
+     req.responseType = 'blob';
+     req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); //设置请求头
+     req.send('account='+account+'&&name1='+name1+'&&name2='+name2+'&&order1='+order1+'&&order2='+order2); //输入参数
+     req.onload = function() {
+       const data = req.response;
+       const a = document.createElement('a');
+       const blob = new Blob([data]);
+       const blobUrl = window.URL.createObjectURL(blob);
+       download(blobUrl) ;
+     };
+   });
+
+   function download(blobUrl) {
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.download = 'scoreList.xls';
+    a.href = blobUrl;
+    a.click();
+    document.body.removeChild(a);
+    }
 </script>
 <!-- <script>
     //在输入框中打印输入的值
