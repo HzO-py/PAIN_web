@@ -1,0 +1,46 @@
+{% extends 'baseLoginRegister.html' %}
+{% block title %}PAIN-Login{% endblock %}
+
+{% block content %}
+    <div class="container-fluid" style="padding: 40px 30px;">
+				<div class="row cb-slideshow-text-container ">
+					<div class= "tm-content col-xl-6 col-sm-8 col-xs-8 ml-auto section">
+					<header class="mb-5"><img src="/static/img/logo_pain.png" alt="Logo"></header>
+					<P class="mb-5">欢迎来到PAIN儿童疼痛评估平台</P>
+
+                    <form action="/postlogin/" method="post" class="subscribe-form">
+               	    	<div class="row form-section">
+
+							<div class="col-md-7 col-sm-7 col-xs-7">
+			                      <input name="account" type="text" class="form-control" id="account" placeholder="请输入账号" required/>
+				  			</div>
+
+                            <div class="col-md-7 col-sm-7 col-xs-7" style="margin-top: 30px">
+			                      <input name="password" type="password" class="form-control" id="password" placeholder="请输入密码" required/>
+                                 <!-- <div style="float: left;">
+                            <a href="/register" onclick="this.style.color= 'red';" style="color: yellow;text-decoration: none" title="register" onmouseover="this.style.color='blue'" onmouseout="this.style.color='yellow';">立即注册</a></div> -->
+<!--{#                            <a href="/forget" onclick="this.style.color= 'red';" style="color: yellow;text-decoration: none" title="register" onmouseover="this.style.color='blue'" onmouseout="this.style.color='yellow';">忘记密码？</a>#}
+{#                            <div>#}
+{#                                <h5 style="font-size:15px;color: white;margin-bottom: 10px">使用第三方帐号登录</h5>#}
+{#                            <a style="border-radius:100%;margin-right: 10px;background: url(/static/img/other-login-bg.png) center no-repeat;display: inline-block;width: 30px;height: 30px;#}
+{#                            overflow: hidden;background-position: -40px 0;" href='https://graph.qq.com/oauth2.0/authorize'></a>#}
+{#                              <a style="border-radius:100%;vertical-align: top;margin-right: 10px;background: url(/static/img/other-login-bg.png) center no-repeat;display: inline-block;width: 30px;height: 30px;#}
+{#                                overflow: hidden;background-position: 0 0;" href='/weibo_login'></a>#}
+{#                            </div>#}
+                                </div> -->
+                                <div style="float: right;">
+								<button type="submit" class="tm-btn-subscribe" style="margin-top: 10px;float: right">登录</button>
+							</div>
+				  			</div>
+                            <a href="/register" style="margin-top: 20px;margin-left: 20px" title="register">我还没有账号，立即注册</a>
+						</div>
+                    </form>
+
+
+					</div>
+				</div>
+{#				<div class="footer-link">#}
+{#					<p>Copyright © 2019华工智能大数据团队#}
+{#				</div>#}
+			</div>
+{% endblock %}

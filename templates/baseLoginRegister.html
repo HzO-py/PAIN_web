@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}PAIN{% endblock %}</title>
+
+  <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/demo.css" />
+  <link rel="stylesheet" href="/static/css/templatemo-style.css">
+  <script type="text/javascript" src="/static/js/modernizr.custom.86080.js"></script>
+</head>
+
+<body>
+    <div id="particles-js"></div>
+        <ul class="cb-slideshow">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        {% block content %}{% endblock %}
+
+        <footer style="z-index: 1050">
+            <div class="footer-limiter">
+                <div style="text-align: center">
+                <p>联系我们：<a href="https://so-link.org" target="_blank">智能信息融合课题组</a></p>
+                </div>
+                <div style="text-align: center">
+                    <p>Copyright © 2022华工智能大数据团队</p>
+                </div>
+            </div>
+        </footer>
+</body>
+
+{% block js %}{% endblock %}
+{#<script type="text/javascript" src="/static/js/particles.js"></script>#}
+{#<script type="text/javascript" src="/static/js/app.js"></script>#}
+<script type="text/javascript">
+    var mymsg = '{{ msg }}';
+    if(mymsg!=''){
+        alert("{{ msg }}");
+    }
+</script>
+</html>

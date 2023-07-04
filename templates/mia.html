@@ -1,0 +1,227 @@
+<!doctype html>
+<head>
+    <style>
+    body
+    {
+    margin:0px;
+    background: url('/static/img/feiji.jpg') no-repeat;
+    background-size:100% 100%;
+    background-attachment:fixed;
+    }
+    .ptext{
+        text-shadow: 2px 2px 2px grey;
+        font-size:larger;
+        letter-spacing: 3px;
+        margin-left:80px;
+        margin-right:80px;
+        line-height: 2;
+    }
+    .pdiv{
+        /* text-align: center; 让div内部文字居中 */
+        background-color: rgba(255, 255, 255, 0.5); 
+        border-radius: 20px;
+        width: auto;
+        height: 220px;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .cdiv{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin:auto;
+        justify-content: center;
+    }
+    .cdiv p
+    {
+        float: left;
+    }
+    .heart-eye {
+	position:absolute;
+	animation:pulse 1s ease-out infinite;
+}
+.heart {
+	display:block;
+	width:16px;
+	height:16px;
+	background:#e25d5d;
+	transform:rotate(-45deg);
+}
+.heart:before,.heart:after {
+	content:"";
+	position:absolute;
+	width:16px;
+	height:16px;
+	border-radius:50%;
+	background-color:#e25d5d;
+}
+.heart:before {
+	top:-8px;
+	left:0;
+}
+.heart:after {
+	left:8px;
+	top:0;
+}
+@keyframes pulse {
+	30% {
+	transform:scale(1.2,1.2);
+}
+70% {
+	transform:scale(1,1);
+}
+}
+    </style>
+</head>
+
+<body>
+    <span class="heart-eye">
+        <span class="heart"></span>
+</span>
+    <div class="pdiv">
+        <p class="ptext" id="text1"></p>    
+        <div class="cdiv">
+            <p class="ptext" id="text2" onclick="Achange()"></p>
+            <p class="ptext" id="text3" onclick="Bchange()"></p>
+        </div>
+    </div>
+    <script>  
+     var heart = document.querySelector('.heart-eye');
+ console.log(heart);
+ 
+ document.onmousemove = function(e) {
+     heart.style.top = 5 + e.pageY + 'px';
+     heart.style.left = 5 + e.pageX + 'px';
+ }
+        var problem_id=0;      
+        var problems=["现在是7月23日，画君终于可以回家啦，你艰难地提起行李箱爬上飞机，瘫倒在座位上，你和泽全说了一声“画君坐上飞机啦”，然后",
+"画君和泽全一直发消息，泽全从珠海过关到了香港，然后准备搜导航去机场，结果画君突然发现手机没电要关机了，联系不上泽全，下了飞机后，你会",
+"画君睡了一觉，然后打开手机，都是泽全一边从珠海到香港，一边分享的消息，你和泽全约定好在x号口等待，然后下飞机，你四处张望，突然一个熟悉的身影跑了过来，画君才看清楚是泽全，泽全就已经紧紧地抱住了你，你会",
+"画君拖着重重的行李箱在机场乱逛，逛了很久终于从混乱的人群中看到了泽全，泽全还在张望没有看到你，你会",
+"泽全张望了好久好久，终于目光注视到了画君，很开心地冲了过来，一把抱住你，你会",
+"画君生气地撇开身子，泽全感到很抱歉，没有看到你，但还是很开心地接过了你的行李箱，然后拿出零食给你吃，你会选择吃",
+"画君和泽全互相依偎在对方的怀里，互相闻着对方的味道，一起抱住了好久，亲亲了好久，然后泽全很开心地掏出了零食给你吃吃，你会选择吃",
+"画君边吃辣条边和泽全抱着走出机场，但辣条太辣了，你感到了肚子疼不舒服，泽全就赶紧就近选了在香港的酒店入住，画君肚子疼疼就先不走动了",
+"画君和泽全决定在香港逛逛，然后走到一家旧酒楼下，看到有鸡球大包的招牌，就赶紧上去订位置吃吃鸡球大包，发现真的很好吃。吃完之后，天色已晚，你们会",
+"画君和泽全直接过关回珠海，现在天色早早，你们会",
+"画君决定在下机口等待泽全，你四处张望，突然一个熟悉的身影跑了过来，画君才看清楚是泽全，泽全就已经紧紧地抱住了你，你会",
+"画君和泽全在情侣湾上手牵着手，一起吹海风，一起拍合照，然后超开心地回到酒店",
+"画君和泽全度过了甜蜜的一晚。To Be Continued ~ ~ ~ ",
+"画君吃着板栗，和泽全一起抱住走出了机场，现在你们会",
+"画君大喊“泽全~”，泽全突然转过目光就看到了你，泽全笑笑，冲了过来，紧紧地抱住了你，你会"];
+var jpgs=[
+    "feiji.jpg","jichang.jpg","jichang.jpg","jichang.jpg","jichang.jpg","jichang.jpg","jichang.jpg","hk.jpg","hk.jpg","zh.jpg","jichang.jpg","zh.jpg","valentine.jpg","jichang.jpg","jichang.jpg"
+]
+        var as=["连上飞机wifi",
+"在飞机口处等候",
+"亲亲",
+"大声喊泽全",
+"亲亲",
+"辣条",
+"辣条",
+"甜蜜的一晚",
+"在香港住酒店",
+"逛情侣湾",
+"亲亲",
+"甜蜜的一晚",
+"play again",
+"在香港先逛逛",
+"亲亲"];
+var a_to=[1,
+10,
+6,
+14,
+6,
+7,
+7,
+12,
+12,
+11,
+6,
+12,
+0,
+8,
+6];
+var bs=["睡一觉",
+"在机场里四处逛逛",
+"抱久久",
+"等泽全发现你",
+"泽全这么久没看到，生气气",
+"板栗",
+"板栗",
+"甜蜜的一晚",
+"回珠海",
+"住酒店",
+"抱久久",
+"甜蜜的一晚",
+"play again",
+"先回珠海",
+"抱久久"];
+var b_to=[2,
+3,
+6,
+4,
+5,
+13,
+13,
+12,
+9,
+12,
+6,
+12,
+0,
+9,
+6];
+        var i=0;
+        var str="";
+        var mydiv=document.getElementById("text1");
+        var adiv=document.getElementById("text2");
+        var bdiv=document.getElementById("text3");
+        var id=0;
+        change();
+        function Achange()
+        {
+            problem_id=a_to[problem_id];
+            change();
+        }
+        function Bchange()
+        {
+            problem_id=b_to[problem_id];
+            change();
+        }
+        function typing(){
+            if(i<str.length)
+            {
+                mydiv.innerHTML+=str.charAt(i);
+                i++;
+            }
+            else
+            {
+                clearTimeout(id);
+                change2();
+            }
+        }
+        function change()
+        {
+            document.body.style.backgroundImage="url(/static/img/"+jpgs[problem_id];
+            // document.body.style.background-size = "100% 100%";
+            i=0;
+            str=problems[problem_id];            
+            mydiv.innerHTML="";
+            adiv.innerHTML="";
+            bdiv.innerHTML="";
+            id=setInterval("typing()","80");
+        }        
+        function change2()
+        {
+            adiv.innerHTML="A.  "+as[problem_id]+"            ";
+            bdiv.innerHTML="B.  "+bs[problem_id];
+        }
+    </script>
+</body>
+
+</html>

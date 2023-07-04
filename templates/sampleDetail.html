@@ -1,0 +1,1140 @@
+{% extends 'base.html' %}
+{% block title %}PAIN-sampleDetail{% endblock %}
+{% block css %}
+
+    <link rel="stylesheet" href="/static/assetcss/normalize.css">
+    <link rel="stylesheet" href="/static/assetcss/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assetcss/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/assetcss/themify-icons.css">
+    <link rel="stylesheet" href="/static/assetcss/pe-icon-7-filled.css">
+    <link rel="stylesheet" href="/static/assetcss/flag-icon.min.css">
+    <link rel="stylesheet" href="/static/assetcss/cs-skin-elastic.css">
+    <link rel="stylesheet" href="/static/assetcss/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assetcss/style.css">
+{#    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>#}
+    <link rel="stylesheet" href="/static/css/jsmodern.min.css">
+    <link rel="stylesheet" href="/static/css/myAlert.css" />
+        <link rel="stylesheet" href="/static/css/lqscore.css">
+    <link rel="stylesheet" href="/static/css/star.css">
+    <link rel="stylesheet" href="/static/css/jqbar.css" />
+    
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    
+    <style>
+        table tr td, p {
+            height: 25px;
+        }
+
+        table tr td, table tr th {
+            width: 120px;
+        }
+        .ui-widget-content {
+        border: 1px solid #dddddd;
+        background: #63f786;
+        color: #333333;
+        margin-bottom: 20px;
+        }
+        .ui-widget-content-xi {
+        border: 1px solid #dddddd;
+        background: #cffbd9;
+        color: #333333;
+        margin-left: 10px;
+        margin-bottom: 20px;
+        }
+
+
+    </style>
+    <style>
+        #video {
+
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #video video {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+
+        .VideoBtn {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            display: block;
+            width: 70px;
+            height: 70px;
+            margin-left: -35px;
+            margin-top: -35px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .col-lg-6{
+            position: relative;
+            width: 100%;
+            min-height: 1px;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+        .FLACC_div{
+            border-radius: 5px;
+            padding:10px;
+            border:1px dashed #28a745;
+        }
+    </style>
+    
+
+    <style>
+    .ui-slider-handle {
+      width: 3em;
+      height: 1.6em;
+      top: 50%;
+      color:rgb(39, 255, 53);
+      text-align: center;
+      line-height: 1.6em;
+    }
+    </style>
+    
+{% endblock %}
+
+{% block jquery %}
+<script>
+    var start = new Date().getTime();
+</script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    var end = new Date().getTime();
+    console.log("jquery",end-start);
+</script>
+{% endblock %}
+
+{% block breadcrumbs %}
+
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1><b>样本评分</b></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="/index">首页</a></li>
+                            <li><a href="/addData">添加样本</a></li>
+                            <li><a href="/dataList">样本列表</a></li>
+                            <li class="active">样本评分</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><strong class="card-title" style="float: left;">病人信息</strong></h4>
+                        <button class="btn btn-success" style="float: right;">收起</button>
+                    </div>
+                    <div class="card-body">                            
+                        <div class="row">
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>姓名：</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.name}}</label>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>性别: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.sex}}</label>
+                            </div> 
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>年龄: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.age}}&nbsp;&nbsp;岁</label>                                    
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>体重: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.weight}}&nbsp;&nbsp;KG</label>                                    
+                            </div>
+                        </div></br>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>csv编号: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.csv_id}}</label>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>诊断: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.diagnose}}</label>
+                            </div> 
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>手术: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.operation}}</label>                                    
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>通气方式: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.ventilation_mode}}</label>                                    
+                            </div>
+                        </div></br>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>神经阻滞: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.nerve_block}}</label>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>镇痛泵: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.analgesic_pump}}</label>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /# column -->
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><strong class="card-title" style="float: left;">原始数据</strong></h4>
+                        <button class="btn btn-success" style="float: right;">收起</button>
+                        {% if currentuser.usrtype == 0 %}
+                        <form id="myForm" action="/deleteSample/" method="post" onsubmit="return confirmDelete()">
+                            <div>
+                                <input  name="sample_id" value={{sample.pk}} hidden>
+                                <input type="submit" value="删除样本" class="btn btn-success" style="float: right;margin-right: 10px;background-color:#a3c200">
+                            </div>
+                        </form>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>心率: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.heart_rate}}</label>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>舒张压: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.diastolic_pressure}}</label>
+                            </div> 
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>收缩压: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.systolic_pressure}}</label>                                    
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <label><strong>手术阶段: </strong>&nbsp;&nbsp;&nbsp;&nbsp;{{sample.before_operation}}</label>                                    
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card-body">
+                                    <div class="card border border-success">
+                                        <div class="card-header">
+                                            <strong class="card-title">疼痛视频</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <video  controls style="width: 100%;height:100%;" id="video">
+                                                <source src="" type="video/mp4">
+                                            </video>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card-body">
+                                    <div class="card border border-success">
+                                        <div class="card-header">
+                                            <strong class="card-title">生理信号</strong>
+                                        </div>
+                                        {%if sample.biology%}
+                                        <div class="card-body">
+                                            <div id="ecg" style="width: 100%;height:300px;">ecg</div>
+                                        </div><hr/>
+                                        <div class="card-body">
+                                            <div id="hr" style="width: 100%;height:300px;">hr</div>
+                                        </div>
+                                        <div class="card-body"><hr/>
+                                            <div id="gsr" style="width: 100%;height:300px;">gsr</div>
+                                        </div><hr/>
+                                        
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div align="center"><a id="startdraw" class="badge badge-complete" onclick="StartDraw()" style="background-color: #00c292;padding: 10px;color: white">开始绘制</a></div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div align="center"><a id="stopdraw" class="badge badge-complete" onclick="StopDraw()" style="background-color: #00c292;padding: 10px;color: white" align="center">暂停绘制</a></div>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        {%else%}
+                                        <p>该样本没有采集生理信号</p>
+                                        {%endif%}
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><strong class="card-title" style="float: left;">人工评分</strong></h4>
+                        <button class="btn btn-success" style="float: right;">收起</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">                       
+                                <div class="card-body">
+                                    <div class="card border border-success">
+                                        <div class="card-header">
+                                            <strong class="card-title">评分</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <form id="form" action="/addScoreSuccess/" method="post" enctype="multipart/form-data" onsubmit="return sumbit_sure()">
+                                            <div style="text-align: center;margin-bottom: 15px;" hidden>
+                                                <input type="checkbox" id="sum_checkbox" name="sum_checkbox" value="1" checked>  主观评分
+                                                <input type="checkbox" id="FLACC_checkbox" name="FLACC_checkbox" value="0" style="margin-left: 30px;">  FLACC
+                                                <input type="checkbox" id="VAS_checkbox" name="VAS_checkbox" value="0" style="margin-left: 30px;">  VAS
+                                                <input type="checkbox" id="lianpu_checkbox" name="lianpu_checkbox" value="0" style="margin-left: 30px;">  脸谱
+                                            </div>
+                                            <div id="sum_div">
+                                                <label><strong>主观评分</strong></label>
+                                                <div style="float:right;">
+                                                    <big><strong><label id="sum_score">{{score.sum_score}}</label></strong></big>
+                                                </div>  
+                                                <div id="sum_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                                    <div id="sum_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="FLACC_div" hidden>
+                                                <label><strong>FLACC</strong></label>
+                                                <div style="float:right;">
+                                                    <big><strong><label id="FLACC_score">{{score.FLACC_score}}</label></strong></big>
+                                                </div>&nbsp;&nbsp;
+                                                <div style="margin-left: 30px;margin-bottom: 15px;" hidden>
+                                                    <input type="radio" id="cu_check" name="flacc_check" value="cu_check" {%if score.cu%}checked{%endif%}> 粗项
+                                                    <input type="radio" id="xi_check" name="flacc_check" style="margin-left: 30px;" value="xi_check" {%if score.xi%}checked{%endif%}> 细项
+                                                </div>
+                                                <br>
+                                                <div id="cu" {%if score.xi%}hidden{%endif%}>
+                                                    <div id="FLACC_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                                        <div id="FLACC_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="xi" {%if score.cu%}hidden{%endif%} class="FLACC_div">
+                                                    &nbsp;&nbsp;<label>面部表情</label>
+                                                    <div style="float:right;">
+                                                        <big><label id="FACE_score">{{score.FACE_score}}</label></big>
+                                                    </div>
+                                                    <div id="FACE_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
+                                                        <div id="FACE_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                        </div>
+                                                    </div>
+                                                    &nbsp;&nbsp;<label>腿部活动</label>
+                                                    <div style="float:right;">
+                                                        <big><label id="legs_score">{{score.legs_score}}</label></big>
+                                                    </div>
+                                                    <div id="legs_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
+                                                        <div id="legs_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                        </div>
+                                                    </div>
+                                                    &nbsp;&nbsp;<label>体位</label>
+                                                    <div style="float:right;">
+                                                        <big><label id="Acitivity_score">{{score.Acitivity_score}}</label></big>
+                                                    </div>
+                                                    <div id="Acitivity_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
+                                                        <div id="Acitivity_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                        </div>
+                                                    </div>
+                                                    &nbsp;&nbsp;<label>哭闹</label>
+                                                    <div style="float:right;">
+                                                        <big><label id="Cry_score">{{score.Cry_score}}</label></big>
+                                                    </div>
+                                                    <div id="Cry_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
+                                                        <div id="Cry_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                        </div>
+                                                    </div>
+                                                    &nbsp;&nbsp;<label>可安慰度</label>
+                                                    <div style="float:right;">
+                                                        <big><label id="consolability_score">{{score.consolability_score}}</label></big>
+                                                    </div>
+                                                    <div id="consolability_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content-xi">
+                                                        <div id="consolability_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="VAS_div" hidden>
+                                                <label><strong>VAS</strong></label>
+                                                <div style="float:right;">
+                                                    <big><strong><label id="VAS_score">{{score.VAS_score}}</label></strong></big>
+                                                </div>
+                                                <div id="VAS_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                                    <div id="VAS_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="lianpu_div" hidden>
+                                                <label><strong>脸谱</strong></label>
+                                                <div style="float:right;">
+                                                    <big><strong><label id="lianpu_score">{{score.lianpu_score_zimu}}</label></strong></big>
+                                                </div>
+                                                <div id="lianpu_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                                    <div id="lianpu_handle" class="ui-slider-handle ui-corner-all ui-state-default">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div hidden>
+                                                <input type="number" name="sum_input" id="sum_input" value={{score.sum_score}}>
+                                                <input type="number" name="FLACC_input" id="FLACC_input" value={{score.FLACC_score}}>
+                                                <input type="number" name="FACE_input" id="FACE_input" value={{score.FACE_score}}>
+                                                <input type="number" name="legs_input" id="legs_input" value={{score.legs_score}}>
+                                                <input type="number" name="Acitivity_input" id="Acitivity_input" value={{score.Acitivity_score}}>
+                                                <input type="number" name="Cry_input" id="Cry_input" value={{score.Cry_score}}>
+                                                <input type="number" name="consolability_input" id="consolability_input" value={{score.consolability_score}}>
+                                                <input type="number" name="VAS_input" id="VAS_input" value={{score.VAS_score}}>
+                                                <input type="number" name="lianpu_input" id="lianpu_input" value={{score.lianpu_score}}>
+                                            </div>
+                                            <div class="row" id="submit" hidden>
+                                                <div class="col-sm-12 col-md-12" style="text-align:right;">
+                                                    <input type="submit" name="submit" value="提交" class="btn btn-success">
+                                                </div>
+                                            </div>
+                                            
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">                       
+                                <div class="card-body" id="FLACC_rules" hidden>
+                                    <div class="card border border-success">
+                                        <div class="card-header">
+                                            <strong class="card-title">FLACC评分细则</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <img src="/static/img/FLACC_rules.jpg" alt="FLACC_rules">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body" id="sum_rules">
+                                    <div class="card border border-success">
+                                        <div class="card-header">
+                                            <strong class="card-title">主观评分细则</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <img src="/static/img/sum_rule_new.png" alt="sum_rules">
+                                        </div>
+                                    </div>
+                                </div>     
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /# column -->
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><strong class="card-title" style="float: left;">AI评分</strong></h4>
+                        <button class="btn btn-success" style="float: right;">收起</button>
+                    </div>
+                    {%if ai_score_flag%}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card-body">
+                                    <div class="card border border-success">
+
+                                        <!-- <div class="card-header">
+                                            <strong class="card-title">人脸特征</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <video  controls style="width: 100%;height:200px;" id="video2">
+                                                <source src="" type="video/mp4">
+                                            </video>
+                                        </div> -->
+                                        <div class="card-header">
+                                            <strong class="card-title">融合总评分：  {{ai_score.all_score}}</strong></br>
+                                            <strong class="card-title">面部总评分：  {{ai_score.face_score}}</strong></br>
+                                            <strong class="card-title">声音总评分：  {{ai_score.voice_score}}</strong>
+                                        </div>
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-lg-6">
+                                <div class="card-body">
+                                    <div class="card border border-success">
+                                        <div class="card-header">
+                                            <strong class="card-title">面部帧评分</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="face_score" style="width: 100%;height:300px;"></div>
+                                        </div>
+                                        <div class="card-header">
+                                            <strong class="card-title">声音帧评分</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="voice_score" style="width: 100%;height:300px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    {%else%}
+                    <p>敬请期待</p>
+                    {% comment %} <p>AI还在后台评分中,请稍后刷新</p> {% endcomment %}
+                    {%endif%}
+                </div>
+            </div><!-- /# column -->
+        </div>
+    </div><!-- .animated -->
+</div><!-- .content -->
+{% endblock %}
+
+{% block js %}
+<script>var start3 = new Date().getTime();</script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        function div_checkbox(name){
+            $("#"+name+"_checkbox").click(function(){
+            if($("#"+name+"_checkbox").is(":checked")){
+                $("#"+name+"_div").attr('hidden',false);
+                $(this).val('1');
+            }
+            else{
+                $("#"+name+"_div").attr('hidden',true);
+                $(this).val('0');
+            }
+        })}
+        div_checkbox("sum");
+        div_checkbox("FLACC");
+        div_checkbox("VAS");
+        div_checkbox("lianpu");
+        var start4 = new Date().getTime();
+        console.log("checkbox",start4-start3);
+    </script>
+    <script>
+        var flacc_cu_score=0;
+        var lianpu_list=['','A','B','C','D','E','F'];
+        var move_sumslide=false;
+        function sliderFunction(name,min,max,value) {
+            $( function() {
+            var handle = $( "#"+name+"_handle" );
+            $( "#"+name+"_slider" ).slider({
+                // range: true,
+                animate: "fast",
+                min: min,
+                max: max,
+                step: 1,
+                value: value,
+                slide: function( event, ui ) {
+                    if(name=='lianpu'){
+                        $("#"+name+"_score").html(lianpu_list[ui.value]);
+                    }
+                    else{
+                        $("#"+name+"_score").html(ui.value);
+                    }
+                    $("#"+name+"_input").val(Number(ui.value));
+                    if(name=='FACE'||name=='legs'||name=='Acitivity'||name=='Cry'||name=='consolability'){
+                        $('#FLACC_score').html(Number($('#FACE_score').text())+Number($('#legs_score').text())+Number($('#Acitivity_score').text())+Number($('#Cry_score').text())+Number($('#consolability_score').text()));
+                        $("#FLACC_input").val(Number($('#FLACC_score').text()));
+                    }
+                    else if(name=='FLACC'){
+                        flacc_cu_score=ui.value;
+                    }
+                    else if(name=='sum'&&(!move_sumslide)){
+                        $("#submit").attr('hidden',false);
+                        $("#FLACC_checkbox").attr('checked',true);
+                        $("#FLACC_checkbox").val('1');
+                        $("#FLACC_div").attr('hidden',false);
+                        $("#xi_check").attr('checked',true);
+                        $("#cu_check").attr('checked',false);
+                        $("#FLACC_rules").attr('hidden',false);
+                        move_sumslide=true;
+                        
+                    }
+                }
+            });
+            } );
+        }
+
+        // call your function
+        
+        sliderFunction("sum",0,10,{{score.sum_score}});
+        {%if score.cu%}
+        flacc_cu_score={{score.FLACC_score}};
+        {%endif%}
+        sliderFunction("FLACC",0,10,flacc_cu_score);
+        
+        sliderFunction("FACE",0,2,{{score.FACE_score}});
+        sliderFunction("legs",0,2,{{score.legs_score}});
+        sliderFunction("Acitivity",0,2,{{score.Acitivity_score}});
+        sliderFunction("Cry",0,2,{{score.Cry_score}});
+        sliderFunction("consolability",0,2,{{score.consolability_score}});
+
+        sliderFunction("VAS",0,10,{{score.VAS_score}});
+        sliderFunction("lianpu",1,6,{{score.lianpu_score}});
+        var start5 = new Date().getTime();
+        console.log("slider",start5-start4);
+        
+    </script>
+
+    
+    <script>
+        $(function(){
+            $("input[name='flacc_check']").on("click",function(){
+                if($("input[name='flacc_check']:checked").val()=="cu_check"){
+                    $("#cu").attr('hidden',false);
+                    $("#xi").attr('hidden',true);
+                    $('#FLACC_score').html(flacc_cu_score);
+                    $("#FLACC_input").val(Number($('#FLACC_score').text()));
+                }
+                else{
+                    $("#xi").attr('hidden',false);
+                    $("#cu").attr('hidden',true);
+                    $('#FLACC_score').html(Number($('#FACE_score').text())+Number($('#legs_score').text())+Number($('#Acitivity_score').text())+Number($('#Cry_score').text())+Number($('#consolability_score').text()));
+                    $("#FLACC_input").val(Number($('#FLACC_score').text()));
+                }
+            })
+        })
+    </script>
+    
+    <!-- <script type="text/javascript" src="/static/js/jquery-1.4.2.min.js"></script> -->
+    <script>
+        $(function(){
+            //按钮点击事件
+            $("button").click(function(){
+                var txts = $(this).parent()[0].nextSibling.nextSibling;
+                if ($(this).text() == "展开"){
+                    $(this).text("收起");
+                    txts.removeAttribute('hidden');
+                }else{
+                    if ($(this).text() == "收起"){
+                        $(this).text("展开");
+                    txts.setAttribute('hidden',true);
+                    }
+                }
+            })
+        });
+        function confirmDelete() {
+        if (confirm("你确定删除该视频样本吗？")) {
+            var form = document.getElementById("myForm");
+            form.submit();
+        }
+    }
+    </script>
+    
+    <!-- <script type="text/javascript" src="/static/js/jquery-1.11.0.min.js"></script> -->
+    <script>
+        $(function () {
+            $("#video").attr('src', '/stream_video/?path=/media/{{sample.video.name}}');
+            {%if ai_score_flag%}
+            $("#video2").attr('src', '/stream_video/?path=/media/{{ai_score.face_mp4_path}}');
+            {%endif%}
+      
+        })
+        var vid = document.getElementById("video2");
+        var start6= new Date().getTime();
+        console.log("video",start6-start5);
+    </script>
+    <script type="text/javascript" src="/static/js/echarts.min.js"></script>
+    
+    <script> 
+        var xAxisData=[];
+        var yAxisData_ecg=[];
+        var yAxisData_hr=[];
+        var yAxisData_gsr=[];
+        var bio_cnt=0;
+        
+        var BIOLEN={{sample.biology.ecg}}.length;
+
+
+    function StartDraw()
+    {
+        var draw = document.getElementById("startdraw");
+        var draw2 = document.getElementById("stopdraw");
+        if(draw2.innerHTML=="暂停绘制"&&draw.innerHTML=="重新绘制")
+        {
+            clearInterval(drawInterval);
+        }
+        xAxisData=[];
+        yAxisData_ecg=[];
+        yAxisData_hr=[];
+        yAxisData_gsr=[];
+        bio_cnt=0;
+        drawInterval = setInterval(refresh,100);
+        draw.innerHTML="重新绘制";
+        draw2.innerHTML="暂停绘制";
+    }
+    function StopDraw()
+    {
+        var draw = document.getElementById("stopdraw");
+        if(draw.innerHTML=="暂停绘制")
+        {
+            clearInterval(drawInterval);
+            draw.innerHTML="继续绘制";
+        }
+        else{
+            drawInterval = setInterval(refresh,100);
+            draw.innerHTML="暂停绘制";
+        }
+    }
+
+    var totalFlowRate = echarts.init(document.getElementById('ecg'));
+    var totalFlowRate2 = echarts.init(document.getElementById('gsr'));
+    var totalFlowRate3 = echarts.init(document.getElementById('hr'));
+    
+    function refresh(){
+        if(bio_cnt>=BIOLEN){
+            clearInterval(drawInterval);
+            return;
+        }
+        xAxisData.push(bio_cnt);
+        yAxisData_ecg.push({{sample.biology.ecg}}[bio_cnt]);
+        yAxisData_hr.push({{sample.biology.hr}}[bio_cnt]);
+        yAxisData_gsr.push({{sample.biology.gsr}}[bio_cnt]);
+        bio_cnt+=1;
+        if(bio_cnt>50){
+            xAxisData.shift();
+            yAxisData_ecg.shift();
+            yAxisData_hr.shift();
+
+        }
+        
+        var totalFlowRateOption = {
+            animation:false,
+            title: {
+                text: '心电ECG'/*,
+                 left:"110px"*/
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross'
+                }
+            },
+            grid: {
+                left: 50/*"50px"*/,
+                right: 15/*"15px"*/
+            },
+            legend: {
+                data:['心电ECG'],
+                textStyle:{color:"#66b3ff"}/*图例(legend)说明文字的颜色*/
+            },
+            xAxis: {
+                boundaryGap: false,
+                data: xAxisData,
+                splitLine:{show: true}/*网格线*/
+            },
+            yAxis: {
+                boundaryGap:false,
+                splitLine:{show: true}/*网格线*/
+            },
+            series: {
+              /*itemStyle: {normal: {areaStyle: {type: 'default'}}},*/
+              itemStyle : {
+                normal : {
+                  lineStyle:{
+                    color:'#92c2ff'/*折线的颜色*/
+                  },
+                  color:"#66b3ff"/*图例(legend)的颜色,不是图例说明文字的颜色*/
+                }
+              },
+              areaStyle: {normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0, 0, 0, 1,
+                  [
+                    {offset: 0, color: '#66b3ff'},
+                   /* {offset: 0.5, color: '#c4e1ff'},*/
+                    {offset: 1, color: '#ecf5ff'}
+                  ]
+                )
+              }},
+              symbol:"none",/*去掉小圆点*/
+              name: '心电ECG',
+              type: 'line',
+              data: yAxisData_ecg,
+                //smooth:true//显示为平滑的曲线*/
+            }
+        };
+        totalFlowRate.setOption(totalFlowRateOption);
+        var totalFlowRateOption3 = {
+            animation:false,
+            title: {
+                text: '心率HR'/*,
+                 left:"110px"*/
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross'
+                }
+            },
+            grid: {
+                left: 50/*"50px"*/,
+                right: 15/*"15px"*/
+            },
+            legend: {
+                data:['心率HR'],
+                textStyle:{color:"#ff6f4a"}/*图例(legend)说明文字的颜色*/
+            },
+            xAxis: {
+                boundaryGap: false,
+                data: xAxisData,
+                splitLine:{show: true}/*网格线*/
+            },
+            yAxis: {
+                boundaryGap:false,
+                splitLine:{show: true}/*网格线*/
+            },
+            series: {
+              /*itemStyle: {normal: {areaStyle: {type: 'default'}}},*/
+              itemStyle : {
+                normal : {
+                  lineStyle:{
+                    color:'#ff6666'/*折线的颜色*/
+                  },
+                  color:"#ff6f4a"/*图例(legend)的颜色,不是图例说明文字的颜色*/
+                }
+              },
+              areaStyle: {normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0, 0, 0, 1,
+                  [
+                    {offset: 0, color: '#ff6f4a'},
+                   /* {offset: 0.5, color: '#c4e1ff'},*/
+                    {offset: 1, color: '#fff5ec'}
+                  ]
+                )
+              }},
+              symbol:"none",/*去掉小圆点*/
+              name: '心率HR',
+              type: 'line',
+              data: yAxisData_hr/*,
+               smooth:true//显示为平滑的曲线*/
+            }
+        };
+        totalFlowRate3.setOption(totalFlowRateOption3);
+        var totalFlowRateOption2 = {
+            animation:false,
+            title: {
+                text: '皮电GSR'/*,
+                 left:"110px"*/
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross'
+                }
+            },
+            grid: {
+                left: 50/*"50px"*/,
+                right: 15/*"15px"*/
+            },
+            legend: {
+                data:['皮电GSR'],
+                textStyle:{color:"#6fff4a"}/*图例(legend)说明文字的颜色*/
+            },
+            xAxis: {
+                boundaryGap: false,
+                data: xAxisData,
+                splitLine:{show: true}/*网格线*/
+            },
+            yAxis: {
+                boundaryGap:false,
+                splitLine:{show: true}/*网格线*/
+            },
+            series: {
+              /*itemStyle: {normal: {areaStyle: {type: 'default'}}},*/
+              itemStyle : {
+                normal : {
+                  lineStyle:{
+                    color:'#66ff66'/*折线的颜色*/
+                  },
+                  color:"#6fff4a"/*图例(legend)的颜色,不是图例说明文字的颜色*/
+                }
+              },
+              areaStyle: {normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0, 0, 0, 1,
+                  [
+                    {offset: 0, color: '#6fff4a'},
+                   /* {offset: 0.5, color: '#c4e1ff'},*/
+                    {offset: 1, color: '#6ff5ec'}
+                  ]
+                )
+              }},
+              symbol:"none",/*去掉小圆点*/
+              name: '皮电GSR',
+              type: 'line',
+              data: yAxisData_gsr/*,
+               smooth:true//显示为平滑的曲线*/
+            }
+        };
+        totalFlowRate2.setOption(totalFlowRateOption2);
+    };
+    var start7= new Date().getTime();
+    console.log("echart",start7-start6);
+    console.log("whole",start7-start3);
+    </script>
+    <!--script>
+        var endcnt=0;
+        var startcnt=0;
+        var interval;
+        var maxlength=20;
+
+        var x_data = [];
+        var y_data = [];
+        var LEN={{ai_score.face_score_npy_path}}.length;
+
+        var endcnt2=0;
+        var startcnt2=0;
+        var interval2;
+
+        var x_data2 = [];
+        var y_data2 = [];
+        var LEN2={{ai_score.voice_score_npy_path}}.length;
+
+        vid.addEventListener('play', function () { //播放开始执行的函数
+            console.log("开始播放");
+            endcnt=Math.min(LEN-1,Math.floor(vid.currentTime));
+            startcnt=Math.max(0,endcnt-maxlength+1);
+            x_data=[];
+            y_data=[];
+            for(var i=startcnt;i<=endcnt;i++)
+            {
+                x_data.push(i);
+                y_data.push({{ai_score.face_score_npy_path}}[i]);
+            }
+
+            endcnt2=Math.min(LEN2-1,Math.floor(44100.0*(vid.currentTime/100000.0)));
+            startcnt2=Math.max(0,endcnt2-maxlength+1);
+            x_data2=[];
+            y_data2=[];
+            for(var i=startcnt2;i<=endcnt2;i++)
+            {
+                x_data2.push(i);
+                y_data2.push({{ai_score.voice_score_npy_path}}[i]);
+            }
+            interval = setInterval(refresh,1000);
+            interval2 = setInterval(refresh2,Math.floor(100000.0/44100.0)*1000);
+        });
+        vid.addEventListener('pause', function () { //播放开始执行的函数
+            console.log("暂停播放");
+            clearInterval(interval);
+            clearInterval(interval2);
+        });
+    </script-->
+    <script>
+        
+        
+        
+    </script>
+    <!-- <script type="text/javascript" src="/static/assetjs/jquery-2.1.4.min.js"></script> -->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.7.10"></script>
+    <script>
+        var can = document.getElementById('ecg'),//画布对象
+            pan,//获取2D图像API接口
+            index = 0,//用来接收setinerval的值
+            flag = true,//用来控制心电图折线的运行方向
+            wid = can.clientWidth,//获取浏览器宽度
+            hei = can.clientHeight,//获取浏览器高度
+            
+            x = 0,//心电图的“点”在画布上的x轴坐标，从0开始
+            y = hei/2;//心电图的“点”在画布上的y轴坐标，从页面y轴居中位置开始
+            console.log(wid,hei);
+        var drawInterval;
+        var biomaxlength=50;
+        var scale=3000;
+        var ecg_data = 0;
+        var gsr_data = 0;
+        var bio_cnt=0;
+        var BIOLEN={{sample.biology.ecg}}.length;
+
+        
+            ecg_data = 0;
+            gsr_data = 0;
+            bio_cnt=0;
+            can.height = hei;//设置画布高度
+            can.width  = wid;//设置画布宽度
+            pan = can.getContext("2d");//获取2D图像API接口
+            pan.strokeStyle = "#08b95a";//设置画笔颜色
+            pan.lineJoin = "round";//设置画笔轨迹基于圆点拼接
+            pan.lineWidth = 3;//设置画笔粗细
+            pan.beginPath();//开始一条画笔的路径
+            
+            if(BIOLEN>0)
+            {
+                ecg_data={{sample.biology.ecg}}[bio_cnt];
+                gsr_data={{sample.biology.gsr}}[bio_cnt];
+                pan.moveTo(bio_cnt,(scale-ecg_data)/scale*hei);
+                drawInterval = setInterval(move,100);
+            }
+            
+            //定位我们的“落笔点”
+            
+        
+        var max_cnt_can=-1;
+
+     function move(){
+        console.log(bio_cnt,ecg_data);
+        bio_cnt+=1;
+        if(bio_cnt<BIOLEN)
+        {
+            ecg_data={{sample.biology.ecg}}[bio_cnt];
+            gsr_data={{sample.biology.gsr}}[bio_cnt];
+            // if(bio_cnt*10 >= wid){
+            //     if(max_cnt_can==-1)max_cnt_can=(bio_cnt-1)*10;
+            //     can.translate(-10,0);
+            //     pan.lineTo(max_cnt_can,(scale-ecg_data)/scale*hei);
+            // }
+            // else
+            {pan.lineTo(bio_cnt*10,(scale-ecg_data)/scale*hei);}
+            pan.stroke();
+            
+        };
+        
+                        
+            
+     }        
+    </script> -->
+    <!--script>
+        
+        
+        function Line_append(x_data,y_data,title) {
+            // 基于准备好的dom，初始化echarts实例
+            console.log(x_data);
+            var myChart = echarts.init(document.getElementById(title));
+            
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: title
+                },
+                backgroundColor: '#FFFFFF',
+                legend: {
+                    y_data:["loss"]
+                },
+                tooltip : {//鼠标浮动时的工具条，显示鼠标所在区域的数据，trigger这个地方每种图有不同的设置
+                trigger: 'axis'
+                },
+                calculable : true,
+                xAxis : [
+                {
+                    // 让x轴自适应
+                    <!--axisLabel:{-->
+                        <!--rotate: 30,-->
+                        <!--interval:0-->
+                    <!--},
+ 
+                    axisLine:{
+                        lineStyle :{
+                            color: '#CCCCCC'
+                        }
+                    },
+                    type : 'category',
+                    boundaryGap : true, //不从0刻度开始
+                    // data:[]  X轴的定义
+                    data : function (){
+                        return x_data;
+                    }()
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    axisLine:{
+                        lineStyle :{
+                            color: '#CCCCCC'
+                        }
+                    }
+                }
+            ],
+            series : [
+                {
+                    //name:'value',
+                    type:'line',
+                    // symbol:'none',//原点
+                    smooth: 0,//弧度
+                    color:['#66AEDE'],
+                    // data:Y轴数据
+                    data:y_data
+                },
+            ]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+        
+        
+ 
+        function refresh(){
+                endcnt+=1;
+                startcnt=Math.max(0,endcnt-maxlength+1);
+                if(endcnt<LEN)
+                {
+                    x_data.push(endcnt);
+                    y_data.push({{ai_score.face_score_npy_path}}[endcnt]);
+                    if(x_data.length>maxlength)
+                    {
+                        x_data.shift();
+                        y_data.shift();
+                    }
+                }
+                if(LEN>0)
+                {
+                    Line_append(x_data,y_data,"face_score");
+                }
+            };
+            function refresh2(){
+                endcnt2+=1;
+                startcnt2=Math.max(0,endcnt2-maxlength+1);
+                if(endcnt2<LEN2)
+                {
+                    x_data2.push(endcnt2);
+                    y_data2.push({{ai_score.voice_score_npy_path}}[endcnt2]);
+                    if(x_data2.length>maxlength)
+                    {
+                        x_data2.shift();
+                        y_data2.shift();
+                    }
+                }
+                if(LEN2>0)
+                {
+                    Line_append(x_data2,y_data2,"voice_score");
+                }
+            };
+            function biorefresh(){
+                bio_cnt+=1;
+                if(bio_cnt<BIOLEN)
+                {
+                    bio_xdata.push(bio_cnt);
+                    ecg_data.push({{sample.biology.ecg}}[bio_cnt]);
+                    gsr_data.push({{sample.biology.gsr}}[bio_cnt]);
+                    if(bio_xdata.length>biomaxlength)
+                    {
+                        bio_xdata.shift();
+                        ecg_data.shift();
+                        gsr_data.shift();
+                    }
+                }
+                if(BIOLEN>0)
+                {
+                    Line_append(bio_xdata,ecg_data,"ecg");
+                    Line_append(bio_xdata,gsr_data,"gsr");
+                }
+            };
+    </script-->
+    
+{% endblock %}
+

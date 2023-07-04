@@ -1,0 +1,632 @@
+{% extends 'base.html' %}
+{% block title %}PAIN-scoreList-ROOT{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="/static/assetcss/normalize.css">
+    <link rel="stylesheet" href="/static/assetcss/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assetcss/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/assetcss/themify-icons.css">
+    <link rel="stylesheet" href="/static/assetcss/pe-icon-7-filled.css">
+    <link rel="stylesheet" href="/static/assetcss/flag-icon.min.css">
+    <link rel="stylesheet" href="/static/assetcss/cs-skin-elastic.css">
+    <link rel="stylesheet" href="/static/assetcss/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assetcss/style.css">
+{#    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>#}
+    <link rel="stylesheet" href="/static/css/jsmodern.min.css">
+    <link rel="stylesheet" href="/static/css/myAlert.css" />
+        <link rel="stylesheet" href="/static/css/lqscore.css">
+    <link rel="stylesheet" href="/static/css/star.css">
+    <link rel="stylesheet" href="/static/css/jqbar.css" />
+    <style>
+        table tr td, p {
+            height: 25px;
+        }
+
+        table tr td, table tr th {
+            width: 120px;
+            text-align: center;
+        }
+        /* question */
+    .question{overflow:auto;padding: 1.4em 0 0 1.4em }
+    .slider-status{float:left;font-weight:bold;font-size:1.5em;color:#444;}
+    input#price,input#bedrooms,input#baths{font-size:1.3em;font-weight:bold;width:55px;border:1px solid #ccc;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;padding:.2em;}
+
+    /* ui-slider */
+    .ui-slider{position:relative;top:.8em;width:293px;float:left;margin-right:15px;text-align:left;height:1em;background:#ebebec url(/static/img/bg-slider.png) top repeat-x;border:1px solid #aaa;-moz-border-radius:.5em;-webkit-border-radius:.5em;border-radius:.5em;margin-bottom: 20px}
+    .ui-slider .ui-slider-handle{position:absolute;z-index:2;width:1.6em;height:1.6em;top:-.5em;margin-left:-.8em;cursor:pointer;border:2px solid #444;background:#fff url(/static/img/bg-slider-handle.png) 50% repeat-x;-moz-border-radius:.9em;-webkit-border-radius:.9em;border-radius:.9em;}
+    .ui-slider .ui-slider-handle:hover,.ui-slider .ui-slider-handle:focus{background-image:url(/static/img/bg-slider-handle-hover.png);}
+    .ui-slider .ui-slider-handle:active{background-image:none;}
+    .ui-slider .ui-slider-range{position:absolute;z-index:1;font-size:.7em;display:block;border:0;top:0;height:100%;background:#999 url(/static/img/bg-slider-range.png) 50% repeat-x;left:0;}
+
+
+    </style>
+    <style>
+        #video {
+
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #video video {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+
+        .VideoBtn {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            display: block;
+            width: 70px;
+            height: 70px;
+            margin-left: -35px;
+            margin-top: -35px;
+            cursor: pointer;
+            z-index: 10;
+        }
+.col-lg-6{
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+    </style>
+{% endblock %}
+
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1><b>评分列表</b></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="/index">首页</a></li>
+                            <li><a href="/addData">添加样本</a></li>
+                            <li class="active">样本列表</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title" style="float: left;">未打分列表</strong>
+                            <button class="btn btn-success" style="float: right">展开</button>
+                        </div>
+                        <div class="card-body" hidden>
+                            <div id="bootstrap-data-table_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6"></div>
+                                    <div class="col-sm-9 col-md-5">
+                                        <div id="bootstrap-data-table_filter" class="dataTables_filter">
+                                            <label>搜索：<input id="searchPatient1" type="search" class="form-control form-control-sm" placeholder="" aria-controls="bootstrap-data-table"></label>  
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-md-1">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="bootstrap-data-table_paginate"><ul class="pagination"><li class="paginate_button page-item" id="searchPatient_btn1"><a aria-controls="bootstrap-data-table" class="page-link">查询</a></li></ul></div>
+                                    </div>
+                                </div>
+                                <div class="row"><div class="col-sm-12"><table id="bootstrap-data-table-1" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="bootstrap-data-table_info">
+
+                            
+                                <thead>
+                                    <tr>
+                                        <th>病人csvID</th>
+                                        <th>姓名</th>
+                                        <th>性别</th>
+                                        <th>年龄</th>
+                                        <th>视频名</th>
+                                        <th>生理信号</th>
+                                        <th>添加时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody1">
+                                
+                                </tbody>
+                            </table>
+                        </div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="bootstrap-data-table_info" role="status" aria-live="polite"><label id="show_which_page1">第 1 页 / 共 0 条数据</label></div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="bootstrap-data-table_paginate"><ul class="pagination"><li class="paginate_button page-item next" id="bootstrap-data-table_next"><a id='time_order1' aria-controls="bootstrap-data-table" data-dt-idx="0" tabindex="0" class="page-link">时间倒序</a></li><li class="paginate_button page-item change_page1" id="bootstrap-data-table_previous"><a aria-controls="bootstrap-data-table" data-dt-idx="1" tabindex="0" class="page-link">前一页</a></li><li class="paginate_button page-item change_page1" id="bootstrap-data-table_next"><a aria-controls="bootstrap-data-table" data-dt-idx="2" tabindex="0" class="page-link">后一页</a></li></ul></div></div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">已打分列表</strong>
+                            <button class="btn btn-success" style="float: right;margin-left:10px;">收起</button>
+                            <button id='listback' class="btn btn-success" style="float: right" onclick="showOtherTr()">返回</button>
+                        </div>
+                        <div class="card-body">
+
+                            <div id="bootstrap-data-table_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="col-sm-12 col-md-8">
+                                            <button id="export_excel" type="button" class="btn btn-primary col-sm-5" style="margin-left: 10px;background: #00bc2c">导出excel</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9 col-md-5">
+                                        <div id="bootstrap-data-table_filter" class="dataTables_filter">
+                                            <label>搜索：<input id="searchPatient2" type="search" class="form-control form-control-sm" placeholder="" aria-controls="bootstrap-data-table"></label>  
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-md-1">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="bootstrap-data-table_paginate"><ul class="pagination"><li class="paginate_button page-item" id="searchPatient_btn2"><a aria-controls="bootstrap-data-table" class="page-link">查询</a></li></ul></div>
+                                    </div>
+                                </div>
+                                <div class="row"><div class="col-sm-12"><table id="bootstrap-data-table-2" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="bootstrap-data-table_info">
+
+                            
+                                <thead>
+                                    <tr>
+                                        <th>姓名</th>
+                                        <th>视频名</th>
+                                        <th>生理信号</th>
+                                        <th>平均疼痛总分</th>
+                                        <th>平均FLACC</th>
+                                        <th>AI总分</th>
+                                        <th>AI脸部分</th>
+                                        <th>AI声音分</th>
+                                        <th>评分数</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody2">
+                                
+                                </tbody>
+                            </table>
+                        </div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="bootstrap-data-table_info" role="status" aria-live="polite"><label id="show_which_page2">第 1 页 / 共 0 条数据</label></div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="bootstrap-data-table_paginate"><ul class="pagination"><li class="paginate_button page-item next" id="bootstrap-data-table_next"><a id='time_order2' aria-controls="bootstrap-data-table" data-dt-idx="0" tabindex="0" class="page-link">时间倒序</a></li><li class="paginate_button page-item change_page2" id="bootstrap-data-table_previous"><a aria-controls="bootstrap-data-table" data-dt-idx="1" tabindex="0" class="page-link">前一页</a></li><li class="paginate_button page-item change_page2" id="bootstrap-data-table_next"><a aria-controls="bootstrap-data-table" data-dt-idx="2" tabindex="0" class="page-link">后一页</a></li></ul></div></div></div></div>
+                        <div class="row" id="scoreTable" hidden><div class="col-sm-12"><table id="bootstrap-data-table-3" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="bootstrap-data-table_info">
+
+                            <hr/>
+                            <thead>
+                                <tr>
+                                    <th>评分人</th>
+                                    <th>疼痛总分</th>
+                                    <th>FLACC</th>
+                                    <th>评分时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody3">
+                            
+                            </tbody>
+                        </table>
+                        </div></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block js %}
+<script type="text/javascript" src="/static/js/jquery-1.4.2.min.js"></script>
+<script>
+    $(function(){
+        //按钮点击事件
+        $("button").click(function(){
+            var txts = $(this).parent()[0].nextSibling.nextSibling;
+            if ($(this).text() == "展开"){
+                $(this).text("收起");
+                txts.removeAttribute('hidden');
+            }else{
+                if ($(this).text() == "收起"){
+                    $(this).text("展开");
+                txts.setAttribute('hidden',true);
+
+                }
+            }
+        })
+    });
+</script>
+
+
+
+<script src="/static/assetjs/bootstrap.min.js"></script>
+<script src="/static/assetjs/jquery.matchHeight.min.js"></script>
+
+
+
+<script src="/static/assetjs/table/dataTables.bootstrap.min.js"></script>
+<script src="/static/assetjs/table/dataTables.buttons.min.js"></script>
+<script src="/static/assetjs/table/buttons.bootstrap.min.js"></script>
+<script src="/static/assetjs/table/jszip.min.js"></script>
+<script src="/static/assetjs/table/buttons.html5.min.js"></script>
+<script src="/static/assetjs/table/buttons.print.min.js"></script>
+<script src="/static/assetjs/table/buttons.colVis.min.js"></script>
+<script>
+    var account='{{ currentuser.account }}';
+
+    var page1=1;
+    var total1=0;
+    var order1="noreverse";
+    var name1=$('#searchPatient1').val();
+
+    var page2=1;
+    var total2=0;
+    var order2="noreverse";
+    var name2=$('#searchPatient2').val();
+    var allHTML="";
+    var scoreDic={};
+</script>
+<script>
+    function tbodyfun(data){
+        var tbody1 = document.getElementById('tbody1');
+        tbody1.innerHTML='';
+        for (var i = 0; i < data.rest_list.length; i++){
+            var row = `<tr>
+                        <td>${data.rest_list[i].patient_id}</td>
+                        <td>${data.rest_list[i].name}</td>
+                        <td>${data.rest_list[i].sex}</td>
+                        <td>${data.rest_list[i].age}</td>
+                        <td>${data.rest_list[i].video_name}</td>
+                        <td>${data.rest_list[i].biology_name}</td>
+                        <td>${data.rest_list[i].add_time}</td>
+                    </tr>`;
+                    tbody1.innerHTML += row;
+        }
+        var tbody2 = document.getElementById('tbody2');
+        tbody2.innerHTML='';
+        scoreDic={};
+        for (var i = 0; i < data.done_list.length; i++){
+            scoreDic[data.done_list[i].sample_id]=data.done_list[i].scoreDicList;
+            var row = `<tr id="${data.done_list[i].sample_id}">
+                        <td>${data.done_list[i].name}</td>
+                        <td>${data.done_list[i].video_name}</td>
+                        <td>${data.done_list[i].biology_name}</td>
+                        <td>${data.done_list[i].sum}</td>
+                        <td>${data.done_list[i].FLACC}</td>
+                        <td>${data.done_list[i].all_score}</td>
+                        <td>${data.done_list[i].face_score}</td>
+                        <td>${data.done_list[i].voice_score}</td>
+                        <td>${data.done_list[i].score_num}</td>
+                        <td><button class="badge badge-complete" style="background-color: #00c292;padding: 8px;color: white" onclick="hideOtherTr(${data.done_list[i].sample_id})">查看所有评分</button></td>
+                    </tr>`;
+                    tbody2.innerHTML += row;
+        }
+        allHTML=tbody2.innerHTML;
+        var show_which_page1 = document.getElementById('show_which_page1');
+        
+        total1=data.total1;
+        show_which_page1.innerHTML='第 '+page1+' 页 / 共 '+Math.ceil(total1/(10.000000001))+' 页  共 '+total1+' 条数据';
+
+        var show_which_page2 = document.getElementById('show_which_page2');
+        
+        total2=data.total2;
+        show_which_page2.innerHTML='第 '+page2+' 页 / 共 '+Math.ceil(total2/(10.000000001))+' 页  共 '+total2+' 条数据';
+        
+        var scoreTable = document.getElementById('scoreTable');
+        scoreTable.setAttribute('hidden','hidden');
+
+        console.log(page1,page2);
+    }
+</script>
+
+<script>
+    function hideOtherTr(id)
+    {
+        var tbody = document.getElementById('tbody2');
+        var idRow = document.getElementById(id);
+        tbody.innerHTML=idRow.innerHTML;
+        var tbody3=document.getElementById('tbody3');
+        tbody3.innerHTML='';
+        for (var i = 0; i < scoreDic[id].length; i++){
+            var row = `<tr>
+                        <td>${scoreDic[id][i].name}</td>
+                        <td>${scoreDic[id][i].sum}</td>
+                        <td>${scoreDic[id][i].FLACC}</td>
+                        <td>${scoreDic[id][i].add_time}</td>
+                    </tr>`;
+                    tbody3.innerHTML += row;
+        }
+        var scoreTable = document.getElementById('scoreTable');
+        scoreTable.removeAttribute('hidden');
+    }
+</script>
+<script>
+    function showOtherTr()
+    {
+        var tbody = document.getElementById('tbody2');
+        tbody.innerHTML=allHTML;
+        var scoreTable = document.getElementById('scoreTable');
+        scoreTable.setAttribute('hidden','hidden');
+    }
+</script>
+    
+
+<script>
+    $(function () {
+        $("#searchPatient_btn1").click(function(){
+    //在输入框中打印输入的值
+            name1=$('#searchPatient1').val()
+            //if(name==""){tbody.innerHTML=allHTML;console.log("return");return;}
+            console.log(name1);
+            page1=1;
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/scoreList/" ,//url
+                data: {"account":account,"name1":name1,"page1":page1,"order1":order1,"name2":name2,"page2":page2,"order2":order2},
+                success: function (data) {
+                    tbodyfun(data);
+                },
+                error : function() {
+                    alert(data.msg);
+                }
+                });
+        });
+    });
+    $(function () {
+        $("#searchPatient_btn2").click(function(){
+    //在输入框中打印输入的值
+            name2=$('#searchPatient2').val()
+            //if(name==""){tbody.innerHTML=allHTML;console.log("return");return;}
+            console.log(name2);
+            page2=1;
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/scoreList/" ,//url
+                data: {"account":account,"name1":name1,"page1":page1,"order1":order1,"name2":name2,"page2":page2,"order2":order2},
+                success: function (data) {
+                    tbodyfun(data);
+                },
+                error : function() {
+                    alert(data.msg);
+                }
+                });
+        });
+    });
+</script>
+<script>
+    $(function () {
+        $("#time_order1").click(function(){
+            page1=1;
+            if($(this).text()=="时间倒序"){order1="reverse";$(this).text("时间正序");}
+            else{order1="noreverse";$(this).text("时间倒序");}
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/scoreList/" ,//url
+                data: {"account":account,"name1":name1,"page1":page1,"order1":order1,"name2":name2,"page2":page2,"order2":order2},
+                success: function (data) {
+                    tbodyfun(data);
+                },
+                error : function() {
+                    alert(data.msg);
+                }
+                });
+        });
+    });
+    $(function () {
+        $("#time_order2").click(function(){
+            page2=1;
+            if($(this).text()=="时间倒序"){order2="reverse";$(this).text("时间正序");}
+            else{order2="noreverse";$(this).text("时间倒序");}
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/scoreList/" ,//url
+                data: {"account":account,"name1":name1,"page1":page1,"order1":order1,"name2":name2,"page2":page2,"order2":order2},
+                success: function (data) {
+                    tbodyfun(data);
+                },
+                error : function() {
+                    alert(data.msg);
+                }
+                });
+        });
+    });
+</script>
+<script>
+    $.ajax({
+        //几个参数需要注意一下
+        type: "POST",//方法类型
+        dataType: "json",//预期服务器返回的数据类型
+        url: "/scoreList/" ,//url
+        data: {"account":account,"name1":name1,"page1":page1,"order1":order1,"name2":name2,"page2":page2,"order2":order2},
+        success: function (data) {
+            tbodyfun(data);
+        },
+        error : function() {
+            alert(data.msg);
+        }
+    });
+    $(function(){
+        //按钮点击事件
+        $(".change_page1").click(function(){
+            if($(this).attr("id")=='bootstrap-data-table_previous'){if(page1>1)page1=page1-1;}
+            else{if(page1<total1/10)page1=page1+1;}
+    $.ajax({
+        //几个参数需要注意一下
+        type: "POST",//方法类型
+        dataType: "json",//预期服务器返回的数据类型
+        url: "/scoreList/" ,//url
+        data: {"account":account,"name1":name1,"page1":page1,"order1":order1,"name2":name2,"page2":page2,"order2":order2},
+        success: function (data) {
+            tbodyfun(data);
+        },
+        error : function() {
+            alert(data.msg);
+        }
+    });});});
+    $.ajax({
+        //几个参数需要注意一下
+        type: "POST",//方法类型
+        dataType: "json",//预期服务器返回的数据类型
+        url: "/scoreList/" ,//url
+        data: {"account":account,"name1":name1,"page1":page1,"order1":order1,"name2":name2,"page2":page2,"order2":order2},
+        success: function (data) {
+            tbodyfun(data);
+        },
+        error : function() {
+            alert(data.msg);
+        }
+    });
+    $(function(){
+        //按钮点击事件
+        $(".change_page2").click(function(){
+            if($(this).attr("id")=='bootstrap-data-table_previous'){if(page2>1)page2=page2-1;}
+            else{if(page2<total2/10)page2=page2+1;}
+    $.ajax({
+        //几个参数需要注意一下
+        type: "POST",//方法类型
+        dataType: "json",//预期服务器返回的数据类型
+        url: "/scoreList/" ,//url
+        data: {"account":account,"name1":name1,"page1":page1,"order1":order1,"name2":name2,"page2":page2,"order2":order2},
+        success: function (data) {
+            tbodyfun(data);
+        },
+        error : function() {
+            alert(data.msg);
+        }
+    });});});
+
+    $("#export_excel").click(function () {
+     const req = new XMLHttpRequest();
+     req.open('POST', '/export_excel/', true);
+     req.responseType = 'blob';
+     req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); //设置请求头
+     req.send('account='+account+'&&name1='+name1+'&&name2='+name2+'&&order1='+order1+'&&order2='+order2); //输入参数
+     req.onload = function() {
+       const data = req.response;
+       const a = document.createElement('a');
+       const blob = new Blob([data]);
+       const blobUrl = window.URL.createObjectURL(blob);
+       download(blobUrl) ;
+     };
+   });
+
+   function download(blobUrl) {
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.download = 'scoreList.xls';
+    a.href = blobUrl;
+    a.click();
+    document.body.removeChild(a);
+    }
+</script>
+<!-- <script>
+    //在输入框中打印输入的值
+var account={{ currentuser.account }};
+$.ajax({
+    //几个参数需要注意一下
+    type: "POST",//方法类型
+    dataType: "json",//预期服务器返回的数据类型
+    url: "/scoreList/" ,//url
+    data: {"account":account},
+    success: function (data) {
+        var tbody1 = document.getElementById('tbody1');
+        for (var i = 0; i < data.rest_list.length; i++){
+            var row = `<tr>
+                        <td>${data.rest_list[i].sample_id}</td>
+                        <td>${data.rest_list[i].name}</td>
+                        <td>${data.rest_list[i].sex}</td>
+                        <td>${data.rest_list[i].age}</td>
+                        <td>${data.rest_list[i].video_name}</td>
+                        <td>${data.rest_list[i].add_time}</td>
+                        <td><a class="badge badge-complete" href="/sampleDetail/${data.rest_list[i].sample_id}" style="background-color: #00c292;padding: 10px;color: white" target="_blank" >评分</a></td>
+                    </tr>`;
+                    tbody1.innerHTML += row;
+        }
+        var tbody2 = document.getElementById('tbody2');
+        for (var i = 0; i < data.done_list.length; i++){
+            var row = `<tr>
+                        <td>${data.done_list[i].sample_id}</td>
+                        <td>${data.done_list[i].name}</td>
+                        <td>${data.done_list[i].video_name}</td>
+                        <td>${data.done_list[i].sum}</td>
+                        <td>${data.done_list[i].FLACC}</td>
+                        <td>${data.done_list[i].VAS}</td>
+                        <td>${data.done_list[i].lianpu}</td>
+                        <td>${data.done_list[i].add_time}</td>
+                        <td><a class="badge badge-complete" href="/sampleDetail/${data.done_list[i].sample_id}" style="background-color: #00c292;padding: 10px;color: white" target="_blank" >重新评分</a></td>
+                    </tr>`;
+                    tbody2.innerHTML += row;
+        }
+        // $('#bootstrap-data-table-1').DataTable({
+        //     destroy: true,
+        //     lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "全部"]],
+        //     oLanguage: {
+        //         "sLengthMenu": "每页显示 _MENU_ 条记录",
+        //         "sZeroRecords": "抱歉，没有找到相关的数据",
+        //         "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+        //         "sInfoEmpty": "没有数据",
+        //         "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+        //         "sSearch": "搜索：",
+        //         "sLoadingRecords":"载入中...",
+        //         "oPaginate": {
+        //             "sFirst": "首页",
+        //             "sPrevious": "前一页",
+        //             "sNext": "后一页",
+        //             "sLast": "尾页"
+        //         },
+        //     },
+        //     columnDefs: [ {
+        //         "orderable": false,
+        //         "targets": [2,6]
+        //     } ],
+        //     order: [5],
+        //     bStateSave:true
+        // });
+        // $('#bootstrap-data-table-2').DataTable({
+        //     destroy: true,
+        //     lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "全部"]],
+        //     oLanguage: {
+        //         "sLengthMenu": "每页显示 _MENU_ 条记录",
+        //         "sZeroRecords": "抱歉，没有找到相关的数据",
+        //         "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+        //         "sInfoEmpty": "没有数据",
+        //         "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+        //         "sSearch": "搜索：",
+        //         "sLoadingRecords":"载入中...",
+        //         "oPaginate": {
+        //             "sFirst": "首页",
+        //             "sPrevious": "前一页",
+        //             "sNext": "后一页",
+        //             "sLast": "尾页"
+        //         },
+        //     },
+        //     columnDefs: [ {
+        //         "orderable": false,
+        //         "targets": [8]
+        //     } ],
+        //     order: [7],
+        //     bStateSave:true
+        // });
+    },
+    error : function() {
+        alert(data.msg);
+    }
+    });
+</script> -->
+
+{% endblock %}

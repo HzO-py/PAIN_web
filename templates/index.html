@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% block title %}PAIN-index{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="/static/assetcss/normalize.css">
+    <link rel="stylesheet" href="/static/assetcss/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assetcss/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/assetcss/themify-icons.css">
+    <link rel="stylesheet" href="/static/assetcss/pe-icon-7-filled.css">
+    <link rel="stylesheet" href="/static/assetcss/flag-icon.min.css">
+    <link rel="stylesheet" href="/static/assetcss/cs-skin-elastic.css">
+    <link rel="stylesheet" href="/static/assetcss/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assetcss/style.css">
+{#    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>#}
+    <link rel="stylesheet" href="/static/css/jsmodern.min.css">
+    <link rel="stylesheet" href="/static/css/myAlert.css" />
+        <link rel="stylesheet" href="/static/css/lqscore.css">
+    <link rel="stylesheet" href="/static/css/star.css">
+    <link rel="stylesheet" href="/static/css/jqbar.css" />
+    
+{% endblock %}
+
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1><b>首页</b></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li class="active">首页</a></li>
+                            <li><a href="/addData">添加样本</a></li>
+                            <li><a href="/dataList">样本列表</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row" style="margin-top: 2.0em;">
+                    <div class="col-sm-12 col-md-12" >
+                        <h2>欢迎来到<img src="/static/img/logo_pain.png" alt="logo">儿童疼痛评估平台! 以下是该平台的基本使用教程~<h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title" style="float: left;">基本功能</strong>
+                            <button class="btn btn-success" style="float: right">收起</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="row" style="margin-top: 2.0em;">
+                                <div class="col-sm-12 col-md-12" >
+                                    <img src="/static/img/index/jbgn1.png" alt="基本功能1">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 2.0em;">
+                                <div class="col-sm-12 col-md-12" >
+                                    <img src="/static/img/index/jbgn2.png" alt="基本功能2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title" style="float: left;">评分步骤</strong>
+                            <button class="btn btn-success" style="float: right">收起</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="row" style="margin-top: 2.0em;">
+                                <div class="col-sm-12 col-md-12" >
+                                    <img src="/static/img/index/pfbz1.png" alt="评分步骤1">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 2.0em;">
+                                <div class="col-sm-12 col-md-12" >
+                                    <img src="/static/img/index/pfbz2.png" alt="评分步骤2">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 2.0em;">
+                                <div class="col-sm-12 col-md-12" >
+                                    <img src="/static/img/index/pfbz3.png" alt="评分步骤3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title" style="float: left;">添加样本</strong>
+                            <button class="btn btn-success" style="float: right">收起</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="row" style="margin-top: 2.0em;">
+                                <div class="col-sm-12 col-md-12" >
+                                    <img src="/static/img/index/tjyb1.png" alt="添加样本1">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 2.0em;">
+                                <div class="col-sm-12 col-md-12" >
+                                    <img src="/static/img/index/tjyb2.png" alt="添加样本2">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 2.0em;">
+                                <div class="col-sm-12 col-md-12" >
+                                    <img src="/static/img/index/tjyb3.png" alt="添加样本3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-12">
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title" style="float: left;">管理员功能</strong>
+                            <button class="btn btn-success" style="float: right">收起</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="row" style="margin-top: 2.0em;">
+                                <div class="col-sm-12 col-md-12" >
+                                    <img src="/static/img/index/gly1.png" alt="管理员功能1">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 2.0em;">
+                                <div class="col-sm-12 col-md-12" >
+                                    <img src="/static/img/index/gly2.png" alt="管理员功能2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block js %}
+<script type="text/javascript" src="/static/js/jquery-1.4.2.min.js"></script>
+<script>
+    $(function(){
+        //按钮点击事件
+        $("button").click(function(){
+            var txts = $(this).parent()[0].nextSibling.nextSibling;
+            if ($(this).text() == "展开"){
+                $(this).text("收起");
+                txts.removeAttribute('hidden');
+            }else{
+                if ($(this).text() == "收起"){
+                    $(this).text("展开");
+                txts.setAttribute('hidden',true);
+
+                }
+            }
+        })
+    });
+</script>
+
+
+
+{% endblock %}

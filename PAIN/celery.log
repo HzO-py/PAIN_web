@@ -1,0 +1,281 @@
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+activate does not accept more than one argument:
+['&&', 'source', 'py36', '&&', 'celery', '-A', 'PAIN', 'worker', '-l', 'info']
+
+activate does not accept more than one argument:
+['&&', 'source', 'py36', '&&', 'celery', '-A', 'PAIN', 'worker', '-l', 'info']
+
+activate does not accept more than one argument:
+['&&', 'source', 'py36', '&&', 'celery', '-A', 'PAIN', 'worker', '-l', 'info']
+
+activate does not accept more than one argument:
+['&&', 'source', 'py36', '&&', 'celery', '-A', 'PAIN', 'worker', '-l', 'info']
+
+activate does not accept more than one argument:
+['&&', 'source', 'py36', '&&', 'celery', '-A', 'PAIN', 'worker', '-l', 'info']
+
+/home/ubuntu/PAIN/super_celery.sh: line 2: activate: No such file or directory
+/home/ubuntu/PAIN/super_celery.sh: line 2: activate: No such file or directory
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+ 
+ -------------- celery@VM-12-10-ubuntu v5.0.5 (singularity)
+--- ***** ----- 
+-- ******* ---- Linux-4.15.0-159-generic-x86_64-with-debian-buster-sid 2023-05-03 00:02:43
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         PAIN:0x7ff9a486eac8
+- ** ---------- .> transport:   redis://localhost:6379/0
+- ** ---------- .> results:     disabled://
+- *** --- * --- .> concurrency: 2 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . patient.tasks.analyze_video
+
+[2023-05-03 00:02:44,083: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2023-05-03 00:02:44,092: INFO/MainProcess] mingle: searching for neighbors
+[2023-05-03 00:02:45,108: INFO/MainProcess] mingle: all alone
+[2023-05-03 00:02:45,117: INFO/MainProcess] celery@VM-12-10-ubuntu ready.
+[2023-05-03 00:03:24,956: INFO/MainProcess] Received task: patient.tasks.analyze_video[4d692b91-098c-4a93-885f-30ab2c1cc553]  
+[2023-05-03 00:03:24,959: WARNING/ForkPoolWorker-1] analyze_video-----------
+[2023-05-03 00:03:26,961: WARNING/ForkPoolWorker-1] 'mia
+[2023-05-03 00:03:27,962: WARNING/ForkPoolWorker-1] 'mia'mia
+[2023-05-03 00:03:27,962: INFO/ForkPoolWorker-1] Task patient.tasks.analyze_video[4d692b91-098c-4a93-885f-30ab2c1cc553] succeeded in 3.004229597747326s: None
+[2023-05-03 00:03:55,241: INFO/MainProcess] Received task: patient.tasks.analyze_video[4d896f7e-cf9c-4460-ab8a-ede746081e31]  
+[2023-05-03 00:03:55,242: WARNING/ForkPoolWorker-1] analyze_video-----------
+[2023-05-03 00:03:57,244: WARNING/ForkPoolWorker-1] 'mia_lyon_'
+[2023-05-03 00:03:58,245: WARNING/ForkPoolWorker-1] 'mia_lyon_''mia_lyon_'
+[2023-05-03 00:03:58,246: INFO/ForkPoolWorker-1] Task patient.tasks.analyze_video[4d896f7e-cf9c-4460-ab8a-ede746081e31] succeeded in 3.0040323473513126s: None
+ 
+ -------------- celery@VM-12-10-ubuntu v5.0.5 (singularity)
+--- ***** ----- 
+-- ******* ---- Linux-4.15.0-159-generic-x86_64-with-debian-buster-sid 2023-05-03 00:10:18
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         PAIN:0x7fce5b1e3ac8
+- ** ---------- .> transport:   redis://localhost:6379/0
+- ** ---------- .> results:     disabled://
+- *** --- * --- .> concurrency: 2 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . patient.tasks.analyze_video
+
+[2023-05-03 00:10:18,910: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2023-05-03 00:10:18,921: INFO/MainProcess] mingle: searching for neighbors
+[2023-05-03 00:10:19,943: INFO/MainProcess] mingle: all alone
+[2023-05-03 00:10:19,953: INFO/MainProcess] celery@VM-12-10-ubuntu ready.
+ 
+ -------------- celery@VM-12-10-ubuntu v5.0.5 (singularity)
+--- ***** ----- 
+-- ******* ---- Linux-4.15.0-159-generic-x86_64-with-debian-buster-sid 2023-05-03 00:10:29
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         PAIN:0x7f5def787ac8
+- ** ---------- .> transport:   redis://localhost:6379/0
+- ** ---------- .> results:     disabled://
+- *** --- * --- .> concurrency: 2 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . patient.tasks.analyze_video
+
+[2023-05-03 00:10:29,292: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2023-05-03 00:10:29,300: INFO/MainProcess] mingle: searching for neighbors
+[2023-05-03 00:10:30,333: WARNING/MainProcess] /home/ubuntu/anaconda3/envs/py36/lib/python3.6/site-packages/celery/app/control.py:50: DuplicateNodenameWarning: Received multiple replies from node name: celery@VM-12-10-ubuntu.
+Please make sure you give each node a unique nodename using
+the celery worker `-n` option.
+  pluralize(len(dupes), 'name'), ', '.join(sorted(dupes)),
+
+[2023-05-03 00:10:30,333: INFO/MainProcess] mingle: all alone
+[2023-05-03 00:10:30,343: INFO/MainProcess] celery@VM-12-10-ubuntu ready.
+ 
+ -------------- celery@VM-12-10-ubuntu v5.0.5 (singularity)
+--- ***** ----- 
+-- ******* ---- Linux-4.15.0-159-generic-x86_64-with-debian-buster-sid 2023-05-03 00:18:08
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         PAIN:0x7f484d484ac8
+- ** ---------- .> transport:   redis://localhost:6379/0
+- ** ---------- .> results:     disabled://
+- *** --- * --- .> concurrency: 2 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . patient.tasks.analyze_video
+
+[2023-05-03 00:18:08,979: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2023-05-03 00:18:08,986: INFO/MainProcess] mingle: searching for neighbors
+[2023-05-03 00:18:10,007: WARNING/MainProcess] /home/ubuntu/anaconda3/envs/py36/lib/python3.6/site-packages/celery/app/control.py:50: DuplicateNodenameWarning: Received multiple replies from node name: celery@VM-12-10-ubuntu.
+Please make sure you give each node a unique nodename using
+the celery worker `-n` option.
+  pluralize(len(dupes), 'name'), ', '.join(sorted(dupes)),
+
+[2023-05-03 00:18:10,007: INFO/MainProcess] mingle: all alone
+[2023-05-03 00:18:10,018: INFO/MainProcess] celery@VM-12-10-ubuntu ready.

@@ -1,0 +1,241 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+{#    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">#}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}PAIN{% endblock %}</title>
+    {% block css %}
+        <link rel="stylesheet" href="/static/assetcss/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/assetcss/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/assetcss/pe-icon-7-filled.css">
+        <link rel="stylesheet" href="/static/assetcss/style.css">
+        <link href="/static/assetcss/chartist.min.css" rel="stylesheet">
+    {% endblock %}
+    {% block jquery %}<script src="/static/assetjs/jquery-2.1.4.min.js"></script>{% endblock %}
+    
+    
+</head>
+
+<body>
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            {% block left %}
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/index"><i class="menu-icon fa fa-laptop"></i>首页 </a>
+                </li>
+                <li>
+                    <a href="/addData"><i class="menu-icon fa fa-id-badge"></i>添加样本 </a>
+                </li>
+                <li>
+                    <a href="/dataList"><i class="menu-icon fa fa-bars"></i>样本列表 </a>
+                </li>
+                {% if currentuser.usrtype == 0 %}
+                <li>
+                    <a href="/scoreList"><i class="menu-icon fa fa-bars"></i>评分列表 </a>
+                </li>
+                {% endif %}
+            </ul>
+            {% endblock %}
+        </div>
+    </nav>
+</aside>
+<div id="right-panel" class="right-panel">
+    <!-- Header-->
+    <header id="header" class="header">
+        <div class="top-left">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/index" style="width: 100px"><img src="/static/img/logo.jpg" alt="Logo" style="height: 30px"></a>
+                <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+            </div>
+        </div>
+        <div class="top-right">
+            <div class="header-menu">
+                <!-- <div class="header-left">
+                    <div class="form-inline">
+                        <form class="search-form">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                            <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                        </form>
+                    </div>
+
+                    <div class="dropdown for-notification">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-bell"></i>
+                            <span class="count bg-danger">{{ notices.count }}</span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="notification">
+                            <p class="red"><a class="red" href="/notice" style="color: cornflowerblue">查看全部消息</a></p>
+                            {% for notice in notices %}
+                            <a class="dropdown-item media" href="#">
+                                <i class="fa fa-circle" style="color: #dc3545;"></i>
+                                <p>{{ notice.title }}</p>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div> -->
+
+                <div class="user-area dropdown float-right">
+                    <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="user-avatar rounded-circle" src="/static/img/avatar/4.jpg" alt="User Avatar" width="40" height="40">
+                    </a>
+                
+
+                    <div class="user-menu dropdown-menu">
+                        {{ currentuser.name }}
+                        <small>（{% if currentuser.usrtype == 0 %}管理员{% else %}普通用户{% endif %}）</small>
+                        <a class="nav-link" onclick="changeName()"  id='changeName'><i class="fa fa-power -off"></i>更改昵称</a>
+                        <a class="nav-link" href="/logout"><i class="fa fa-power -off"></i>退出平台</a>
+                    </div>
+
+                </div>
+
+            </div> 
+        </div>
+    </header>
+    <!-- /#header -->
+    {#面包屑#}
+    <form id="form" action="/changeName/" method="post" enctype="multipart/form-data" onsubmit="return sumbit_sure()" style='float:right;margin-top:15px;' hidden>
+        <input type='text' name='name' value="{{ currentuser.name }}">
+        <input type='text' name='herf' id='herf' hidden> 
+        <input type="button" onclick='cancel()' value="取消" class="btn btn-success">
+        <input type="submit" name="submit" value="提交" class="btn btn-success">
+    </form>
+
+    {% block breadcrumbs %}{% endblock %}
+    <!-- Content -->
+    {% block content%}{% endblock %}
+    
+</div>
+
+<!-- 
+    
+    
+        <div class="right-panel" style="margin-left: 0px;">
+
+        <header id="header" class="header">
+            <div class="top-left" style="width: 100%">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="./" style="width: 100px"><img src="/static/img/logo.png" alt="Logo" style="height: 30px;"></a>
+                    <div class="float-right" style="margin-top: 15px;">
+                        <span id="DemoLogin" style="cursor: pointer;">登录/注册</span>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+        <div class="content">
+
+            <div class="animated fadeIn">
+ 
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="box-title">欢迎来到AI HR在线评测系统 </h4>
+                            </div>
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="card-body">
+
+                                            <div id="traffic-chart" class="traffic-chart">
+                                                <img src="/static/img/zhongda_logo.jpg"  style="width: 35%">
+                                                <img src="/static/img/aon_logo.jpg"  style="width: 35%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="card-body" style="padding: 10px 30px 30px 50px">
+                                            <div class="progress-box progress-1">
+                                                <h4 class="por-title">系统介绍</h4>
+                                                <ul>
+                                                    <li>多渠道建立管理，一站式招聘流程管理，智能化数据驱动，让招聘成为核心竞争力。</li>
+                                                    <li>多源数据AI打分，招聘成本每年可以节省上百万，其中还不包括节省的猎头费用。</li>
+                                                <li>可以将不同渠道的简历聚合到AIHR系统中，提升HR处理简历的效率，还可以快速安排面试，以往招聘岗位招聘周期如果为半个月，现在可缩短约一周。</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div> 
+                        <div class="card-body"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+</div>
+   
+-->
+    <footer style="z-index: 1050">
+        <div class="footer-limiter">
+            <div style="text-align: center">
+            <p>联系我们：<a href="https://so-link.org" target="_blank">智能信息融合课题组</a></p>
+            </div>
+            <div style="text-align: right">
+                <p>Copyright © 2022华工智能大数据团队</p>
+            </div>
+        </div>
+    </footer>
+</body>
+    <script type="text/javascript">
+        $('#herf').val(window.document.location.href);
+        var mymsg = '{{ msg }}';
+        if(mymsg!=''){
+            alert("{{ msg }}");
+        }
+    </script>
+    <script type="text/javascript">
+        function changeName(){
+            var changeNamevar=document.getElementById('changeName');
+            changeNamevar.setAttribute('hidden',true);
+            var form=document.getElementById('form');
+            form.removeAttribute('hidden');
+
+        }
+    </script>
+    <script type="text/javascript">
+        function cancel(){
+            var changeNamevar=document.getElementById('changeName');
+            changeNamevar.removeAttribute('hidden');
+            var form=document.getElementById('form');
+            form.setAttribute('hidden',true);
+
+        }
+    </script>
+    <script src="/static/assetjs/popper.min.js"></script>
+    {% comment %} 右上角 {% endcomment %}
+    <script src="/static/assetjs/plugins.js"></script>
+    <script src="/static/assetjs/main.js"></script>
+    {% comment %} 左上角 {% endcomment %}
+    {% block js %}
+    <script src="/static/assetjs/jquery-2.1.4.min.js"></script>
+    <script src="/static/assetjs/popper.min.js"></script>
+    {% comment %} 右上角 {% endcomment %}
+    <script src="/static/assetjs/plugins.js"></script>
+    <script src="/static/assetjs/main.js"></script>
+    {% comment %} 左上角 {% endcomment %}
+    <script src="/static/assetjs/chartist.min.js"></script>
+    <script src="/static/assetjs/chartist-plugin-legend.js"></script>
+    {% endblock %}
+    
+    <script type="text/javascript">
+        function sumbit_sure(){
+            var gnl=confirm("确定要提交?");
+            if (gnl==true){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    </script>
+</html>
