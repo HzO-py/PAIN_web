@@ -1,0 +1,285 @@
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html{
+	height: 100%;
+	color: #F3F4F5;
+    background-color: #EFEFEF;
+}
+
+/*-------------
+	Layout
+--------------*/
+
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+	font: 400 15px/1.4 'Open Sans',sans-serif;
+}
+
+header{
+	/* We want the header to have a static height - it will always take up just as much space as it needs.  */
+	/* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+	flex: 0 0 auto;
+}
+
+.main-content{
+	/* By setting flex-grow to 1, the main content will take up 
+	all of the remaining space on the page (the other elements have flex-grow: 0 and won't contest the free space). */
+	/* 1 flex-grow, 0 flex-shrink, auto flex-basis */
+	flex: 1 0 auto;
+}
+
+footer{
+	/* Just like the header, the footer will have a static height - it shouldn't grow or shrink.  */
+	/* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+	flex: 0 0 auto;
+}
+
+
+/*-------------
+	Header
+--------------*/
+
+/*header {*/
+	/*!*background-color: #27313C;*!*/
+	/*!*box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.15);*!*/
+	/*padding: 20px 40px;*/
+	/*box-sizing: border-box;	*/
+/*}*/
+
+/*header .header-limiter {*/
+	/*max-width: 880px;*/
+	/*text-align: center;*/
+	/*margin: 0 auto;*/
+/*}*/
+
+/*!* Logo *!*/
+
+/*header .header-limiter h1 {*/
+	/*float: left;*/
+    /*line-height: 40px;*/
+    /*margin: 0;*/
+    /*font-size: 16px;*/
+/*}*/
+
+/*header .header-limiter h1 span {*/
+    /*color: #989898;*/
+/*}*/
+
+/*!* The header links *!*/
+
+/*header .header-limiter a {*/
+	/*color: #ffffff;*/
+	/*text-decoration: none;*/
+/*}*/
+
+/*header .header-limiter nav{*/
+	/*line-height: 40px;*/
+	/*float: right;*/
+/*}*/
+
+/*header .header-limiter nav a{*/
+    /*display: inline-block;*/
+    /*padding: 0 5px;*/
+    /*text-decoration: none;*/
+    /*color: #ffffff;*/
+    /*font-size: 14px;*/
+    /*opacity: 0.9;*/
+    /*font-weight: bold;*/
+    /*border-radius: 3px;*/
+    /*padding: 0px 25px;*/
+    /*background-color: #D6336A;*/
+/*}*/
+
+/*header .header-limiter nav a:hover{*/
+	/*opacity: 1;*/
+/*}*/
+
+/*header .header-limiter nav a.selected {*/
+	/*color: #608bd2;*/
+	/*pointer-events: none;*/
+	/*opacity: 1;*/
+/*}*/
+
+/*!* Making the header responsive *!*/
+
+/*@media all and (max-width: 600px) {*/
+
+	/*header {*/
+		/*padding: 20px 0;*/
+	/*}*/
+
+	/*header .header-limiter h1 {*/
+		/*float: none;*/
+		/*margin: 10px 0 10px;*/
+		/*text-align: center;*/
+		/*font-size: 16px;*/
+		/*line-height: 1;*/
+	/*}*/
+
+	/*header .header-limiter nav {*/
+		/*float:none;*/
+	/*}*/
+
+/*}*/
+
+
+/*--------------------
+	Main Content
+--------------------*/
+
+.main-content{
+	color: #525252;
+	padding: 60px 50px;
+}
+
+.card {
+	max-width: 880px;
+	margin: 0 auto;
+	background-color: #fff;
+	height: 100%;
+	padding: 60px 90px;
+	text-align: center;
+}
+
+.card h1{
+	margin-bottom: 25px;
+	font-size: 28px;
+}
+
+.card h3{
+	font-weight: normal;
+	color: #999;
+	font-size: 16px;
+	max-width: 600px;
+	line-height: 1.6;
+	margin: 0 auto 35px;
+}
+
+.card p{
+	text-align: left;
+	margin: 20px 0 40px;
+	line-height: 1.5;
+}
+
+.card #add-content{
+	display: inline-block;
+    padding: 15px 60px;
+    background: #E91E63;
+    border-radius: 3px;
+    text-decoration: none;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.card .dummy-content p,
+.card .dummy-content img{
+	display: none;
+}
+
+.card img{
+	width: 100%;
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+
+/*--------------------
+	Footer styles
+--------------------*/
+
+footer{
+	background-color: #292c2f;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	width: 100%;
+	text-align: left;
+	font: normal 16px sans-serif;
+
+	padding: 30px 30px;
+}
+
+footer .footer-limiter {
+	max-width: 880px;
+	margin: 0 auto;
+}
+
+footer .footer-left p{
+	color:  #8f9296;
+	font-size: 14px;
+	margin: 0;
+}
+
+/* Footer links */
+
+footer p.footer-links{
+	font-size:18px;
+	font-weight: bold;
+	color:  #ffffff;
+	margin: 0 0 10px;
+	padding: 0;
+}
+
+footer p.footer-links a{
+	display:inline-block;
+	line-height: 1.8;
+	text-decoration: none;
+	color:  inherit;
+}
+
+/*footer .footer-right{*/
+	/*float: right;*/
+	/*margin-top: 6px;*/
+	/*max-width: 180px;*/
+/*}*/
+
+/*footer .footer-right a{*/
+	/*display: inline-block;*/
+	/*width: 35px;*/
+	/*height: 35px;*/
+	/*background-color:  #33383b;*/
+	/*border-radius: 2px;*/
+
+	/*font-size: 20px;*/
+	/*color: #ffffff;*/
+	/*text-align: center;*/
+	/*line-height: 35px;*/
+
+	/*margin-left: 3px;*/
+/*}*/
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+/*@media (max-width: 600px) {*/
+
+	/*footer .footer-left,*/
+	/*footer .footer-right{*/
+		/*text-align: center;*/
+	/*}*/
+
+	/*footer .footer-right{*/
+		/*float: none;*/
+		/*margin: 0 auto 20px;*/
+	/*}*/
+
+	/*footer .footer-left p.footer-links{*/
+		/*line-height: 1.8;*/
+	/*}*/
+/*}*/
+
+/*!* ------- Demo adds. Please ignore and remove ------- *!*/
+
+/*#bsaHolder{*/
+	/*top: 100px !important;*/
+/*}*/
+
+/*@media (max-width: 1200px) {*/
+    /*#bsaHolder{ */
+    	/*display:none;*/
+    /*}*/
+/*}*/
