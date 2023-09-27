@@ -42,6 +42,8 @@ urlpatterns = [
     url(r'^deletePatient/', views.deletePatient, name='deletePatient'),
     url(r'^my-api/test', views.test, name='test'),
 
+    url(r'^getFlaccCount/', views.getFlaccCount, name='getFlaccCount'),
+
     url(r'^android/android_postlogin', views.android_postlogin, name='android_postlogin'),
     url(r'^android/android_postpatient', views.android_postpatient, name='android_postpatient'),
     url(r'^android/android_postvideo', views.android_postvideo, name='android_postvideo'),

@@ -37,7 +37,11 @@
                         <ol class="breadcrumb text-right">
                             <li class="active">首页</a></li>
                             <li><a href="/addData">添加样本</a></li>
+                            {% if currentuser.usrtype == 1 %}
                             <li><a href="/dataList">样本列表</a></li>
+                            {% else %}
+                            <li><a href="/scoreList">评分列表</a></li>
+                            {% endif %}
                         </ol>
                     </div>
                 </div>

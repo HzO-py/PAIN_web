@@ -25,6 +25,9 @@
             width: 120px;
             text-align: center;
         }
+        td.operation {
+            display: inline-block;
+        }
         /* question */
     .question{overflow:auto;padding: 1.4em 0 0 1.4em }
     .slider-status{float:left;font-weight:bold;font-size:1.5em;color:#444;}
@@ -74,7 +77,6 @@
     </style>
 {% endblock %}
 
-
 {% block breadcrumbs %}
 <div class="breadcrumbs">
     <div class="breadcrumbs-inner">
@@ -92,7 +94,7 @@
                         <ol class="breadcrumb text-right">
                             <li><a href="/index">首页</a></li>
                             <li><a href="/addData">添加样本</a></li>
-                            <li class="active">样本列表</a></li>
+                            <li class="active">评分列表</a></li>
                         </ol>
                     </div>
                 </div>
@@ -160,12 +162,17 @@
                         <div class="card-body">
 
                             <div id="bootstrap-data-table_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-                                <div class="row">
+				
+                                <div id="control_panel" class="row">
+				    <!--修改1：加一个展示统计信息的按钮-->
                                     <div class="col-sm-12 col-md-6">
-                                        <div class="col-sm-12 col-md-8">
+                                        <div class="col-sm-12 col-md-8 row">
                                             <button id="export_excel" type="button" class="btn btn-primary col-sm-5" style="margin-left: 10px;background: #00bc2c">导出excel</button>
+					    <!-- <button id="show_calculation" class="btn btn-primary col-sm-5" style="margin-left:10px;background: #00bc2c"  onclick="showCalculations()">统计信息</button> -->
                                         </div>
                                     </div>
+				    <!--修改1结束-->
+
                                     <div class="col-sm-9 col-md-5">
                                         <div id="bootstrap-data-table_filter" class="dataTables_filter">
                                             <label>搜索：<input id="searchPatient2" type="search" class="form-control form-control-sm" placeholder="" aria-controls="bootstrap-data-table"></label>  
@@ -196,7 +203,7 @@
                                 
                                 </tbody>
                             </table>
-                        </div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="bootstrap-data-table_info" role="status" aria-live="polite"><label id="show_which_page2">第 1 页 / 共 0 条数据</label></div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="bootstrap-data-table_paginate"><ul class="pagination"><li class="paginate_button page-item next" id="bootstrap-data-table_next"><a id='time_order2' aria-controls="bootstrap-data-table" data-dt-idx="0" tabindex="0" class="page-link">时间倒序</a></li><li class="paginate_button page-item change_page2" id="bootstrap-data-table_previous"><a aria-controls="bootstrap-data-table" data-dt-idx="1" tabindex="0" class="page-link">前一页</a></li><li class="paginate_button page-item change_page2" id="bootstrap-data-table_next"><a aria-controls="bootstrap-data-table" data-dt-idx="2" tabindex="0" class="page-link">后一页</a></li></ul></div></div></div></div>
+                        </div></div><div id="select_page_" class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="bootstrap-data-table_info" role="status" aria-live="polite"><label id="show_which_page2">第 1 页 / 共 0 条数据</label></div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="bootstrap-data-table_paginate"><ul class="pagination"><li class="paginate_button page-item next" id="bootstrap-data-table_next"><a id='time_order2' aria-controls="bootstrap-data-table" data-dt-idx="0" tabindex="0" class="page-link">时间倒序</a></li><li class="paginate_button page-item change_page2" id="bootstrap-data-table_previous"><a aria-controls="bootstrap-data-table" data-dt-idx="1" tabindex="0" class="page-link">前一页</a></li><li class="paginate_button page-item change_page2" id="bootstrap-data-table_next"><a aria-controls="bootstrap-data-table" data-dt-idx="2" tabindex="0" class="page-link">后一页</a></li></ul></div></div></div></div>
                         <div class="row" id="scoreTable" hidden><div class="col-sm-12"><table id="bootstrap-data-table-3" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="bootstrap-data-table_info">
 
                             <hr/>
@@ -214,16 +221,127 @@
                         </table>
                         </div></div>
 
+			<!--修改2：在table4之前加上选择年月日的输入框（起始、结束时间）和“统计”按钮-->                      
+			
+			<!-- <div id="selectTime_tab" class="row" hidden>
+			    <div class="row" style="margin-left:30px">
+		                <h1 style="font-size:20px;margin-top:5px">起始日期：</h1>
+				<input id="startDate" type="date" value="">
+			    </div>
+
+			    <div class="row" style="margin-left:30px">
+				<h1 style="font-size:20px;margin-top:5px">终止日期：</h1>
+				<input id="endDate" type="date" value="">
+			    </div>
+
+			    <div class="col-sm-12 col-md-6" style="margin-left:30px">
+				<div class="col-sm-12 col-md-8">
+			            <button id="get_calculation" class="btn btn-primary col-sm-5" style="background: #00bc2c" onclick="getCalculations()">统计</button>
+				</div>
+		            </div>
+			</div> -->
+			<!--修改2结束-->
+
+			<!-- 修改3：在页面中加上用于显示统计信息的table4的表格，初始tbody数据置为空（类似tbody3显示和隐藏数据的思路）-->
+		        
+			<!-- <div class="row" id="scoreTable_" style="margin-left:20px" hidden>
+			    <div class="clo-sm-12">
+				<table id="bootstrap-data-table-4" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="bootstrap-data-table_info">
+			            <hr/>
+				    <thead>
+			            <tr>
+					<th>MAE(FLACC,AI_total)</th>
+				    </tr>
+				    </thead>
+				    <tbody id="tbody4">
+
+			            </tbody>
+				</table>
+			    </div>
+			</div> -->
+			<!--修改3结束 -->
+
+
                         </div>
                     </div>
                 </div>
             </div>
+             <!-- 新增一个模块，用于统计FLACC分数段的人数 -->
+            <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title" style="float: left;">统计信息</strong>
+                            <button class="btn btn-success" style="float: right">展开</button>
+                        </div>
+                        <div class="card-body" hidden>
+                            <div>
+                                <!--选择年月日的输入框（起始、结束时间）和“统计”按钮-->                      
+                        
+                                <div id="selectTime_tab" class="row">
+                                    <div class="row" style="margin-left:30px">
+                                            <h1 style="font-size:16px;margin-top:5px">起始日期：</h1>
+                                    <input id="flacc_startDate" type="date" value="">
+                                    </div>
+            
+                                    <div class="row" style="margin-left:30px">
+                                    <h1 style="font-size:16px;margin-top:5px">终止日期：</h1>
+                                    <input id="flacc_endDate" type="date" value="">
+                                    </div>
+            
+                                    <div class="col-sm-12 col-md-6" style="margin-left:30px">
+                                    <div class="col-sm-12 col-md-8">
+                                            <button id="get_flacc_list" class="btn btn-primary col-sm-5" style="background: #00bc2c" onclick="getFlaccCount()">统计</button>
+                                    </div>
+                                        </div>
+                                </div>
+                                <!--修改2结束-->
+                                 <!--修改3：在页面中加上用于显示统计信息的table4的表格，初始tbody数据置为空（类似tbody3显示和隐藏数据的思路）-->
+		        
+                                 <div class="row" id="scoreTable_" style="margin-left:20px" hidden>
+                                    <div class="clo-sm-12">
+                                    <table id="bootstrap-data-table-4" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="bootstrap-data-table_info">
+                                            <hr/>
+                                        <thead>
+                                            <tr>
+                                        <th>MAE(FLACC,AI_total)</th>
+                                        <th>PCC(FLACC,AI_total)</th>
+                                        <th>CCC(FLACC,AI_total)</th>
+                                        <th>sample_num</th>
+                                        <th>patient_num</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tbody5">
+
+                                            </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+                                <!--修改3结束-->
+                                <!-- 新增统计图，用于统计个FLACC段的人数 -->
+                                <div id="bootstrap-data-table_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer canvas-container" style="margin-top: 20px;">
+
+                                    
+                                    <canvas id="barChart" width="900" height="500"></canvas>
+                                    <canvas id="barChart_age" width="1200" height="500"></canvas>
+                                
+                                    
+                                </div>
+                                <!-- 新增模块结束 -->
+                                <!-- 新增统计图，用于统计个年龄段的人数 -->
+                               
+                    </div>
+                </div>
+            </div>
+             <!-- 新增结束 -->
         </div>
     </div>
 </div>
 
 {% endblock %}
+
+
 {% block js %}
+
 <script type="text/javascript" src="/static/js/jquery-1.4.2.min.js"></script>
 <script>
     $(function(){
@@ -273,8 +391,238 @@
     var allHTML="";
     var scoreDic={};
 </script>
+
+<script>
+    function getFlaccCount(){
+	var flacc_startDate=document.getElementById('flacc_startDate').value;  //获取用户指定的起止时间（精确到天）
+    var flacc_endDate=document.getElementById('flacc_endDate').value;
+	var isAll=false;     //是否展示全部数据上的统计结果
+    var account="ff";
+    
+	//使用ajax函数与后端通信：传入用户指定的时间区间
+	$.ajax({
+	    //几个参数需要一下
+	    type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/getFlaccCount/" ,//服务器后端的url（***待修改***）
+	    data: {"account":account,"isAll":isAll,"flacc_startDate":flacc_startDate,"flacc_endDate":flacc_endDate},
+            success: function (data) {   //返回成功，则根据返回的FLACC_MAE和AI_total_MAE来显示table4的内容
+                console.log(data);
+
+            //####################年龄条形图#################
+            const dataSet_age = data.hist_data_age;
+            const canvas_age = document.getElementById('barChart_age');
+            const ctx_age = canvas_age.getContext('2d');
+
+            // 绘制条形图
+            const barWidth_age = 50;
+            const maxValue_age = Math.max(...dataSet_age);
+            const canvasHeight_age = canvas_age.height-50;
+            const canvasWidth_age = canvas_age.width;
+            const spaceBetweenBars_age = 0;
+            const startingX_age = 80;
+            // 清除画布内容
+            ctx_age.clearRect(0, 0, canvasWidth_age, canvasHeight_age);
+
+
+            // 绘制 x 轴箭头
+            ctx_age.beginPath();
+            ctx_age.moveTo(canvasWidth_age - startingX_age - 10, canvasHeight_age - 10);
+            ctx_age.lineTo(canvasWidth_age - startingX_age, canvasHeight_age);
+            ctx_age.lineTo(canvasWidth_age - startingX_age - 10, canvasHeight_age + 10);
+            ctx_age.stroke();
+
+            // 绘制 y 轴箭头
+            ctx_age.beginPath();
+            ctx_age.moveTo(startingX_age - 10, 10);
+            ctx_age.lineTo(startingX_age, 0);
+            ctx_age.lineTo(startingX_age + 10, 10);
+            ctx_age.stroke();
+
+            // 设置轴标注的字体
+            ctx_age.font = '16px Arial';  
+
+            // 绘制 x 轴标注
+            ctx_age.fillStyle = 'black';
+            ctx_age.fillText('年龄', canvasWidth_age - startingX_age - 45, canvasHeight_age+ 25);
+
+            // 绘制 y 轴标注
+            ctx_age.save();
+            ctx_age.translate(0, 20 );
+            ctx_age.fillStyle = 'black';
+            ctx_age.fillText('数量/人', 0, 0);
+            ctx_age.restore();
+
+            // 绘制 x 轴
+            ctx_age.beginPath();
+            ctx_age.moveTo(startingX_age, canvasHeight_age);
+            ctx_age.lineTo(canvasWidth_age - startingX_age, canvasHeight_age);
+            ctx_age.stroke();
+
+            // 绘制 y 轴
+            ctx_age.beginPath();
+            ctx_age.moveTo(startingX_age, 0);
+            ctx_age.lineTo(startingX_age, canvasHeight_age);
+            ctx_age.stroke();
+
+
+            for (let i = 0; i < dataSet_age.length; i++) {
+                const barHeight_age = (dataSet_age[i] / maxValue_age) * (canvasHeight_age - 40);
+
+                ctx_age.fillStyle = '#3498db';
+                ctx_age.fillRect(startingX_age + (barWidth_age + spaceBetweenBars_age) * i, canvasHeight_age - barHeight_age, barWidth_age, barHeight_age);
+
+                // 绘制黑色边框
+                ctx_age.strokeStyle = 'black';
+                ctx_age.strokeRect(startingX_age + (barWidth_age + spaceBetweenBars_age) * i, canvasHeight_age - barHeight_age, barWidth_age, barHeight_age);
+
+                // 绘制标签
+                ctx_age.fillStyle = 'black';
+                ctx_age.fillText(dataSet_age[i], startingX_age + (barWidth_age + spaceBetweenBars_age) * i + barWidth_age / 2-5, canvasHeight_age - barHeight_age - 5);
+
+            }
+
+            const array_age = [];
+            for (let i = 0; i <= 18; i++) {
+                array_age.push(i);
+            }
+            for (let i = 0; i < array_age.length; i++) {
+                    // 绘制数字标注
+                    ctx_age.fillStyle = 'black';
+                ctx_age.fillText(array_age[i], startingX_age + (barWidth_age + spaceBetweenBars_age) * i + barWidth_age / 2, canvasHeight_age + 25);
+            
+            }
+
+            // 添加标题
+        var title_age = "不同年龄段的数量";
+        ctx_age.font = "20px Arial";
+        ctx_age.fillStyle = "black";
+        ctx_age.fillText(title_age, canvas_age.width / 2 - ctx_age.measureText(title_age).width / 2, 30);
+            // ###################增加条形图结束#######################
+            //##############################################
+                // ###################FLACC条形图#######################
+            const dataSet = data.hist_data;
+            console.log(dataSet);
+            // 获取canvas元素和上下文
+            const canvas = document.getElementById('barChart');
+            const ctx = canvas.getContext('2d');
+
+            // 绘制条形图
+            const barWidth = 50;
+            const maxValue = Math.max(...dataSet);
+            const canvasHeight = canvas.height-50;
+            const canvasWidth = canvas.width;
+            const spaceBetweenBars = 0;
+            const startingX = 80;
+            // 清除画布内容
+            ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+
+            // 绘制 x 轴箭头
+            ctx.beginPath();
+            ctx.moveTo(canvasWidth - startingX - 10, canvasHeight - 10);
+            ctx.lineTo(canvasWidth - startingX, canvasHeight);
+            ctx.lineTo(canvasWidth - startingX - 10, canvasHeight + 10);
+            ctx.stroke();
+
+            // 绘制 y 轴箭头
+            ctx.beginPath();
+            ctx.moveTo(startingX - 10, 10);
+            ctx.lineTo(startingX, 0);
+            ctx.lineTo(startingX + 10, 10);
+            ctx.stroke();
+
+            // 设置轴标注的字体
+            ctx.font = '16px Arial';  
+
+            // 绘制 x 轴标注
+            ctx.fillStyle = 'black';
+            ctx.fillText('平均FLACC', canvasWidth - startingX - 45, canvasHeight+ 25);
+
+            // 绘制 y 轴标注
+            ctx.save();
+            ctx.translate(0, 20 );
+            ctx.fillStyle = 'black';
+            ctx.fillText('数量/个', 0, 0);
+            ctx.restore();
+
+            // 绘制 x 轴
+            ctx.beginPath();
+            ctx.moveTo(startingX, canvasHeight);
+            ctx.lineTo(canvasWidth - startingX, canvasHeight);
+            ctx.stroke();
+
+            // 绘制 y 轴
+            ctx.beginPath();
+            ctx.moveTo(startingX, 0);
+            ctx.lineTo(startingX, canvasHeight);
+            ctx.stroke();
+
+
+            for (let i = 0; i < dataSet.length; i++) {
+                const barHeight = (dataSet[i] / maxValue) * (canvasHeight - 40);
+
+                ctx.fillStyle = '#3498db';
+                ctx.fillRect(startingX + (barWidth + spaceBetweenBars) * i, canvasHeight - barHeight, barWidth, barHeight);
+
+                // 绘制黑色边框
+                ctx.strokeStyle = 'black';
+                ctx.strokeRect(startingX + (barWidth + spaceBetweenBars) * i, canvasHeight - barHeight, barWidth, barHeight);
+
+                // 绘制标签
+                ctx.fillStyle = 'black';
+                ctx.fillText(dataSet[i], startingX + (barWidth + spaceBetweenBars) * i + barWidth / 2-5, canvasHeight - barHeight - 5);
+
+            }
+
+            const array = [];
+            for (let i = 0; i <= 10; i++) {
+                array.push(i);
+            }
+            for (let i = 0; i < array.length; i++) {
+                    // 绘制数字标注
+                    ctx.fillStyle = 'black';
+                ctx.fillText(array[i], startingX + (barWidth + spaceBetweenBars) * i + barWidth / 2, canvasHeight + 25);
+            
+            }
+
+            // 添加标题
+        var title = "不同平均FLACC分数的数量";
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "black";
+        ctx.fillText(title, canvas.width / 2 - ctx.measureText(title).width / 2, 30);
+            // ###################增加条形图结束#######################
+            document.getElementById('scoreTable_').hidden=false; 
+            var MAE=data["stats"][0];
+            var PCC=data["stats"][1];
+            var CCC=data["stats"][2];
+            var sample_num = dataSet.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            var patient_num = dataSet_age.reduce((accumulator_age, currentValue_age) => accumulator_age + currentValue_age, 0);
+            var tbody5=document.getElementById('tbody5');
+            tbody5.innerHTML='';
+        var row = `<tr>
+            <td>${MAE==null ? '空' : MAE.toFixed(2)}</td>
+            <td>${PCC==null ? '空' : PCC.toFixed(2)}</td>
+            <td>${CCC==null ? '空' : CCC.toFixed(2)}</td>
+            <td>${sample_num==null ? '空' : sample_num}</td>
+            <td>${patient_num==null ? '空' : patient_num}</td>
+            </tr>`;
+            tbody5.innerHTML += row;
+            },
+	    error : function() {
+	       alert(data.msg);
+	    }
+	});
+
+       //document.getElementById('scoreTable_').setAttribute('hidden',false);  //显示隐藏的表格table4
+
+}
+</script>
+
+
 <script>
     function tbodyfun(data){
+        
         var tbody1 = document.getElementById('tbody1');
         tbody1.innerHTML='';
         for (var i = 0; i < data.rest_list.length; i++){
@@ -286,12 +634,18 @@
                         <td>${data.rest_list[i].video_name}</td>
                         <td>${data.rest_list[i].biology_name}</td>
                         <td>${data.rest_list[i].add_time}</td>
+                        <td class="operation">
+                            <a class="badge badge-complete" href="/sampleDetail/${data.rest_list[i].sample_id}" style="background-color: #00c292;padding: 5px;color: white" target="_blank" >视频</a>
+                            <button class="badge badge-complete" style="background-color: #a3c200;padding: 5px;color: white" onclick="confirmDelete(${data.rest_list[i].sample_id})" >删除</button>
+                        </td>
                     </tr>`;
                     tbody1.innerHTML += row;
         }
         var tbody2 = document.getElementById('tbody2');
         tbody2.innerHTML='';
         scoreDic={};
+        // console.log(data);
+        // console.log(data.done_list.length);
         for (var i = 0; i < data.done_list.length; i++){
             scoreDic[data.done_list[i].sample_id]=data.done_list[i].scoreDicList;
             var row = `<tr id="${data.done_list[i].sample_id}">
@@ -304,7 +658,11 @@
                         <td>${data.done_list[i].face_score}</td>
                         <td>${data.done_list[i].voice_score}</td>
                         <td>${data.done_list[i].score_num}</td>
-                        <td><button class="badge badge-complete" style="background-color: #00c292;padding: 8px;color: white" onclick="hideOtherTr(${data.done_list[i].sample_id})">查看所有评分</button></td>
+                        <td class="operation">
+                            <a class="badge badge-complete" href="/sampleDetail/${data.done_list[i].sample_id}" style="background-color: #00c292;padding: 5px;color: white" target="_blank" >视频</a>
+                            <button class="badge badge-complete" style="background-color: #00c292;padding: 5px;color: white" onclick="hideOtherTr(${data.done_list[i].sample_id})">评分</button>
+                            <button class="badge badge-complete" style="background-color: #a3c200;padding: 5px;color: white" onclick="confirmDelete(${data.done_list[i].sample_id})" >删除</button>
+                        </td>
                     </tr>`;
                     tbody2.innerHTML += row;
         }
@@ -327,6 +685,29 @@
 </script>
 
 <script>
+    function deleteSample(sample_id) {
+            console.log(sample_id);
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/deleteSample/" ,//url
+                data: {"sample_id":sample_id,"account":account,"name1":name1,"page1":page1,"order1":order1,"name2":name2,"page2":page2,"order2":order2},
+                success: function (data) {
+                    tbodyfun(data);
+                    alert("删除成功！");
+                },
+                error : function(data) {
+                    alert("删除失败！",data.msg);
+                    window.location.href = '/scoreList/';
+                }
+        });
+    };
+    function confirmDelete(sampleId) {
+        if (confirm("你确定删除该视频样本吗？")) {
+            deleteSample(sampleId);
+        }
+    }
     function hideOtherTr(id)
     {
         var tbody = document.getElementById('tbody2');
@@ -354,9 +735,25 @@
         tbody.innerHTML=allHTML;
         var scoreTable = document.getElementById('scoreTable');
         scoreTable.setAttribute('hidden','hidden');
+
+	//修改6：在点击【返回】时，应隐藏统计数据界面的2个组件
+	document.getElementById('selectTime_tab').hidden=true;
+	document.getElementById('scoreTable_').hidden=true;
+	
+	//显示scoreList已打分列表主界面控件
+	document.getElementById('control_panel').removeAttribute('hidden');
+	//同时应显示table2
+	document.getElementById('bootstrap-data-table-2').removeAttribute('hidden');
+	//显示table2分页控件
+	document.getElementById('select_page_').removeAttribute('hidden');
+	//最后，把用户选择时间范围的2个输入框的value值置为""，方便下次重新指定时间范围
+	document.getElementById('startDate').value="";
+	document.getElementById('endDate').value="";
+	//修改6结束
+	
     }
 </script>
-    
+
 
 <script>
     $(function () {
@@ -381,6 +778,8 @@
                 });
         });
     });
+    
+
     $(function () {
         $("#searchPatient_btn2").click(function(){
     //在输入框中打印输入的值

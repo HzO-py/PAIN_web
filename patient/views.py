@@ -5,8 +5,8 @@ from patient.apps import ai,lock
 from django.core import serializers
 import json
 import datetime
-from django.http import HttpResponse,JsonResponse,HttpResponseRedirect
-from django.db.models import F
+from django.http import HttpResponse,JsonResponse,HttpResponseRedirect,FileResponse
+from django.db.models import F,Count
 from django.db import IntegrityError
 from django.contrib.sessions.models import Session
 from django.contrib.auth.hashers import make_password,check_password
@@ -24,6 +24,15 @@ from datetime import datetime
 import pandas as pd
 from django.db.models import Avg
 import time
+from django.db.models.functions import Abs
+from django.core.cache import cache
+from scipy.stats import pearsonr
+from sklearn.metrics import mean_absolute_error
+
+#修改3：引入math库
+import math
+#修改3结束
+
 # from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
@@ -40,13 +49,17 @@ class myThread(threading.Thread):
         print("thread start!!")
         lock.acquire()
         try:
-            hrt=HRThread(self.videopath)
-            hrt.start()
+            # hrt=HRThread(self.videopath)
+            # hrt.start()
+            print(self.videopath)
             all_score,face_score,voice_score=ai.predict(self.videopath)
-
-            hrt.join()
-
-            AIScore.objects.create(sample_id_id=self.sampleID,all_score=all_score,face_score=face_score,voice_score=voice_score,heart_rate=hrt.heart_rate,diastolic_pressure=hrt.diastolic_pressure,systolic_pressure=hrt.systolic_pressure)
+            # hrt.join()
+            aiscores=AIScore.objects.filter(sample_id_id=self.sampleID)
+            for aiscore in aiscores:
+                aiscore.delete()
+            AIScore.objects.update_or_create(sample_id_id=self.sampleID,all_score=all_score,face_score=face_score,voice_score=voice_score)
+            # ,heart_rate=hrt.heart_rate,diastolic_pressure=hrt.diastolic_pressure,systolic_pressure=hrt.systolic_pressure)
+            cache.clear()
         except Exception as e:
             print("评分失败！原因："+str(e.args))
         lock.release()
@@ -72,6 +85,13 @@ class HRThread(threading.Thread):
         except Exception as e:
             print("心率血压预测失败！原因："+str(e.args))
         print("HR thread done!!")
+
+def cache_get(key:str,exe:str,filter_value=None):
+    res=cache.get(key)
+    if res is None:
+        res = eval(exe)
+        cache.set(key, res)
+    return res
 
 # Create your views here.
 def login(request):
@@ -195,6 +215,7 @@ def addPatientSuccess(request):
             values[key]=value
         print(values)
         Patient.objects.create(**values)
+        cache.clear()
         request.session['addData_flag'] = True
         request.session['addData_name'] = name
         request.session['msg'] = "添加病人 "+name+" 成功！"
@@ -229,6 +250,7 @@ def addPatientDataSuccess(request):
         
         print(values)
         sample=Sample.objects.create(**values)
+        cache.clear()
         sampleID=sample.pk
 
         t=myThread(sampleID,os.path.join(settings.MEDIA_ROOT,sample.video.path))
@@ -255,8 +277,8 @@ def postlogin(request):
             # userPassword = m.hexdigest()
             # if res.password == userPassword:
             if check_password(userPassword, res.password):
-                if res.account=='sue&hzo':
-                    return redirect('/mia')
+                # if res.account=='sue&hzo':
+                #     return redirect('/mia')
                 request.session['addData_flag'] = False
                 request.session['addData_name'] = ""
                 request.session['account'] = res.account
@@ -313,9 +335,9 @@ def dataList(request):
 
         page_size=10
 
-        all_sample=Sample.objects.all()
+        all_sample=cache_get('all_sample','Sample.objects.all()')
         user = User.objects.filter(account=account)[0]
-        user_score=user.score_user.all()
+        user_score=cache_get('user_score_'+str(user.account),'filter_value.score_user.all()',user)
         tmp=[]
         for sample in all_sample:
             tmp.append(sample.pk)
@@ -332,12 +354,14 @@ def dataList(request):
         
         rest_patient=[]
         user_patient=[]
-        for patient in Patient.objects.filter(name__contains=name1):
+        tmp=cache_get('rest_patient_'+name1,'Patient.objects.filter(name__contains=filter_value)',name1)
+        for patient in tmp:
             rest_patient.append(patient.pk)
-        for patient in Patient.objects.filter(name__contains=name2):
+        tmp=cache_get('user_patient_'+name2,'Patient.objects.filter(name__contains=filter_value)',name2)
+        for patient in tmp:
             user_patient.append(patient.pk)
 
-        rest_sample=Sample.objects.filter(pk__in=rest_sample).order_by('-add_time')
+        rest_sample=cache_get('rest_sample_'+str(user.account),'Sample.objects.filter(pk__in=filter_value).order_by("-add_time")',rest_sample)
         user_sample=Score.objects.filter(sample_id_id__in=user_sample,user_id_id=user.pk).order_by('-add_time')
 
         tmp=[]
@@ -365,7 +389,7 @@ def dataList(request):
         rest_list=[]
         for rest in rest_sample[page1*page_size:(page1+1)*page_size]:
             row={}
-            patient=Patient.objects.get(pk=rest.patient_id_id)
+            patient=cache_get('patient_'+str(rest.patient_id_id),'Patient.objects.get(pk=filter_value)',rest.patient_id_id)
             row["patient_id"]=patient.csv_id
             row["sample_id"]=rest.pk
             row["name"]=patient.name
@@ -380,8 +404,8 @@ def dataList(request):
         for rest in user_sample[page2*page_size:(page2+1)*page_size]:
             row={}
             score=Score.objects.get(sample_id_id=rest.pk,user_id_id=user.pk)
-            ai_score=AIScore.objects.filter(sample_id_id=rest.pk)
-            patient=Patient.objects.get(pk=rest.patient_id_id)
+            ai_score=cache_get('ai_score_'+str(rest.pk),'AIScore.objects.filter(sample_id_id=filter_value)',rest.pk)
+            patient=cache_get('patient_'+str(rest.patient_id_id),'Patient.objects.get(pk=filter_value)',rest.patient_id_id)
             row["patient_id"]=patient.csv_id
             row["sample_id"]=rest.pk
             row["name"]=patient.name
@@ -474,8 +498,39 @@ def export_excel(request):
         if order2=="reverse":
             user_sample.reverse()
 
-        lianpu_list=['','A','B','C','D','E','F']
+        # lianpu_list=['','A','B','C','D','E','F']
+        # Create the HttpResponse object with the appropriate CSV header.
+        # response = HttpResponse(content_type='text/csv')
+        # response['Content-Disposition'] = 'attachment; filename="scoreList.csv"'
+        # with open('/hdd/sdb1/lzq/PAIN/media/scoreList.csv','w') as f:
+        #     writer = csv.writer(f)
+        #     writer.writerow(['姓名', '性别', '年龄', '视频', '生理', 'FLACCs', 'FLACCs', 'FLACCs', 'FLACCs', 'FLACCs', '疼痛总分s', '疼痛总分s', '疼痛总分s', '疼痛总分s', '疼痛总分s', 'AI脸', 'AI声', 'AI脸+声'])
 
+        #     for rest in user_sample:
+        #         row = []
+        #         scores = Score.objects.filter(sample_id_id=rest.pk)
+        #         ai_scores = AIScore.objects.filter(sample_id_id=rest.pk)
+        #         patient = Patient.objects.get(pk=rest.patient_id_id)
+
+        #         row.extend([patient.name, patient.get_sex_display(), patient.age])
+        #         row.append(rest.video.name.split('/')[-1])
+        #         row.append(rest.biology.name.split('/')[-1] if rest.biology else '')
+
+        #         for score in scores:
+        #             row.append(score.FLACC_score)
+        #         row.extend(['' for _ in range(5 - len(scores))])
+
+        #         for score in scores:
+        #             row.append(score.sum_score)
+        #         row.extend(['' for _ in range(5 - len(scores))])
+
+        #         if ai_scores:
+        #             row.extend([ai_scores[0].face_score, ai_scores[0].voice_score, ai_scores[0].all_score])
+
+        #         writer.writerow(row)
+        file = open('/hdd/sdb1/lzq/PAIN/media/scoreList.csv', 'rb')
+        response = FileResponse(file, as_attachment=True)
+        return response
         import xlwt
         from io import BytesIO
         response = HttpResponse(content_type='application/vnd.ms-excel')
@@ -483,27 +538,40 @@ def export_excel(request):
         user_list=[]
         ws = xlwt.Workbook(encoding='utf-8')
         w = ws.add_sheet('sheet1')
-        w.write(0, 0, u'编号')
-        w.write(0, 1, u'姓名')
-        w.write(0, 2, u'视频')
-        w.write(0, 3, u'生理')
+        w.write(0, 0, u'姓名')
+        w.write(0, 1, u'性别')
+        w.write(0, 2, u'年龄')
+        w.write(0, 3, u'视频')
+        w.write(0, 4, u'生理')
         w.write(0, 5, u'FLACCs')
+        w.write(0, 10, u'疼痛总分s')
+        w.write(0, 15, u'AI脸')
+        w.write(0, 16, u'AI声')
+        w.write(0, 17, u'AI脸+声')
         excel_row = 1
         for rest in user_sample:
             row={}
             scores=Score.objects.filter(sample_id_id=rest.pk)
+            ai_scores=AIScore.objects.filter(sample_id_id=rest.pk)
             patient=Patient.objects.get(pk=rest.patient_id_id)
-            row["patient_id"]=patient.csv_id
             row["name"]=patient.name
+            row["sex"]=patient.get_sex_display() 
+            row["age"]=patient.age
             row["video_name"]=rest.video.name.split('/')[-1]
             row["biology_name"]=rest.biology.name.split('/')[-1] if rest.biology else ''
             for i,v in enumerate(row.values()):
-                print(v)
+                # print(v)
                 w.write(excel_row, i, v)
             
             for i,score in enumerate(scores):
                 w.write(excel_row, i+5,score.FLACC_score)
-                print(score.FLACC_score)
+                w.write(excel_row, i+10,score.sum_score)
+                # print(score.FLACC_score)
+            if len(ai_scores)>0:
+                w.write(excel_row, 15, ai_scores[0].face_score)
+                w.write(excel_row, 16, ai_scores[0].voice_score)
+                w.write(excel_row, 17, ai_scores[0].all_score)
+
             excel_row+=1
         # 写出到IO
         output = BytesIO()
@@ -519,6 +587,7 @@ def scoreList(request):
     if user=='':
         return redirect('/')
     if request.method == "POST":
+        time1=time.time()
         account=request.POST.get("account")
 
         name1=request.POST.get("name1")
@@ -533,33 +602,38 @@ def scoreList(request):
 
         page_size=10
 
-        all_sample=Sample.objects.all()
-        all_score=Score.objects.all()
-        print("all_score")
-        print(all_score)
+        all_sample=cache_get('all_sample','Sample.objects.all()')
+        all_score=cache_get('all_score','Score.objects.all()')
+       
         tmp=[]
         for sample in all_sample:
-            tmp.append(sample.pk)
+            tmp.append(sample.pk) # 添加每一个sample的主键（primary_key）
         all_sample=tmp.copy()
         user_sample=[]
         for score in all_score:
             user_sample.append(score.sample_id_id)
-        user_sample=list(set(user_sample))
+        user_sample=list(set(user_sample)) # 去除重复的score中的sample_id
+        
 
         rest_sample=[]
         for sample in all_sample:
             if sample not in user_sample:
-                rest_sample.append(sample)
+                rest_sample.append(sample)  # 将不在score中的sample记录下来，也就是记录未打分的sample
         
         rest_patient=[]
         user_patient=[]
-        for patient in Patient.objects.filter(name__contains=name1):
-            rest_patient.append(patient.pk)
-        for patient in Patient.objects.filter(name__contains=name2):
-            user_patient.append(patient.pk)
+        
+        tmp=cache_get('rest_patient_'+name1,'Patient.objects.filter(name__contains=filter_value)',name1)
+        for patient in tmp:
+            rest_patient.append(patient.pk)  # 根据name1添加Patient主键
+        tmp=cache_get('user_patient_'+name2,'Patient.objects.filter(name__contains=filter_value)',name2)
+        for patient in tmp:
+            user_patient.append(patient.pk)  # 根据name2添加Patient主键
 
-        rest_sample=Sample.objects.filter(pk__in=rest_sample).order_by('-add_time')
-        user_sample=Sample.objects.filter(pk__in=user_sample).order_by('-add_time')
+        rest_sample=cache_get('rest_sample','Sample.objects.filter(pk__in=filter_value).order_by("-add_time")',rest_sample)
+        # 根据rest_sample的主键，query其他数据出来
+        user_sample=cache_get('user_sample','Sample.objects.filter(pk__in=filter_value).order_by("-add_time")',user_sample)
+        # 根据user_sample的主键，query其他数据出来
 
         tmp=[]
         for sample in rest_sample:
@@ -585,7 +659,7 @@ def scoreList(request):
         rest_list=[]
         for rest in rest_sample[page1*page_size:(page1+1)*page_size]:
             row={}
-            patient=Patient.objects.get(pk=rest.patient_id_id)
+            patient=cache_get('patient_'+str(rest.patient_id_id),'Patient.objects.get(pk=filter_value)',rest.patient_id_id)
             row["patient_id"]=patient.csv_id
             row["sample_id"]=rest.pk
             row["name"]=patient.name
@@ -599,15 +673,15 @@ def scoreList(request):
         user_list=[]
         for rest in user_sample[page2*page_size:(page2+1)*page_size]:
             row={}
-            scores=Score.objects.filter(sample_id_id=rest.pk)
-            ai_score=AIScore.objects.filter(sample_id_id=rest.pk)
-            patient=Patient.objects.get(pk=rest.patient_id_id)
+            scores=cache_get('scores_'+str(rest.pk),'Score.objects.filter(sample_id_id=filter_value)',rest.pk)
+            ai_score=cache_get('ai_score_'+str(rest.pk),'AIScore.objects.filter(sample_id_id=filter_value)',rest.pk)
+            patient=cache_get('patient_'+str(rest.patient_id_id),'Patient.objects.get(pk=filter_value)',rest.patient_id_id)
             row["patient_id"]=patient.csv_id
             row["sample_id"]=rest.pk
             row["name"]=patient.name
             row["video_name"]=rest.video.name.split('/')[-1]
             row["biology_name"]=rest.biology.name.split('/')[-1] if rest.biology else '空'
-            sum_tmp=scores.aggregate(Avg("sum_score"))["sum_score__avg"]
+            sum_tmp=scores.aggregate(Avg("sum_score"))["sum_score__avg"]  # aggregate函数是一个query方法，里面可以添加sql语句的统计函数
             row["sum"]=round(sum_tmp,2) if sum_tmp is not None else None
             FLACC_tmp=scores.aggregate(Avg("FLACC_score"))["FLACC_score__avg"] 
             row["FLACC"]=round(FLACC_tmp,2) if FLACC_tmp is not None else None
@@ -635,7 +709,27 @@ def scoreList(request):
                         scoreDicList[i][kk]='空'
             row["scoreDicList"]=scoreDicList
             user_list.append(row)
-            
+        
+        # 计算所有sample平均FLACC_score
+        # FLACC_score_all=[]
+        # for item in all_user_sample:
+        #     scores=Score.objects.filter(sample_id_id=item.pk)
+        #     FLACC_tmp=scores.aggregate(Avg("FLACC_score"))["FLACC_score__avg"]
+        #     FLACC_score_all.append(round(FLACC_tmp,2) if FLACC_tmp is not None else None)
+        # print("FLACC_score_all")
+        # print(len(FLACC_score_all))
+        # print(FLACC_score_all)
+
+        # # 分箱统计
+        # flacc_max=max(FLACC_score_all)
+        # print(flacc_max)
+        # hist_data = [0] * 11 
+        # for score in FLACC_score_all:
+        #     # index = min(int(score/5), 9)
+        #     hist_data[int(score)] += 1
+        # # 获取所有平均flacc分数完毕
+
+
         output={"rest_list":rest_list,"done_list":user_list}
         for k,v in output.items():
             for i in range(len(v)):
@@ -644,9 +738,14 @@ def scoreList(request):
                         output[k][i][kk]='空'
         output["total1"]=total1
         output["total2"]=total2
+      
+       
 
         json_data=json.dumps(output, ensure_ascii=False)
 
+        time2=time.time()
+
+        print(f'Time taken: {time2 - time1:.6f} seconds')
         return HttpResponse(json_data,content_type='application/json')
         
     else:
@@ -655,6 +754,94 @@ def scoreList(request):
         msg=request.session['msg']
         request.session['msg']=""
         return render(request, 'scoreList.html',{"currentuser":user,"msg":msg})
+
+def calculate_metrics(list1, list2):
+
+    # Ensure the lists are numpy arrays
+    list1, list2 = np.array(list1), np.array(list2)
+
+    # Calculate MAE
+    mae = mean_absolute_error(list1, list2)
+
+    # Calculate PCC
+    pcc = pearsonr(list1, list2)[0]
+
+    # Calculate CCC
+    mean_list1, mean_list2 = np.mean(list1), np.mean(list2)
+    var_list1, var_list2 = np.var(list1), np.var(list2)
+    cov = np.cov(list1, list2)[0][1]
+    ccc = (2 * cov) / (var_list1 + var_list2 + (mean_list1 - mean_list2) ** 2)
+
+    return mae, pcc, ccc
+
+def getFlaccCount(request):
+    user = checkLoginStatus(request)
+    if user=='':
+        return redirect('/')
+    if request.method == "POST":
+        #1.获取request请求传回的参数
+        account = request.POST.get("account")
+        isAll = request.POST.get("isAll")
+        flacc_startDate = request.POST.get("flacc_startDate")
+        flacc_endDate = request.POST.get("flacc_endDate")
+        print(flacc_startDate,flacc_endDate)
+
+        if isAll=="true" or (flacc_startDate=="" and flacc_endDate==""):      #如果不指定时间区间，则默认计算所有已打分样本的MAE：
+            scores = Score.objects.filter(FLACC_score__isnull=False)  # 获取所有样本的评分
+            patients = Patient.objects.annotate(sample_count=Count('patient_sample')).filter(sample_count__gt=0, age__isnull=False)
+        else:
+            if flacc_startDate=="":
+                flacc_startDate = datetime.now() - timedelta(weeks=5000)
+            elif flacc_endDate=="":
+                flacc_endDate = datetime.now() + timedelta(weeks=1)
+            scores = Score.objects.filter(add_time__range=(flacc_startDate, flacc_endDate), FLACC_score__isnull=False)
+            patients = Patient.objects.annotate(sample_count=Count('patient_sample')).filter(add_time__range=(flacc_startDate, flacc_endDate), sample_count__gt=0, age__isnull=False)
+            # patients = Patient.objects.filter(add_time__range=(flacc_startDate, flacc_endDate), age__isnull=False)
+        
+        user_sample=[]
+        for score in scores:
+            user_sample.append(score.sample_id_id)
+        user_sample=list(set(user_sample)) # 去除重复的score中的sample_id
+        user_sample=Sample.objects.filter(pk__in=user_sample).order_by('-add_time') 
+        all_user_sample=list(user_sample).copy()
+         # 计算所有sample平均FLACC_score
+        FLACC_score_all=[]
+        AI_score_all=[]
+        for item in all_user_sample:
+            FLACC_scores=Score.objects.filter(sample_id_id=item.pk)
+            ai_scores=AIScore.objects.filter(sample_id_id=item.pk)
+            if len(FLACC_scores)==0 or len(ai_scores)==0:
+                continue
+            FLACC_tmp=FLACC_scores.aggregate(Avg("FLACC_score"))["FLACC_score__avg"]
+            AI_tmp=ai_scores[0].all_score
+            FLACC_score_all.append(round(FLACC_tmp,2))
+            AI_score_all.append(round(AI_tmp,2))
+
+        hist_data = [0] * 11 
+        for score in FLACC_score_all:
+            hist_data[int(score)] += 1
+            
+        mae,pcc,ccc=calculate_metrics(FLACC_score_all,AI_score_all)
+
+        #返回MAE值的计算结果
+        # output = {"MAE(FLACC,AI_total)":mae}
+        hist_data_age = [0] * 18 
+        for item in patients:
+            hist_data_age[int(item.age)] += 1
+        #返回统计好的数据结果
+        print(mae,pcc,ccc,hist_data,hist_data_age)
+        output = {"hist_data":hist_data,"stats":[mae,pcc,ccc],"hist_data_age":hist_data_age}
+        json_data = json.dumps(output, ensure_ascii=False)
+
+        return HttpResponse(json_data, content_type='application/json')
+
+    else:     #如果不是POST请求
+        account=request.session["account"]
+        user = User.objects.filter(account=account)[0]
+        msg=request.session['msg']
+        request.session['msg']=""
+        return render(request, 'scoreList.html',{"currentuser":user,"msg":msg})
+
 
 def deleteSample(request):
     user = checkLoginStatus(request)
@@ -681,6 +868,7 @@ def deleteSample(request):
 
         sample=Sample.objects.get(pk=int(sampleID))
         sample.delete()
+        cache.clear()
 
         return dataList(request)
 
@@ -697,6 +885,7 @@ def deletePatient(request):
         # try:
         patient=Patient.objects.get(pk=patientID)
         patient.delete()
+        cache.clear()
         # except:
         #     request.session['msg']="删除失败！"
         #     return render(request, 'addData.html',{"currentuser":user,"flag":False,"name":"","msg":request.session['msg']})
@@ -788,11 +977,13 @@ def readCsv(csv_path):
     with open(csv_path, 'r') as f:
         reader = csv.reader(f)
         lines=[line for line in reader]
-        for line in lines:
+        if len(lines)<2:
+            return None
+        for line in lines[1:]:
             line=line[0].split(';')
-            ecg.append(float(line[1]))
-            gsr.append(float(line[3]))
-            hr.append(float(line[4]))
+            ecg.append(0)
+            gsr.append(float(line[0]))
+            hr.append(0)
 
     return {"ecg":ecg,"gsr":gsr,"hr":hr}
 
@@ -868,9 +1059,11 @@ def addScoreSuccess(request):
             values["user_id_id"]=user.pk
             values["sample_id_id"]=sampleID
             Score.objects.create(**values)
+            cache.clear()
         else:
             values["add_time"]=datetime.now()
             scores.update(**values)
+            cache.clear()
         #     value=request.POST.get(key)
         #     if value=="":
         #         value=None
@@ -1096,6 +1289,7 @@ def test(request):
         data={'receive':msg}
         return JsonResponse(data)
     else:
+        priviousAIscore()
         data={'receive':'get'}
         return JsonResponse(data)
 
@@ -1180,6 +1374,7 @@ def android_postpatient(request):
             print(e.args)
             data={"status":android_get_status(False,406),"msg":"添加病人失败！原因："+str(e.args)}
         else:
+            cache.clear()
             data={"status":android_get_status(True),"msg":"添加病人成功！","patientID":patient.pk}
     return JsonResponse(data)
 
@@ -1196,20 +1391,63 @@ def android_postvideo(request):
             print("upload name:",video.name)
             file_name = 'mp4/Android/' + str(patient_id)+'-'+str(res[0].patient_sample.count()+1)+'_Android.mp4'
             file_name = default_storage.save(file_name, video)
+
+            bio_flg=False
+            bio_msg=""
+            data_list =request.POST.get('biology')
+            if not data_list:
+                bio_msg="没有生理信号！"
+            else: 
+                data_list=json.loads(data_list)
+                print(data_list)
+                maxnlen=max(len(value) for value in data_list.values())
+                if maxnlen<1:
+                    bio_msg="没有生理信号！"
+                else:
+                    csv_name='csv/'+str(file_name)[4:-4]+'.csv'
+                    try:
+                        with open(os.path.join(settings.MEDIA_ROOT,csv_name), 'w', newline='') as f:
+                            writer = csv.writer(f)
+                            writer.writerow(data_list.keys())
+                            for i in range(100000):
+                                key_flg=False
+                                row=[]
+                                for k in data_list.keys():
+                                    if i<len(data_list[k]):
+                                        key_flg=True
+                                        row.append(data_list[k][i])
+                                    else:
+                                        row.append("")
+                                if not key_flg:
+                                    break
+                                writer.writerow(row)
+                        
+                    except Exception as e:
+                        bio_msg="生理信号失败！原因："+str(e.args)
+                    else:
+                        bio_flg=True
+                        bio_msg="生理信号上传成功！"
+
+
             if file_name:
                 values={}
                 values["video"]='/'+file_name
                 values["patient_id_id"]=patient_id
+                if bio_flg:
+                    values['biology']= '/'+csv_name
+                print(values)
                 try:
                     sample=Sample.objects.create(**values)
                 except:
-                    data={"status":android_get_status(False,407),"msg":"添加视频样本失败！"}
+                    data={"status":android_get_status(False,407),"msg":"添加视频样本失败！"+bio_msg}
                 else:
+                    cache.clear()
                     sampleID=sample.pk
                     values["sample_id"]=sampleID
                     t=myThread(sampleID,os.path.join(settings.MEDIA_ROOT,file_name))
                     t.start()
-                    data={"status":android_get_status(True),"msg":"视频上传成功！","sampleID":sampleID}
+                    
+                    data={"status":android_get_status(True),"msg":"视频上传成功！"+bio_msg,"sampleID":sampleID}
     return JsonResponse(data)
 
 @catch_exceptions
@@ -1253,6 +1491,7 @@ def android_postscore(request):
                 except:
                     data={"status":android_get_status(False,403),"msg":"评分失败！"}
                 else:
+                    cache.clear()
                     data={"status":android_get_status(True),"msg":"评分成功！","scoreID":score.pk,"FLACC_score":flacc_score}
             else:
                 values["add_time"]=datetime.now()
@@ -1261,8 +1500,18 @@ def android_postscore(request):
                 except:
                     data={"status":android_get_status(False,403),"msg":"评分失败！"}
                 else:
+                    cache.clear()
                     score=scores[0]
                     data={"status":android_get_status(True),"msg":"评分成功！","scoreID":score.pk,"FLACC_score":flacc_score}
+        if data["status"]["flag"]==True:
+            try:
+                sample=Sample.objects.get(pk=sampleID)
+                sample.heart_rate=values["heart_rate"]
+                sample.diastolic_pressure=values["diastolic_pressure"]
+                sample.systolic_pressure=values["systolic_pressure"]
+                sample.save()
+            except:
+                data={"status":android_get_status(False,411),"msg":"心率血压上传失败！"}
     return JsonResponse(data)
 
 @catch_exceptions
@@ -1274,7 +1523,14 @@ def android_getAIscore(request):
         ai_scores=AIScore.objects.filter(sample_id_id=sampleID)
         if len(ai_scores)>0:
             ai_score=ai_scores[0]
-            ret={"all_score":format(ai_score.all_score*10,'.1f'),"face_score":format(ai_score.face_score*10,'.1f'),"voice_score":format(ai_score.voice_score*10,'.1f'),"heart_rate":int(ai_score.heart_rate),"diastolic_pressure":int(ai_score.diastolic_pressure),"systolic_pressure":int(ai_score.systolic_pressure)}
+            ret={}
+            ret["all_score"]=format(ai_score.all_score*10,'.1f') if ai_score.all_score is not None else '空'
+            ret["face_score"]=format(ai_score.face_score*10,'.1f') if ai_score.face_score is not None else '空'
+            ret["voice_score"]=format(ai_score.voice_score*10,'.1f') if ai_score.voice_score is not None else '空'
+            ret["heart_rate"]=int(ai_score.heart_rate) if ai_score.heart_rate is not None else '空'
+            ret["diastolic_pressure"]=int(ai_score.systolic_pressure) if ai_score.systolic_pressure is not None else '空'
+            ret["systolic_pressure"]=int(ai_score.diastolic_pressure) if ai_score.diastolic_pressure is not None else '空'
+            print(ret,ai_score.systolic_pressure,ai_score.diastolic_pressure)
             # if ret["all_score"]<0:
             #     ret["all_score"]="该视频缺少人脸或声音！"
             # if ret["face_score"]<0:
@@ -1286,14 +1542,12 @@ def android_getAIscore(request):
             data={"status":android_get_status(False,405),"msg":"AI正在评分中,请稍等半分钟！"}
     return JsonResponse(data)
 
-@catch_exceptions
-def android_priviousAIscore(request):
+def priviousAIscore():
     res=Sample.objects.filter(pk__lt=1110)
     for sample in res:
         t=myThread(sample.pk,os.path.join(settings.MEDIA_ROOT,str(sample.video)[1:]))
         t.start()
-    data={"status":android_get_status(True),"msg":"AI评分完成！"}
-    return JsonResponse(data)
+    return True
 
 @catch_exceptions
 def android_receiveCSV(request):
@@ -1323,5 +1577,46 @@ def android_receiveCSV(request):
         except Exception as e:
             data={"status":android_get_status(False,410),"msg":"评分失败！原因："+str(e.args)}
         else:
+            cache.clear()
             data={"status":android_get_status(True),"msg":"样本上传成功！","sampleID":sampleID}
     return JsonResponse(data)
+
+# def add_previous():
+    with open('/hdd/sdb1/lzq/pain/add_previous.csv', 'r') as f:
+        from django.db.models import Q
+        reader = csv.reader(f)
+        lines=[line for line in reader]
+        score_list=[]
+        for line in lines[2:]:
+            try:
+                csv_id=int(line[0])
+            except:
+                continue
+            scores=[[line[2],*line[4:10]],[line[3],*line[10:16]],[line[36],*line[38:44]],[line[37],*line[44:50]]]
+            patient = Patient.objects.filter(csv_id=csv_id)
+            if len(patient)==0:
+                continue 
+            else:
+                patient=patient[0]
+            for i in range(2):
+                sample = Sample.objects.filter(Q(patient_id=patient.patient_id) & Q(before_operation=(i+1)*2))
+                if len(sample)==0:
+                    continue 
+                else:
+                    sample=sample[0]
+                for j,score in enumerate(scores[i*2:(i+1)*2]):
+                    values={}
+                    key_list=["sum_score","FLACC_score","FACE_score","legs_score","Acitivity_score","Cry_score","consolability_score"]
+                    for k,key in enumerate(key_list):
+                        try:
+                            values[key]=float(score[k]) if key!='sum_score' else float(score[k])/10
+                        except:
+                            values[key]=None
+                    if values['FLACC_score'] is None:
+                        continue
+                    values["user_id_id"]=j+17
+                    values["sample_id_id"]=sample.pk
+                    print(values)
+                    score_obj=Score(**values)
+                    score_list.append(score_obj)
+        Score.objects.bulk_create(score_list)

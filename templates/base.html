@@ -33,10 +33,11 @@
                 <li>
                     <a href="/addData"><i class="menu-icon fa fa-id-badge"></i>添加样本 </a>
                 </li>
+                {% if currentuser.usrtype == 1 %}
                 <li>
                     <a href="/dataList"><i class="menu-icon fa fa-bars"></i>样本列表 </a>
                 </li>
-                {% if currentuser.usrtype == 0 %}
+                {% else %}
                 <li>
                     <a href="/scoreList"><i class="menu-icon fa fa-bars"></i>评分列表 </a>
                 </li>

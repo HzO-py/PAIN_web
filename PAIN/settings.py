@@ -76,27 +76,52 @@ TEMPLATES = [
 WSGI_APPLICATION = 'PAIN.wsgi.application'
 
 
+#cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 #threadPool RELEASE
 DATABASES = {
-    'default': {
-        'ENGINE': 'mysql',  # 注意这里必须是.mysql结尾
-        'POOL_SIZE': 20,  # 每个进程的连接池的大小，总连接数=20*总进程数
-        'NAME': 'pain',
-        'USER': 'root',
-        'HOST': '127.0.0.1',
-        'PASSWORD': 'p2p543',
-        'STORAGE_ENGINE': 'INNODB',
-        'PORT': '3306',
-        'CHARSET': 'utf-8',
-        'CONN_MAX_AGE': 28790,  # 比mysql默认的wait_timeout小10秒
-        'OPTIONS': {
-            'init_command': 'SET default_storage_engine=INNODB',
+    "default": {
+        "ENGINE": "dj_db_conn_pool.backends.mysql",
+        "NAME": "pain",
+        "USER": "root",
+        "PASSWORD": "p2p543",
+        "HOST": "127.0.0.1",
+        "PORT": "3306",        
+        "CHARSET": "utf8",       
+        "POOL_OPTIONS" : {
+             "POOL_SIZE": 10,
+             "MAX_OVERFLOW": 10,
+             "RECYCLE": 24 * 60 * 60
         }
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mysql',  # 注意这里必须是.mysql结尾
+#         'POOL_SIZE': 2,  # 每个进程的连接池的大小，总连接数=20*总进程数
+#         'NAME': 'pain',
+#         'USER': 'root',
+#         'HOST': '127.0.0.1',
+#         'PASSWORD': 'p2p543',
+#         'STORAGE_ENGINE': 'INNODB',
+#         'PORT': '3306',
+#         'CHARSET': 'utf-8',
+#         'CONN_MAX_AGE': 28790,  # 比mysql默认的wait_timeout小10秒
+#         'OPTIONS': {
+#             'init_command': 'SET default_storage_engine=INNODB',
+#         }
+#     }
+# }
 
 #new3 RELEASE
 # DATABASES = {

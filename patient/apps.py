@@ -1,6 +1,7 @@
 from django.apps import AppConfig
 from mmfc import MMFC
 import threading
+from django.core.cache import cache
 ai = None
 lock=None
 
@@ -14,4 +15,5 @@ class PatientConfig(AppConfig):
         ai = MMFC()
         ai.model_setup(0,0,1)
         lock=threading.Lock()
+        cache.clear()
 

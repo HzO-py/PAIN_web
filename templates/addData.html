@@ -92,7 +92,11 @@
                         <ol class="breadcrumb text-right">
                             <li><a href="/index">首页</a></li>
                             <li class="active">添加样本</li>
+                            {% if currentuser.usrtype == 1 %}
                             <li><a href="/dataList">样本列表</a></li>
+                            {% else %}
+                            <li><a href="/scoreList">评分列表</a></li>
+                            {% endif %}
                         </ol>
                     </div>
                 </div>
