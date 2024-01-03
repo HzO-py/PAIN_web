@@ -1,4 +1,5 @@
-The web in running in http://for-safe.top:8001
+Welcome to the pain assessment website platform. It is established for doctors to make their assessments and to browse the dataset.
+The web is running at http://for-safe.top:8001
 
 Run the web in the server of for-safe.top:
 source ~/miniconda3/bin/activate&&cd /hdd/sdb1/lzq/mofarm/projects&&source activate python36
